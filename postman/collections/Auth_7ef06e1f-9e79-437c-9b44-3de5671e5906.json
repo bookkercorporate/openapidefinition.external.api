@@ -86,12 +86,56 @@
             "response": []
         }
     ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "id": "4f2b8366-b23a-4839-acae-9f5deac3831d",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "id": "30ef0298-a528-49d5-9517-ac7cdf38de3d",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
     "variable": [
         {
-            "id": "a7c3e944-562f-4c1f-80fa-774770b29f28",
+            "id": "17167f29-542f-4538-b5c9-f88fb3d9df9c",
             "key": "baseUrl",
-            "value": "https://apis.bookkercorp.com/reports/v1/",
-            "type": "string"
+            "value": "baseUrl",
+            "type": "string",
+            "disabled": true
+        },
+        {
+            "id": "c577262b-f077-4b97-93dc-30097b6bf213",
+            "key": "client_id",
+            "value": "client_id",
+            "type": "string",
+            "disabled": true
+        },
+        {
+            "id": "42eb9f73-eb94-45b0-9573-754789c87aae",
+            "key": "url_scope",
+            "value": "url_scope",
+            "type": "string",
+            "disabled": true
+        },
+        {
+            "id": "8011cb83-4a3b-47bd-81c9-c034a21713b7",
+            "key": "url_auth",
+            "value": "url_auth",
+            "type": "string",
+            "disabled": true
         }
     ]
 }

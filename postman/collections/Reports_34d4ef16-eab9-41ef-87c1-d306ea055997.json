@@ -406,7 +406,7 @@
         {
             "listen": "prerequest",
             "script": {
-                "id": "9c8ca903-50b6-477a-ba22-7a162540dbaa",
+                "id": "4624d9f7-7c71-4934-b8fa-d3b938b72626",
                 "type": "text/javascript",
                 "exec": [
                     ""
@@ -416,12 +416,35 @@
         {
             "listen": "test",
             "script": {
-                "id": "7dc195b0-57ee-42ce-ae30-b8a1074b041c",
+                "id": "9376d22c-9509-40e1-87ed-71300fd462fa",
                 "type": "text/javascript",
                 "exec": [
                     ""
                 ]
             }
+        }
+    ],
+    "variable": [
+        {
+            "id": "5edc3b7e-cfe0-47a8-8794-5f06e3002843",
+            "key": "baseUrl",
+            "value": "baseUrl",
+            "type": "string",
+            "disabled": true
+        },
+        {
+            "id": "a2e7108a-b451-4fe3-8ad3-3b98b67010ca",
+            "key": "cognitoToken",
+            "value": "auth_token",
+            "type": "string",
+            "disabled": true
+        },
+        {
+            "id": "b08aaf98-07d4-4ab3-9924-ef6c0e96a032",
+            "key": "api_key_test",
+            "value": "api_key_bookker",
+            "type": "string",
+            "disabled": true
         }
     ]
 }
