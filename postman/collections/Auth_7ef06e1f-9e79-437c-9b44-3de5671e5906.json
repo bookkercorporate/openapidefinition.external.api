@@ -1,0 +1,97 @@
+{
+    "info": {
+        "_postman_id": "228ee4e3-8644-47bd-8947-7848806d297a",
+        "name": "Auth",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "get_token_endpoint_credentials",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "ca4192c5-707a-4393-a275-cd4a70b6d106",
+                        "type": "text/javascript",
+                        "exec": [
+                            "tests[\"Status code is 200\"] = responseCode.code;\r",
+                            "tests[\"Response free of errors\"] = !responseBody.has(\"error\");\r",
+                            "var jsonBody= JSON.parse(responseBody);\r",
+                            "pm.test(jsonBody.access_token,function(){})\r",
+                            "pm.globals.set(\"cognitoToken\", jsonBody.access_token);"
+                        ]
+                    }
+                }
+            ],
+            "id": "a3d3288a-1536-47a1-b2f8-b6a483533fc7",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "auth": {
+                    "type": "basic",
+                    "basic": [
+                        {
+                            "key": "password",
+                            "value": "{{client_secret}}",
+                            "type": "string"
+                        },
+                        {
+                            "key": "username",
+                            "value": "{{client_id}}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                    }
+                ],
+                "url": {
+                    "raw": "{{url_auth}}/oauth2/token?grant_type=client_credentials&client_id={{client_id}}&redirect_uri={{baseUrl}}&state=STATE&scope={{url_scope}}",
+                    "host": [
+                        "{{url_auth}}"
+                    ],
+                    "path": [
+                        "oauth2",
+                        "token"
+                    ],
+                    "query": [
+                        {
+                            "key": "grant_type",
+                            "value": "client_credentials"
+                        },
+                        {
+                            "key": "client_id",
+                            "value": "{{client_id}}"
+                        },
+                        {
+                            "key": "redirect_uri",
+                            "value": "{{baseUrl}}"
+                        },
+                        {
+                            "key": "state",
+                            "value": "STATE"
+                        },
+                        {
+                            "key": "scope",
+                            "value": "{{url_scope}}"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "variable": [
+        {
+            "id": "a7c3e944-562f-4c1f-80fa-774770b29f28",
+            "key": "baseUrl",
+            "value": "https://apis.bookkercorp.com/reports/v1/",
+            "type": "string"
+        }
+    ]
+}

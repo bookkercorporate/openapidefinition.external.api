@@ -1,0 +1,235 @@
+openapi: 3.0.1
+info:
+  title: Bookker_API_ext
+  version: 1.0.0
+servers:
+- url: https://apis.bookkercorp.com/reports/v1
+  description: Server prod
+security:
+    - api-key: [] 
+    - OAuth2: [] #here inside the brakets, the list the scopes required in the security section
+paths:
+  /pastbookings/yesterday:
+    get:
+      tags:
+      - reports-pastbooking-controller
+      operationId: yesterday                  
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          maximum: 500
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "200":
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CreatePastBookingResponse'
+  /pastbookings/last7days:
+    get:
+      tags:
+      - reports-pastbooking-controller
+      operationId: last7days
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          maximum: 500
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "200":
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CreatePastBookingResponse'
+  /pastbookings/last15days:
+    get:
+      tags:
+      - reports-pastbooking-controller
+      operationId: last15days
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          maximum: 500
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "200":
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CreatePastBookingResponse'                
+  /pastbookings/last30days:
+    get:
+      tags:
+      - reports-pastbooking-controller
+      operationId: last30days
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          maximum: 500
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "200":
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CreatePastBookingResponse'
+components:
+  schemas:
+    CreatePastBookingResponse:
+      type: object
+      properties:
+        bookings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportHisBookingResponse'
+    FloorResponse:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+    ReportHisBookingResponse:
+      required:
+      - endDate
+      - floor
+      - organizer
+      - resource
+      - startDate
+      - status
+      type: object
+      properties:
+        createdDate:
+          type: string
+          format: date-time
+        organizer:
+          $ref: '#/components/schemas/UserResponse'
+        vehicle:
+          $ref: '#/components/schemas/VehicleResponse'
+        floor:
+          $ref: '#/components/schemas/FloorResponse'
+        resource:
+          $ref: '#/components/schemas/ResourceResponse'
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - PENDING
+          - PENDING_APPROVAL
+          - CONFIRMED
+          - CANCELLED
+          - EXPIRED
+          - FINISHED
+          - PENDING_ASSIGNMENT
+          - PENDING_VOTING
+          - UNDETERMINED
+    ResourceResponse:
+      type: object
+      properties:
+        posterCode:
+          type: string
+    UserResponse:
+      required:
+      - email
+      - name
+      - surname
+      type: object
+      properties:
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        surname:
+          maxLength: 255
+          minLength: 0
+          type: string
+        email:
+          maxLength: 255
+          minLength: 0
+          type: string
+    VehicleResponse:
+      type: object
+      properties:
+        licensePlate:
+          maxLength: 255
+          minLength: 0
+          type: string
+    APIErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string         
+  securitySchemes:
+    api-key:
+        type: apiKey
+        description: API key to authorize requests
+        name: x-api-key
+        in: header
+    OAuth2:
+      type: oauth2
+      description: This API uses OAuth 2 with the CLIENT CREDENTIALS grant flow 
+      flows:
+        clientCredentials:
+          tokenUrl: https://bookker-dev.auth.eu-west-1.amazoncognito.com/oauth2/token
+          scopes:
+              https://apis.bookkercorp.com/resource.read: read resources
