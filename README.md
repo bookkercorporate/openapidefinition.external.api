@@ -2,7 +2,7 @@
 
 This repository contains __Bookker API definition__ (OpenAPI 3.0). 
 
-__Bookker__ has an API-first strategy to help clients develope a new level of advanced digital services for resources management. __Bookker API__ is designed to facilitate programmatic control to Bookker services by its clients. __Bookker API__ helps the client to use __Bookker services__ over a well-defined application programming interface 
+__Bookker__ has an API-first strategy to help clients develop a new level of advanced digital services for resources management. __Bookker API__ is designed to facilitate programmatic control to Bookker services by its clients. __Bookker API__ helps the client to use __Bookker services__ over a well-defined application programming interface 
 
 This repository contains the definition of the Bookker API in YAML format according to the OpenAPI 3.0 standard.
 
