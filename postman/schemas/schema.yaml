@@ -3,8 +3,10 @@ info:
   title: Bookker_API_ext
   version: 1.0.0
 servers:
+- url: https://private-4ea1f-bookkerprueba.apiary-mock.com/reports/v1
+  description: Mock Server  - no credentials requiered
 - url: https://apis.bookkercorp.com/reports/v1
-  description: Server prod
+  description: Prod Server
 security:
     - api-key: [] 
     - OAuth2: [] #here inside the brakets, the list the scopes required in the security section
