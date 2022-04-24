@@ -1,7 +1,16 @@
 openapi: 3.0.1
 info:
-  title: Bookker_API_ext
-  version: 1.0.0
+    title: Bookker_API_ext
+    description: This is the definition of Bookker API REST
+    termsOfService: https://webapiext.bookkercorp.com/terms/
+    license:
+      name: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0.html
+    contact:
+      name: Bookker API Support
+      url: https://www.bookkercorp.com/support
+      email: support@bookkercorp.com
+    version: 1.0.0  
 servers:
 - url: https://private-4ea1f-bookkerprueba.apiary-mock.com/reports/v1
   description: Mock Server - no credentials requiered
