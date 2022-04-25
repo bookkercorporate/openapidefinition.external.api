@@ -2,13 +2,13 @@ openapi: 3.0.1
 info:
     title: Bookker_API_ext
     description: This is the definition of Bookker API REST
-    termsOfService: https://webapiext.bookkercorp.com/terms/
+    termsOfService: https://webapiext.bookkercorp.com/terms.html
     license:
-      name: Apache 2.0
-      url: https://www.apache.org/licenses/LICENSE-2.0.html
+      name: Bookker
+      url: https://webapiext.bookkercorp.com/licence.html
     contact:
       name: Bookker API Support
-      url: https://www.bookkercorp.com/support
+      url: https://www.bookkercorp.com/support.html
       email: support@bookkercorp.com
     version: 1.0.0  
 servers:
