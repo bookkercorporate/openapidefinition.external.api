@@ -1,450 +1,450 @@
 {
-    "info": {
-        "_postman_id": "cc5cc35a-47a8-4d71-b297-3fefa453f272",
-        "name": "Reports",
-        "description": "This collection allows the client to request bookings of the client's Organization.\n\nEvery request should include the following headers:\n\n| Header | Description |\n| --- | --- |\n| **Authorization** | Auth Token to authorize communications |\n| **x-api-key** | Client code to access Organization data within a given service plan |\n\n### Pagination\n\nThe API endpoints returning multiple objects (lists) support  \npagination. These lists share a common structure and can take at least  \nthese two parameters:\n\n| Parameter | Description |\n| --- | --- |\n| **page** | a.k.a. **page offset** - the number of pages to skip. *Optional, default: 0 (i.e. return the first page of results)* |\n| **size** | a limit on the number of objects to be returned. Between 1 and 500. *Optional, default: 500* |\n\nList response format:\n\n```\n{\n    \"items\": [\n        { ... },\n        { ... },\n        { ... }\n    ]   \n}\n\n```\n\n### Errors\n\nThe API uses conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general: Codes in the **2xx** range indicate success. Codes in the **4xx**  \nrange indicate an error that failed given the information provided  \n(e.g., a required parameter was omitted, a resource was missing, etc.).  \nCodes in the **5xx** range indicate a serer error or an unprocessable entry.\n\nEvery error include a human-readable message:\n\n```\n{\n    success: false,\n    message: \"Error message...\"\n}\n\n```",
-        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-    },
-    "item": [
-        {
-            "name": "pastbookings",
-            "item": [
-                {
-                    "name": "yesterday",
-                    "id": "fbc87be0-a3bc-462c-9883-e9f6379bdc3c",
-                    "protocolProfileBehavior": {
-                        "disableBodyPruning": true
-                    },
-                    "request": {
-                        "auth": {
-                            "type": "apikey",
-                            "apikey": [
-                                {
-                                    "key": "value",
-                                    "value": "{{cognitoToken}}",
-                                    "type": "string"
-                                },
-                                {
-                                    "key": "key",
-                                    "value": "Authorization",
-                                    "type": "string"
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "x-api-key",
-                                "value": "{{api_key_test}}",
-                                "type": "text"
-                            }
-                        ],
-                        "url": {
-                            "raw": "{{baseUrl}}/reports/v1/pastbookings/yesterday?page=0&size=500",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "path": [
-                                "reports",
-                                "v1",
-                                "pastbookings",
-                                "yesterday"
-                            ],
-                            "query": [
-                                {
-                                    "key": "page",
-                                    "value": "0"
-                                },
-                                {
-                                    "key": "size",
-                                    "value": "500"
-                                }
-                            ]
-                        },
-                        "description": "to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z"
-                    },
-                    "response": [
-                        {
-                            "id": "d0bb203b-74a8-461d-988d-5115876c4066",
-                            "name": "OK",
-                            "originalRequest": {
-                                "method": "GET",
-                                "header": [],
-                                "url": {
-                                    "raw": "{{baseUrl}}/pastbookings/yesterday?page=0&size=500",
-                                    "host": [
-                                        "{{baseUrl}}"
-                                    ],
-                                    "path": [
-                                        "pastbookings",
-                                        "yesterday"
-                                    ],
-                                    "query": [
-                                        {
-                                            "key": "page",
-                                            "value": "0"
-                                        },
-                                        {
-                                            "key": "size",
-                                            "value": "500"
-                                        }
-                                    ]
-                                }
-                            },
-                            "status": "OK",
-                            "code": 200,
-                            "_postman_previewlanguage": "text",
-                            "header": [
-                                {
-                                    "key": "Content-Type",
-                                    "value": "*/*"
-                                }
-                            ],
-                            "cookie": [],
-                            "responseTime": null,
-                            "body": "{\r\n    \"bookings\": [\r\n\t    {\r\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Pepito\",\r\n                \"surname\": \"Perez Perez\",\r\n                \"email\": \"pperez@company.com\"\r\n            },\r\n            \"vehicle\": {\r\n                \"licensePlate\": \"1234ABC\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"Sotano 1\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\r\n            },\r\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\r\n            \"status\": \"UNDETERMINED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Antonia\",\r\n                \"surname\": \"Garcia Garcia\",\r\n                \"email\": \"agarcia@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 4\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\r\n            },\r\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\r\n            \"status\": \"CONFIRMED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Cristina\",\r\n                \"surname\": \"Lopez Lopez\",\r\n                \"email\": \"clopez@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 5\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\r\n            },\r\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\r\n            \"status\": \"EXPIRED\"\r\n        }\r\n    ]\r\n}"
-                        }
-                    ]
-                },
-                {
-                    "name": "last7days",
-                    "id": "c39900e7-4dbd-4b7a-86a5-c9aee535612c",
-                    "protocolProfileBehavior": {
-                        "disableBodyPruning": true
-                    },
-                    "request": {
-                        "auth": {
-                            "type": "apikey",
-                            "apikey": [
-                                {
-                                    "key": "value",
-                                    "value": "{{cognitoToken}}",
-                                    "type": "string"
-                                },
-                                {
-                                    "key": "key",
-                                    "value": "Authorization",
-                                    "type": "string"
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "x-api-key",
-                                "value": "{{api_key_test}}",
-                                "type": "text"
-                            }
-                        ],
-                        "url": {
-                            "raw": "{{baseUrl}}/reports/v1/pastbookings/last7days?page=0&size=500",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "path": [
-                                "reports",
-                                "v1",
-                                "pastbookings",
-                                "last7days"
-                            ],
-                            "query": [
-                                {
-                                    "key": "page",
-                                    "value": "0"
-                                },
-                                {
-                                    "key": "size",
-                                    "value": "500"
-                                }
-                            ]
-                        },
-                        "description": "to request all bookings in the history with `end date` from 7 days at UTC 00:00:00Z to today at at UTC 00:00:00Z"
-                    },
-                    "response": [
-                        {
-                            "id": "a23e942d-988e-4c57-a33f-379ea6dde9ec",
-                            "name": "OK",
-                            "originalRequest": {
-                                "method": "GET",
-                                "header": [],
-                                "url": {
-                                    "raw": "{{baseUrl}}/pastbookings/last7days?page=0&size=500",
-                                    "host": [
-                                        "{{baseUrl}}"
-                                    ],
-                                    "path": [
-                                        "pastbookings",
-                                        "last7days"
-                                    ],
-                                    "query": [
-                                        {
-                                            "key": "page",
-                                            "value": "0"
-                                        },
-                                        {
-                                            "key": "size",
-                                            "value": "500"
-                                        }
-                                    ]
-                                }
-                            },
-                            "status": "OK",
-                            "code": 200,
-                            "_postman_previewlanguage": "text",
-                            "header": [
-                                {
-                                    "key": "Content-Type",
-                                    "value": "*/*"
-                                }
-                            ],
-                            "cookie": [],
-                            "responseTime": null,
-                            "body": "{\r\n    \"bookings\": [\r\n\t    {\r\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Pepito\",\r\n                \"surname\": \"Perez Perez\",\r\n                \"email\": \"pperez@company.com\"\r\n            },\r\n            \"vehicle\": {\r\n                \"licensePlate\": \"1234ABC\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"Sotano 1\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\r\n            },\r\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\r\n            \"status\": \"UNDETERMINED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Antonia\",\r\n                \"surname\": \"Garcia Garcia\",\r\n                \"email\": \"agarcia@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 4\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\r\n            },\r\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\r\n            \"status\": \"CONFIRMED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Cristina\",\r\n                \"surname\": \"Lopez Lopez\",\r\n                \"email\": \"clopez@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 5\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\r\n            },\r\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\r\n            \"status\": \"EXPIRED\"\r\n        }\r\n    ]\r\n}"
-                        }
-                    ]
-                },
-                {
-                    "name": "last15days",
-                    "id": "ad069017-8838-4c94-9d1d-d99b5eea1338",
-                    "protocolProfileBehavior": {
-                        "disableBodyPruning": true
-                    },
-                    "request": {
-                        "auth": {
-                            "type": "apikey",
-                            "apikey": [
-                                {
-                                    "key": "value",
-                                    "value": "{{cognitoToken}}",
-                                    "type": "string"
-                                },
-                                {
-                                    "key": "key",
-                                    "value": "Authorization",
-                                    "type": "string"
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "x-api-key",
-                                "value": "{{api_key_test}}",
-                                "type": "text"
-                            }
-                        ],
-                        "url": {
-                            "raw": "{{baseUrl}}/reports/v1/pastbookings/last15days?page=0&size=500",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "path": [
-                                "reports",
-                                "v1",
-                                "pastbookings",
-                                "last15days"
-                            ],
-                            "query": [
-                                {
-                                    "key": "page",
-                                    "value": "0"
-                                },
-                                {
-                                    "key": "size",
-                                    "value": "500"
-                                }
-                            ]
-                        },
-                        "description": "to request all bookings in the history with `end date` from 15 days at UTC 00:00:00Z to today at at UTC 00:00:00Z"
-                    },
-                    "response": [
-                        {
-                            "id": "ff92afa4-279d-4681-9123-700e946abbc5",
-                            "name": "OK",
-                            "originalRequest": {
-                                "method": "GET",
-                                "header": [],
-                                "url": {
-                                    "raw": "{{baseUrl}}/pastbookings/last15days?page=0&size=500",
-                                    "host": [
-                                        "{{baseUrl}}"
-                                    ],
-                                    "path": [
-                                        "pastbookings",
-                                        "last15days"
-                                    ],
-                                    "query": [
-                                        {
-                                            "key": "page",
-                                            "value": "0"
-                                        },
-                                        {
-                                            "key": "size",
-                                            "value": "500"
-                                        }
-                                    ]
-                                }
-                            },
-                            "status": "OK",
-                            "code": 200,
-                            "_postman_previewlanguage": "text",
-                            "header": [
-                                {
-                                    "key": "Content-Type",
-                                    "value": "*/*"
-                                }
-                            ],
-                            "cookie": [],
-                            "responseTime": null,
-                            "body": "{\r\n    \"bookings\": [\r\n\t    {\r\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Pepito\",\r\n                \"surname\": \"Perez Perez\",\r\n                \"email\": \"pperez@company.com\"\r\n            },\r\n            \"vehicle\": {\r\n                \"licensePlate\": \"1234ABC\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"Sotano 1\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\r\n            },\r\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\r\n            \"status\": \"UNDETERMINED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Antonia\",\r\n                \"surname\": \"Garcia Garcia\",\r\n                \"email\": \"agarcia@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 4\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\r\n            },\r\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\r\n            \"status\": \"CONFIRMED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Cristina\",\r\n                \"surname\": \"Lopez Lopez\",\r\n                \"email\": \"clopez@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 5\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\r\n            },\r\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\r\n            \"status\": \"EXPIRED\"\r\n        }\r\n    ]\r\n}"
-                        }
-                    ]
-                },
-                {
-                    "name": "last30days",
-                    "id": "19b316b2-55d1-41b6-b20f-456c0979653d",
-                    "protocolProfileBehavior": {
-                        "disableBodyPruning": true
-                    },
-                    "request": {
-                        "auth": {
-                            "type": "apikey",
-                            "apikey": [
-                                {
-                                    "key": "value",
-                                    "value": "{{cognitoToken}}",
-                                    "type": "string"
-                                },
-                                {
-                                    "key": "key",
-                                    "value": "Authorization",
-                                    "type": "string"
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "x-api-key",
-                                "value": "{{api_key_test}}",
-                                "type": "text"
-                            }
-                        ],
-                        "url": {
-                            "raw": "{{baseUrl}}/reports/v1/pastbookings/last30days?page=0&size=500",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "path": [
-                                "reports",
-                                "v1",
-                                "pastbookings",
-                                "last30days"
-                            ],
-                            "query": [
-                                {
-                                    "key": "page",
-                                    "value": "0"
-                                },
-                                {
-                                    "key": "size",
-                                    "value": "500"
-                                }
-                            ]
-                        },
-                        "description": "to request all bookings in the history with `end date` from 30 days at UTC 00:00:00Z to today at at UTC 00:00:00Z"
-                    },
-                    "response": [
-                        {
-                            "id": "9627cc0e-e6a3-4986-b676-4fa72e156250",
-                            "name": "OK",
-                            "originalRequest": {
-                                "method": "GET",
-                                "header": [],
-                                "url": {
-                                    "raw": "{{baseUrl}}/pastbookings/last30days?page=0&size=500",
-                                    "host": [
-                                        "{{baseUrl}}"
-                                    ],
-                                    "path": [
-                                        "pastbookings",
-                                        "last30days"
-                                    ],
-                                    "query": [
-                                        {
-                                            "key": "page",
-                                            "value": "0"
-                                        },
-                                        {
-                                            "key": "size",
-                                            "value": "500"
-                                        }
-                                    ]
-                                }
-                            },
-                            "status": "OK",
-                            "code": 200,
-                            "_postman_previewlanguage": "text",
-                            "header": [
-                                {
-                                    "key": "Content-Type",
-                                    "value": "*/*"
-                                }
-                            ],
-                            "cookie": [],
-                            "responseTime": null,
-                            "body": "{\r\n    \"bookings\": [\r\n\t    {\r\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Pepito\",\r\n                \"surname\": \"Perez Perez\",\r\n                \"email\": \"pperez@company.com\"\r\n            },\r\n            \"vehicle\": {\r\n                \"licensePlate\": \"1234ABC\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"Sotano 1\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\r\n            },\r\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\r\n            \"status\": \"UNDETERMINED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Antonia\",\r\n                \"surname\": \"Garcia Garcia\",\r\n                \"email\": \"agarcia@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 4\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\r\n            },\r\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\r\n            \"status\": \"CONFIRMED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Cristina\",\r\n                \"surname\": \"Lopez Lopez\",\r\n                \"email\": \"clopez@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 5\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\r\n            },\r\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\r\n            \"status\": \"EXPIRED\"\r\n        }\r\n    ]\r\n}"
-                        }
-                    ]
-                }
-            ],
-            "id": "2d48c3e5-2c72-4403-9aa0-8d5e6e92cf77",
-            "description": "This request allows the client to request all past bookings in the history of the client's Organization in a given `period`.\n\nPossible vaules of the parameter `period` are:\n\n| period | Description |\n| --- | --- |\n| **yesterday** | to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z |\n| **last7days** | to request all bookings in the history with `end date` from 7 days at UTC 00:00:00Z to today at at UTC 00:00:00Z |\n| **last15days** | to request all bookings in the history with `end date` from 15 days at UTC 00:00:00Z to today at at UTC 00:00:00Z |\n| **last30days** | to request all bookings in the history with `end date` from 30 days at UTC 00:00:00Z to today at at UTC 00:00:00Z |"
-        }
-    ],
-    "event": [
-        {
-            "listen": "prerequest",
-            "script": {
-                "id": "4624d9f7-7c71-4934-b8fa-d3b938b72626",
-                "type": "text/javascript",
-                "exec": [
-                    ""
-                ]
-            }
-        },
-        {
-            "listen": "test",
-            "script": {
-                "id": "9376d22c-9509-40e1-87ed-71300fd462fa",
-                "type": "text/javascript",
-                "exec": [
-                    ""
-                ]
-            }
-        }
-    ],
-    "variable": [
-        {
-            "id": "5edc3b7e-cfe0-47a8-8794-5f06e3002843",
-            "key": "baseUrl",
-            "value": "baseUrl",
-            "type": "string",
-            "disabled": true
-        },
-        {
-            "id": "a2e7108a-b451-4fe3-8ad3-3b98b67010ca",
-            "key": "cognitoToken",
-            "value": "auth_token",
-            "type": "string",
-            "disabled": true
-        },
-        {
-            "id": "b08aaf98-07d4-4ab3-9924-ef6c0e96a032",
-            "key": "api_key_test",
-            "value": "api_key_bookker",
-            "type": "string",
-            "disabled": true
-        }
-    ]
+	"info": {
+		"_postman_id": "cc5cc35a-47a8-4d71-b297-3fefa453f272",
+		"name": "Reports",
+		"description": "This collection allows the client to request bookings of the client's Organization.\n\nEvery request should include the following headers:\n\n| Header | Description |\n| --- | --- |\n| **Authorization** | Auth Token to authorize communications |\n| **x-api-key** | Client code to access Organization data within a given service plan |\n\n### Pagination\n\nThe API endpoints returning multiple objects (lists) support  \npagination. These lists share a common structure and can take at least  \nthese two parameters:\n\n| Parameter | Description |\n| --- | --- |\n| **page** | a.k.a. **page offset** - the number of pages to skip. *Optional, default: 0 (i.e. return the first page of results)* |\n| **size** | a limit on the number of objects to be returned. Between 1 and 500. *Optional, default: 500* |\n\nList response format:\n\n```\n{\n    \"items\": [\n        { ... },\n        { ... },\n        { ... }\n    ]   \n}\n\n```\n\n### Errors\n\nThe API uses conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general: Codes in the **2xx** range indicate success. Codes in the **4xx**  \nrange indicate an error that failed given the information provided  \n(e.g., a required parameter was omitted, a resource was missing, etc.).  \nCodes in the **5xx** range indicate a serer error or an unprocessable entry.\n\nEvery error include a human-readable message:\n\n```\n{\n    code: integer ($int32),\n    type: string,\n    message: string\n}\n\n```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pastbookings",
+			"item": [
+				{
+					"name": "yesterday",
+					"id": "fbc87be0-a3bc-462c-9883-e9f6379bdc3c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{cognitoToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key_test}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reports/v1/pastbookings/yesterday?page=0&size=500",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reports",
+								"v1",
+								"pastbookings",
+								"yesterday"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "500"
+								}
+							]
+						},
+						"description": "to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+					},
+					"response": [
+						{
+							"id": "d0bb203b-74a8-461d-988d-5115876c4066",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pastbookings/yesterday?page=0&size=500",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pastbookings",
+										"yesterday"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "500"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\r\n    \"bookings\": [\r\n\t    {\r\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Pepito\",\r\n                \"surname\": \"Perez Perez\",\r\n                \"email\": \"pperez@company.com\"\r\n            },\r\n            \"vehicle\": {\r\n                \"licensePlate\": \"1234ABC\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"Sotano 1\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\r\n            },\r\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\r\n            \"status\": \"UNDETERMINED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Antonia\",\r\n                \"surname\": \"Garcia Garcia\",\r\n                \"email\": \"agarcia@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 4\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\r\n            },\r\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\r\n            \"status\": \"CONFIRMED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Cristina\",\r\n                \"surname\": \"Lopez Lopez\",\r\n                \"email\": \"clopez@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 5\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\r\n            },\r\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\r\n            \"status\": \"EXPIRED\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "last7days",
+					"id": "c39900e7-4dbd-4b7a-86a5-c9aee535612c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{cognitoToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key_test}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reports/v1/pastbookings/last7days?page=0&size=500",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reports",
+								"v1",
+								"pastbookings",
+								"last7days"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "500"
+								}
+							]
+						},
+						"description": "to request all bookings in the history with `end date` from 7 days at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+					},
+					"response": [
+						{
+							"id": "a23e942d-988e-4c57-a33f-379ea6dde9ec",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pastbookings/last7days?page=0&size=500",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pastbookings",
+										"last7days"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "500"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\r\n    \"bookings\": [\r\n\t    {\r\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Pepito\",\r\n                \"surname\": \"Perez Perez\",\r\n                \"email\": \"pperez@company.com\"\r\n            },\r\n            \"vehicle\": {\r\n                \"licensePlate\": \"1234ABC\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"Sotano 1\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\r\n            },\r\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\r\n            \"status\": \"UNDETERMINED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Antonia\",\r\n                \"surname\": \"Garcia Garcia\",\r\n                \"email\": \"agarcia@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 4\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\r\n            },\r\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\r\n            \"status\": \"CONFIRMED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Cristina\",\r\n                \"surname\": \"Lopez Lopez\",\r\n                \"email\": \"clopez@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 5\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\r\n            },\r\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\r\n            \"status\": \"EXPIRED\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "last15days",
+					"id": "ad069017-8838-4c94-9d1d-d99b5eea1338",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{cognitoToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key_test}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reports/v1/pastbookings/last15days?page=0&size=500",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reports",
+								"v1",
+								"pastbookings",
+								"last15days"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "500"
+								}
+							]
+						},
+						"description": "to request all bookings in the history with `end date` from 15 days at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+					},
+					"response": [
+						{
+							"id": "ff92afa4-279d-4681-9123-700e946abbc5",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pastbookings/last15days?page=0&size=500",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pastbookings",
+										"last15days"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "500"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\r\n    \"bookings\": [\r\n\t    {\r\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Pepito\",\r\n                \"surname\": \"Perez Perez\",\r\n                \"email\": \"pperez@company.com\"\r\n            },\r\n            \"vehicle\": {\r\n                \"licensePlate\": \"1234ABC\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"Sotano 1\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\r\n            },\r\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\r\n            \"status\": \"UNDETERMINED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Antonia\",\r\n                \"surname\": \"Garcia Garcia\",\r\n                \"email\": \"agarcia@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 4\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\r\n            },\r\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\r\n            \"status\": \"CONFIRMED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Cristina\",\r\n                \"surname\": \"Lopez Lopez\",\r\n                \"email\": \"clopez@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 5\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\r\n            },\r\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\r\n            \"status\": \"EXPIRED\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "last30days",
+					"id": "19b316b2-55d1-41b6-b20f-456c0979653d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{cognitoToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key_test}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reports/v1/pastbookings/last30days?page=0&size=500",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reports",
+								"v1",
+								"pastbookings",
+								"last30days"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "500"
+								}
+							]
+						},
+						"description": "to request all bookings in the history with `end date` from 30 days at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+					},
+					"response": [
+						{
+							"id": "9627cc0e-e6a3-4986-b676-4fa72e156250",
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pastbookings/last30days?page=0&size=500",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pastbookings",
+										"last30days"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "500"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\r\n    \"bookings\": [\r\n\t    {\r\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Pepito\",\r\n                \"surname\": \"Perez Perez\",\r\n                \"email\": \"pperez@company.com\"\r\n            },\r\n            \"vehicle\": {\r\n                \"licensePlate\": \"1234ABC\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"Sotano 1\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\r\n            },\r\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\r\n            \"status\": \"UNDETERMINED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Antonia\",\r\n                \"surname\": \"Garcia Garcia\",\r\n                \"email\": \"agarcia@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 4\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\r\n            },\r\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\r\n            \"status\": \"CONFIRMED\"\r\n        },\r\n        {\r\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\r\n            \"organizer\": {\r\n                \"name\": \"Cristina\",\r\n                \"surname\": \"Lopez Lopez\",\r\n                \"email\": \"clopez@company.com\"\r\n            },\r\n            \"floor\": {\r\n                \"name\": \"PLANTA 5\"\r\n            },\r\n            \"resource\": {\r\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\r\n            },\r\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\r\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\r\n            \"status\": \"EXPIRED\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				}
+			],
+			"id": "2d48c3e5-2c72-4403-9aa0-8d5e6e92cf77",
+			"description": "This request allows the client to request all past bookings in the history of the client's Organization in a given `period`.\n\nPossible vaules of the parameter `period` are:\n\n| period | Description |\n| --- | --- |\n| **yesterday** | to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z |\n| **last7days** | to request all bookings in the history with `end date` from 7 days at UTC 00:00:00Z to today at at UTC 00:00:00Z |\n| **last15days** | to request all bookings in the history with `end date` from 15 days at UTC 00:00:00Z to today at at UTC 00:00:00Z |\n| **last30days** | to request all bookings in the history with `end date` from 30 days at UTC 00:00:00Z to today at at UTC 00:00:00Z |"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4624d9f7-7c71-4934-b8fa-d3b938b72626",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9376d22c-9509-40e1-87ed-71300fd462fa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "800642c2-8b69-4eee-84c2-7dee3cd13524",
+			"key": "baseUrl",
+			"value": "baseUrl",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "63285630-93d5-4f5e-b66b-c8e8a172ae5f",
+			"key": "cognitoToken",
+			"value": "auth_token",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "7f14a44f-55d8-479d-ad84-804e3819d25f",
+			"key": "api_key_test",
+			"value": "api_key_bookker",
+			"type": "string",
+			"disabled": true
+		}
+	]
 }

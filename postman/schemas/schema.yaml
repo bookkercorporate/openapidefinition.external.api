@@ -15,6 +15,8 @@ servers:
 - url: https://private-4ea1f-bookkerprueba.apiary-mock.com/reports/v1
   description: Mock Server - no credentials requiered
 - url: https://apis.bookkercorp.com/reports/v1
+  description: Dev Server - Auth credentials requiered  
+- url: https://apis.develop.bookkercorp.com/reports/v1
   description: Prod Server - Auth credentials requiered
 security:
     - api-key: [] 
