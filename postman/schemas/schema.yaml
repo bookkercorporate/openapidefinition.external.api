@@ -246,4 +246,4 @@ components:
           tokenUrl: https://bookker-dev.auth.eu-west-1.amazoncognito.com/oauth2/token
           scopes:
               https://apis.bookkercorp.com/resource.read: read resources Prod
-              https://apis.develop.bookkercorp.com/resource.read: read resouorces dev
+              https://apis.develop.bookkercorp.com/resource.read: read resources Dev
