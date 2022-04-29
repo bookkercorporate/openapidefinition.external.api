@@ -9,7 +9,7 @@ info:
     contact:
       name: Bookker API Support
       url: https://www.bookkercorp.com/support.html
-      email: support@bookkercorp.com
+      email: bookkersupport@bookkercorp.com
     version: 1.0.0  
 servers:
 - url: https://private-4ea1f-bookkerprueba.apiary-mock.com/reports/v1

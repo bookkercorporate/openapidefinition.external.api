@@ -37,6 +37,12 @@
 								"key": "x-api-key",
 								"value": "{{api_key_test}}",
 								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": "https://webapiext.bookkercorp.com/",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -426,21 +432,21 @@
 	],
 	"variable": [
 		{
-			"id": "800642c2-8b69-4eee-84c2-7dee3cd13524",
+			"id": "f21794cd-c8fd-4fda-9113-fa557b551069",
 			"key": "baseUrl",
 			"value": "baseUrl",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "63285630-93d5-4f5e-b66b-c8e8a172ae5f",
+			"id": "af477d68-f448-4666-b9f4-feb230e05890",
 			"key": "cognitoToken",
 			"value": "auth_token",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "7f14a44f-55d8-479d-ad84-804e3819d25f",
+			"id": "ca9dfe36-8383-4de5-9bb9-6d5a8bad9682",
 			"key": "api_key_test",
 			"value": "api_key_bookker",
 			"type": "string",
