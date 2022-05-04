@@ -13,7 +13,10 @@
 					"name": "yesterday",
 					"id": "fbc87be0-a3bc-462c-9883-e9f6379bdc3c",
 					"protocolProfileBehavior": {
-						"disableBodyPruning": true
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
 					},
 					"request": {
 						"auth": {
@@ -41,12 +44,31 @@
 							{
 								"key": "Origin",
 								"value": "https://webapiext.bookkercorp.com/",
-								"type": "text",
-								"disabled": true
+								"type": "text"
+							},
+							{
+								"key": "Access-Control-Request-Method",
+								"value": "GET",
+								"type": "text"
+							},
+							{
+								"key": "Access-Control-Request-Headers",
+								"value": "authorization,x-api-key",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0",
+								"type": "text"
+							},
+							{
+								"key": "Referer",
+								"value": "https://webapiext.bookkercorp.com/",
+								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/reports/v1/pastbookings/yesterday?page=0&size=500",
+							"raw": "{{baseUrl}}/reports/v1/pastbookings/yesterday?page=0&size=10",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -63,7 +85,7 @@
 								},
 								{
 									"key": "size",
-									"value": "500"
+									"value": "10"
 								}
 							]
 						},
@@ -432,21 +454,21 @@
 	],
 	"variable": [
 		{
-			"id": "f21794cd-c8fd-4fda-9113-fa557b551069",
+			"id": "503ff53f-022d-4d83-af3a-73ae0e0e3411",
 			"key": "baseUrl",
 			"value": "baseUrl",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "af477d68-f448-4666-b9f4-feb230e05890",
+			"id": "75f6583a-d7d5-421c-9560-2a4d2440aa9b",
 			"key": "cognitoToken",
 			"value": "auth_token",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "ca9dfe36-8383-4de5-9bb9-6d5a8bad9682",
+			"id": "6f8f8c83-855e-4312-aecc-bdf1594aa888",
 			"key": "api_key_test",
 			"value": "api_key_bookker",
 			"type": "string",
