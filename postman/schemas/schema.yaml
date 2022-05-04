@@ -49,30 +49,7 @@ paths:
           content:
             'application/json':
               schema:
-                $ref: '#/components/schemas/CreatePastBookingResponse'
-    options:
-      tags:
-      - reports-pastbooking-controller
-      operationId: yesterday                  
-      parameters:
-      - name: page
-        in: query
-        required: false
-        schema:
-          type: integer
-          format: int32
-          default: 0
-      - name: size
-        in: query
-        required: false
-        schema:
-          maximum: 500
-          type: integer
-          format: int32
-          default: 500
-      responses:
-        "200":
-          description: OK        
+                $ref: '#/components/schemas/CreatePastBookingResponse'    
   /pastbookings/last7days:
     get:
       tags:
