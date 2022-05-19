@@ -5,10 +5,10 @@ info:
     termsOfService: https://webapiext.bookkercorp.com/terms.html
     license:
       name: BOOKKER CORPORATE SL
-      url: https://webapiext.bookkercorp.com/licence.html
+      url: https://webapiext.bookkercorp.com/terms.html
     contact:
       name: Bookker API Support
-      url: https://www.bookkercorp.com/support.html
+      url: https://www.bookkercorp.com/contacto
       email: bookkersupport@bookkercorp.com
     version: 1.0.0  
 servers:
