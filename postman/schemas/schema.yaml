@@ -12,17 +12,17 @@ info:
       email: bookkersupport@bookkercorp.com
     version: 1.0.0  
 servers:
-- url: https://private-4ea1f-bookkerprueba.apiary-mock.com/reports/v1
+- url: https://private-4ea1f-bookkerprueba.apiary-mock.com
   description: Mock Server - no credentials requiered
-- url: https://apis.develop.bookkercorp.com/reports/v1
+- url: https://apis.develop.bookkercorp.com
   description: Dev Server - Auth credentials requiered  
-- url: https://apis.bookkercorp.com/reports/v1
+- url: https://apis.bookkercorp.com
   description: Prod Server - Auth credentials requiered
 security:
     - api-key: [] 
     - OAuth2: [] #here inside the brakets, the list the scopes required in the security section
 paths:
-  /pastbookings/yesterday:
+  /reports/v1/pastbookings/yesterday:
     get:
       tags:
       - reports-pastbooking-controller
@@ -50,7 +50,7 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/CreatePastBookingResponse'    
-  /pastbookings/last7days:
+  /reports/v1/pastbookings/last7days:
     get:
       tags:
       - reports-pastbooking-controller
@@ -78,7 +78,7 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/CreatePastBookingResponse'
-  /pastbookings/last15days:
+  /reports/v1/pastbookings/last15days:
     get:
       tags:
       - reports-pastbooking-controller
@@ -106,7 +106,7 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/CreatePastBookingResponse'                
-  /pastbookings/last30days:
+  /reports/v1/pastbookings/last30days:
     get:
       tags:
       - reports-pastbooking-controller
@@ -134,7 +134,7 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/CreatePastBookingResponse'
-  /pastbookings/period:
+  /reports/v1/pastbookings/period:
     get:
       tags:
       - reports-pastbooking-controller
@@ -171,7 +171,7 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/CreatePastBookingResponse'
-  /futurebookings/period:
+  /reports/v1/futurebookings/period:
     get:
       tags:
       - reports-futurebooking-controller
