@@ -208,6 +208,107 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/CreateFutureBookingResponse'
+  /bookings/v1/checkin/{bookingId}:
+      post:
+        tags:
+        - check-in-controller
+        operationId: externalCheckInBooking
+        parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: presenceValidation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: x-on-behalf-of
+          in: header
+          required: false
+          schema:
+            type: string
+        responses:
+          "200":
+            description: Check-in of the booking was completed 
+          "403":
+            description: User has no access
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorView'
+          "404":
+            description: No resource has been found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorView'
+          "400":
+            description: Check-out of the booking couldn't be completed
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorView'
+          "409":
+            description: The request is not correct
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorView'
+  /bookings/v1/checkout/{bookingId}:
+      post:
+        tags:
+        - check-in-controller
+        operationId: externalCheckOutBooking
+        parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: x-on-behalf-of
+          in: header
+          required: false
+          schema:
+            type: string
+        responses:
+          "200":
+            description: Check-out of the booking was completed        
+          "403":
+            description: User has no access
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorView'
+          "404":
+            description: No resource has been found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorView'
+          "409":
+            description: Check-out of the booking couldn't be completed
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorView'
+          "400":
+            description: The request is not correct
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorView'
 components:
   schemas:
     CreatePastBookingResponse:
@@ -227,6 +328,52 @@ components:
           minLength: 0
           type: string
     ReportHisBookingResponse:
+      required:
+      - endDate
+      - floor
+      - organizer
+      - resource
+      - startDate
+      - status
+      type: object
+      properties:
+        createdDate:
+          type: string
+          format: date-time
+        organizer:
+          $ref: '#/components/schemas/UserResponse'
+        vehicle:
+          $ref: '#/components/schemas/VehicleResponse'
+        floor:
+          $ref: '#/components/schemas/FloorResponse'
+        resource:
+          $ref: '#/components/schemas/ResourceResponse'
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - PENDING
+          - PENDING_APPROVAL
+          - CONFIRMED
+          - CANCELLED
+          - EXPIRED
+          - FINISHED
+          - PENDING_ASSIGNMENT
+          - PENDING_VOTING
+          - UNDETERMINED
+    CreateFutureBookingResponse:
+      type: object
+      properties:
+        bookings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportFutureBookingResponse'
+    ReportFutureBookingResponse:
       required:
       - endDate
       - floor
@@ -296,52 +443,6 @@ components:
           maxLength: 255
           minLength: 0
           type: string
-    CreateFutureBookingResponse:
-      type: object
-      properties:
-        bookings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReportFutureBookingResponse'
-    ReportFutureBookingResponse:
-      required:
-      - endDate
-      - floor
-      - organizer
-      - resource
-      - startDate
-      - status
-      type: object
-      properties:
-        createdDate:
-          type: string
-          format: date-time
-        organizer:
-          $ref: '#/components/schemas/UserResponse'
-        vehicle:
-          $ref: '#/components/schemas/VehicleResponse'
-        floor:
-          $ref: '#/components/schemas/FloorResponse'
-        resource:
-          $ref: '#/components/schemas/ResourceResponse'
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - PENDING
-          - PENDING_APPROVAL
-          - CONFIRMED
-          - CANCELLED
-          - EXPIRED
-          - FINISHED
-          - PENDING_ASSIGNMENT
-          - PENDING_VOTING
-          - UNDETERMINED
     APIErrorResponse:
       type: object
       properties:
@@ -361,6 +462,29 @@ components:
           type: string          
         message:
           type: string         
+    ErrorView:
+      type: object
+      properties:
+        uniqueId:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+          format: int32
+        errors:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+        path:
+          type: string
+        message:
+          type: string
+        microsoftErrorCode:
+          type: string 
   securitySchemes:
     api-key:
         type: apiKey
