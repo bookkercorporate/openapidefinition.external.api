@@ -26,7 +26,8 @@ paths:
     get:
       tags:
       - reports-pastbooking-controller
-      operationId: yesterday                  
+      summary: Returns bookings for a period of one day
+      operationId: lastDay
       parameters:
       - name: page
         in: query
@@ -39,22 +40,28 @@ paths:
         in: query
         required: false
         schema:
-          maximum: 500
           type: integer
           format: int32
           default: 500
       responses:
         "200":
-          description: OK
+          description: Success returning bookings from history
           content:
-            'application/json':
+            application/json:
               schema:
-                $ref: '#/components/schemas/CreatePastBookingResponse'    
+                $ref: '#/components/schemas/CreatePastBookingResponse'
+        "400":
+          description: Parameters page and size must be greater than 0 and size less or equal to 500
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
   /reports/v1/pastbookings/last7days:
     get:
       tags:
       - reports-pastbooking-controller
-      operationId: last7days
+      summary: Returns bookings for a period of 7 days
+      operationId: lastWeek
       parameters:
       - name: page
         in: query
@@ -67,22 +74,28 @@ paths:
         in: query
         required: false
         schema:
-          maximum: 500
           type: integer
           format: int32
           default: 500
       responses:
         "200":
-          description: OK
+          description: Success returning bookings from history
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/CreatePastBookingResponse'
+        "400":
+          description: Parameters page and size must be greater than 0 and size less or equal to 500
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
   /reports/v1/pastbookings/last15days:
     get:
       tags:
       - reports-pastbooking-controller
-      operationId: last15days
+      summary: Returns bookings for a period of 15 days
+      operationId: lastFortnight
       parameters:
       - name: page
         in: query
@@ -95,22 +108,28 @@ paths:
         in: query
         required: false
         schema:
-          maximum: 500
           type: integer
           format: int32
           default: 500
       responses:
         "200":
-          description: OK
+          description: Success returning bookings from history
           content:
-            'application/json':
+            application/json:
               schema:
-                $ref: '#/components/schemas/CreatePastBookingResponse'                
+                $ref: '#/components/schemas/CreatePastBookingResponse'
+        "400":
+          description: Parameters page and size must be greater than 0 and size less or equal to 500
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'             
   /reports/v1/pastbookings/last30days:
     get:
       tags:
       - reports-pastbooking-controller
-      operationId: last30days
+      summary: Returns bookings for a period of 30 days
+      operationId: lastMonth
       parameters:
       - name: page
         in: query
@@ -123,21 +142,28 @@ paths:
         in: query
         required: false
         schema:
-          maximum: 500
           type: integer
           format: int32
           default: 500
       responses:
         "200":
-          description: OK
+          description: Success returning bookings from history
+            indicado
           content:
-            'application/json':
+            application/json:
               schema:
                 $ref: '#/components/schemas/CreatePastBookingResponse'
+        "400":
+          description: Parameters page and size must be greater than 0 and size less or equal to 500
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'          
   /reports/v1/pastbookings/period:
     get:
       tags:
       - reports-pastbooking-controller
+      summary: Returns historic bookings for a period between two dates specified in the parameters to and from
       operationId: customPastPeriod
       parameters:
       - name: from
@@ -166,15 +192,22 @@ paths:
           default: 500
       responses:
         "200":
-          description: OK
+          description: Success returning bookings from history
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/CreatePastBookingResponse'
+        "400":
+          description: Parameters page and size must be greater than 0 and size less or equal to 500
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'          
   /reports/v1/futurebookings/period:
     get:
       tags:
       - reports-futurebooking-controller
+      summary: Returns active bookings for a period between two dates specified in the parameters to and from
       operationId: customPeriod
       parameters:
       - name: from
@@ -203,11 +236,17 @@ paths:
           default: 500
       responses:
         "200":
-          description: OK
+          description: Success returning active bookings
           content:
             '*/*':
               schema:
                 $ref: '#/components/schemas/CreateFutureBookingResponse'
+        "400":
+          description: Parameters page and size must be greater than 0 and size less or equal to 500
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
   /bookings/v1/checkin/{bookingId}:
       post:
         tags:
@@ -329,6 +368,7 @@ components:
           type: string
     ReportHisBookingResponse:
       required:
+      - bookingId
       - endDate
       - floor
       - organizer
@@ -337,6 +377,8 @@ components:
       - status
       type: object
       properties:
+        bookingId:
+          type: string
         createdDate:
           type: string
           format: date-time
@@ -375,6 +417,7 @@ components:
             $ref: '#/components/schemas/ReportFutureBookingResponse'
     ReportFutureBookingResponse:
       required:
+      - bookingId      
       - endDate
       - floor
       - organizer
@@ -383,6 +426,8 @@ components:
       - status
       type: object
       properties:
+        bookingId:
+          type: string      
         createdDate:
           type: string
           format: date-time
@@ -442,26 +487,7 @@ components:
         licensePlate:
           maxLength: 255
           minLength: 0
-          type: string
-    APIErrorResponse:
-      type: object
-      properties:
-        uniqueId:
-          type: string
-        timestamp:
-          type: string
-          example: "dd-mm-yyyy hh:mm:ss.xxxZ"                 
-        code:
-          type: integer
-          format: int32
-        errors:
-          type: string          
-        type:
-          type: string
-        path:
-          type: string          
-        message:
-          type: string         
+          type: string    
     ErrorView:
       type: object
       properties:
