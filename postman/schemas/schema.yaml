@@ -20,7 +20,7 @@ servers:
   description: Prod Server - Auth credentials requiered
 security:
     - api-key: [] 
-    - OAuth2: [] #here inside the brakets, the list the scopes required in the security section
+    - OAuth2: [] #here inside the brakets, the list of the scopes required in the security section
 paths:
   /reports/v1/pastbookings/yesterday:
     get:
