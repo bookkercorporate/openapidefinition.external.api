@@ -357,22 +357,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReportHisBookingResponse'
-    FloorResponse:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          maxLength: 255
-          minLength: 0
-          type: string
     ReportHisBookingResponse:
       required:
+      - accessControlType
       - bookingId
+      - building
+      - cancellationDate
+      - checkInDate
+      - checkOutDate
       - endDate
       - floor
+      - lastModifiedDate
       - organizer
       - resource
+      - resourceType
       - startDate
       - status
       type: object
@@ -383,13 +381,15 @@ components:
           type: string
           format: date-time
         organizer:
-          $ref: '#/components/schemas/UserResponse'
+          $ref: '#/components/schemas/UserView'
         vehicle:
-          $ref: '#/components/schemas/VehicleResponse'
+          $ref: '#/components/schemas/VehicleView'
         floor:
-          $ref: '#/components/schemas/FloorResponse'
+          $ref: '#/components/schemas/FloorView'
+        building:
+          $ref: '#/components/schemas/BuildingView'
         resource:
-          $ref: '#/components/schemas/ResourceResponse'
+          $ref: '#/components/schemas/ResourceView'
         startDate:
           type: string
           format: date-time
@@ -408,67 +408,45 @@ components:
           - PENDING_ASSIGNMENT
           - PENDING_VOTING
           - UNDETERMINED
-    CreateFutureBookingResponse:
-      type: object
-      properties:
-        bookings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReportFutureBookingResponse'
-    ReportFutureBookingResponse:
-      required:
-      - bookingId      
-      - endDate
-      - floor
-      - organizer
-      - resource
-      - startDate
-      - status
-      type: object
-      properties:
-        bookingId:
-          type: string      
-        createdDate:
-          type: string
-          format: date-time
-        organizer:
-          $ref: '#/components/schemas/UserResponse'
-        vehicle:
-          $ref: '#/components/schemas/VehicleResponse'
-        floor:
-          $ref: '#/components/schemas/FloorResponse'
-        resource:
-          $ref: '#/components/schemas/ResourceResponse'
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        status:
+        accessControlType:
           type: string
           enum:
-          - PENDING
-          - PENDING_APPROVAL
-          - CONFIRMED
-          - CANCELLED
-          - EXPIRED
-          - FINISHED
-          - PENDING_ASSIGNMENT
-          - PENDING_VOTING
-          - UNDETERMINED
-    ResourceResponse:
-      type: object
-      properties:
-        posterCode:
+          - OPTIONAL
+          - ORGANIZER
+          - ANY
+          - NONE
+        lastModifiedDate:
           type: string
-    UserResponse:
+          format: date-time
+        checkInDate:
+          type: string
+          format: date-time
+        checkOutDate:
+          type: string
+          format: date-time
+        cancellationDate:
+          type: string
+          format: date-time
+        resourceType:
+          type: string
+          enum:
+          - FIXED_WORKSTATION
+          - WORKSTATION
+          - SPACE
+          - PARKING
+          - DINNING_AREA
+    UserView:
       required:
       - email
+      - id
       - name
       - surname
       type: object
       properties:
+        id:
+          maxLength: 36
+          minLength: 36
+          type: string
         name:
           maxLength: 255
           minLength: 0
@@ -481,13 +459,169 @@ components:
           maxLength: 255
           minLength: 0
           type: string
-    VehicleResponse:
+    VehicleView:
       type: object
       properties:
+        id:
+          maxLength: 36
+          minLength: 36
+          type: string
         licensePlate:
           maxLength: 255
           minLength: 0
-          type: string    
+          type: string
+    BuildingView:
+      required:
+      - id
+      - name
+      - timezone
+      type: object
+      properties:
+        id:
+          maxLength: 36
+          minLength: 36
+          type: string
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        timezone:
+          type: string
+    FloorView:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          maxLength: 36
+          minLength: 36
+          type: string
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        buildingId:
+          type: string
+        type:
+          type: string
+          enum:
+          - OFFICE
+          - PARKING
+    ResourceView:
+      type: object
+      properties:
+        id:
+          type: string
+        posterCode:
+          type: string
+        subcategory:
+          $ref: '#/components/schemas/SubcategoryView'
+        group:
+          $ref: '#/components/schemas/GroupResponse'
+    GroupResponse:
+      type: object
+      properties:
+        id:
+          type: string
+    SubcategoryView:
+      type: object
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+          enum:
+          - FIXED_WORKSTATION
+          - WORKSTATION
+          - SPACE
+          - PARKING
+          - DINNING_AREA
+    CreateFutureBookingResponse:
+      type: object
+      properties:
+        bookings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportFutureBookingResponse'
+    ReportFutureBookingResponse:
+      required:
+      - accessControlType
+      - bookingId
+      - building
+      - cancellationDate
+      - checkInDate
+      - checkOutDate
+      - endDate
+      - floor
+      - lastModifiedDate
+      - organizer
+      - resource
+      - resourceType
+      - startDate
+      - status
+      type: object
+      properties:
+        bookingId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        organizer:
+          $ref: '#/components/schemas/UserView'
+        vehicle:
+          $ref: '#/components/schemas/VehicleView'
+        floor:
+          $ref: '#/components/schemas/FloorView'
+        building:
+          $ref: '#/components/schemas/BuildingView'
+        resource:
+          $ref: '#/components/schemas/ResourceView'
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - PENDING
+          - PENDING_APPROVAL
+          - CONFIRMED
+          - CANCELLED
+          - EXPIRED
+          - FINISHED
+          - PENDING_ASSIGNMENT
+          - PENDING_VOTING
+          - UNDETERMINED
+        accessControlType:
+          type: string
+          enum:
+          - OPTIONAL
+          - ORGANIZER
+          - ANY
+          - NONE
+        lastModifiedDate:
+          type: string
+          format: date-time
+        checkInDate:
+          type: string
+          format: date-time
+        checkOutDate:
+          type: string
+          format: date-time
+        cancellationDate:
+          type: string
+          format: date-time
+        resourceType:
+          type: string
+          enum:
+          - FIXED_WORKSTATION
+          - WORKSTATION
+          - SPACE
+          - PARKING
+          - DINNING_AREA
     ErrorView:
       type: object
       properties:
@@ -509,8 +643,6 @@ components:
           type: string
         message:
           type: string
-        microsoftErrorCode:
-          type: string 
   securitySchemes:
     api-key:
         type: apiKey
