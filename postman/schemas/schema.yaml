@@ -25,7 +25,7 @@ paths:
   /reports/v1/pastbookings/yesterday:
     get:
       tags:
-      - reports-pastbooking-controller
+      - reports-api
       summary: Returns bookings for a period of one day
       operationId: lastDay
       parameters:
@@ -59,7 +59,7 @@ paths:
   /reports/v1/pastbookings/last7days:
     get:
       tags:
-      - reports-pastbooking-controller
+      - reports-api
       summary: Returns bookings for a period of 7 days
       operationId: lastWeek
       parameters:
@@ -93,7 +93,7 @@ paths:
   /reports/v1/pastbookings/last15days:
     get:
       tags:
-      - reports-pastbooking-controller
+      - reports-api
       summary: Returns bookings for a period of 15 days
       operationId: lastFortnight
       parameters:
@@ -127,7 +127,7 @@ paths:
   /reports/v1/pastbookings/last30days:
     get:
       tags:
-      - reports-pastbooking-controller
+      - reports-api
       summary: Returns bookings for a period of 30 days
       operationId: lastMonth
       parameters:
@@ -162,7 +162,7 @@ paths:
   /reports/v1/pastbookings/period:
     get:
       tags:
-      - reports-pastbooking-controller
+      - reports-api
       summary: Returns historic bookings for a period between two dates specified in the parameters to and from
       operationId: customPastPeriod
       parameters:
@@ -206,7 +206,7 @@ paths:
   /reports/v1/futurebookings/period:
     get:
       tags:
-      - reports-futurebooking-controller
+      - reports-api
       summary: Returns active bookings for a period between two dates specified in the parameters to and from
       operationId: customPeriod
       parameters:
@@ -250,7 +250,7 @@ paths:
   /resources/v1/{buildingId}/resources:
     get:
       tags:
-      - ThirdPartyAPI
+      - resources-api
       summary: Obtains the resources of a building using the building ID and the parameters specified in the request.
       operationId: getThirdPartyBuildingResources
       parameters:
@@ -306,7 +306,7 @@ paths:
   /resources/v1/{buildingId}/lockedcalendars:
     get:
       tags:
-      - ThirdPartyAPI
+      - resources-api
       summary: Gets the block schedules for the resources using the identifier of the building and a year indicated by parameter
       operationId: getThirdPartyLockedCalendars
       parameters:
@@ -356,7 +356,7 @@ paths:
   /resources/v1/resourcerule/{resourceId}:
     get:
       tags:
-      - ThirdPartyAPI
+      - resources-api
       summary: Gets the rule for the resource using its identifier
       operationId: getThirdPartyResourceRule
       parameters:
@@ -393,7 +393,7 @@ paths:
   /resources/v1/{buildingId}/floors:
     get:
       tags:
-      - ThirdPartyAPI
+      - resources-api
       summary: Gets the floors of a building
       operationId: getThirdPartyBuildingFloors
       parameters:
@@ -443,7 +443,7 @@ paths:
   /resources/v1/workstation/building/{buildingId}/fixedresources:
     get:
       tags:
-      - ThirdPartyAPI
+      - resources-api
       summary: Obtains the fixed resources of positions in a building
       operationId: getThirdPartyWorkstationBuildingFixedResources
       parameters:
@@ -488,7 +488,7 @@ paths:
   /resources/v1/workstation/building/{buildingId}/cessions:
     get:
       tags:
-      - ThirdPartyAPI
+      - resources-api
       summary: Obtains cessions of the fixed resources of workstations in a building
       operationId: getThirdPartyWorkstationBuildingCessions
       parameters:
@@ -543,7 +543,7 @@ paths:
   /resources/v1/parking/building/{buildingId}/fixedresources:
     get:
       tags:
-      - ThirdPartyAPI
+      - resources-api
       summary: Obtains the fixed parking resources of a building
       operationId: getThirdPartyParkingBuildingFixedResources
       parameters:
@@ -588,7 +588,7 @@ paths:
   /resources/v1/parking/building/{buildingId}/cessions:
     get:
       tags:
-      - ThirdPartyAPI
+      - resources-api
       summary: Obtains cessions of the fixed parking resources of a building
       operationId: getThirdPartyParkingBuildingCessions
       parameters:
@@ -643,7 +643,7 @@ paths:
   /resources/v1/buildings:
     get:
       tags:
-      - ThirdPartyAPI
+      - resources-api
       summary: Gets the buildings of an organization
       operationId: getThirdPartyOrganizationBuildings
       parameters:
@@ -688,7 +688,7 @@ paths:
   /bookings/v1/checkin/{bookingId}:
       post:
         tags:
-        - check-in-controller
+        - bookings-api
         operationId: externalCheckInBooking
         parameters:
         - name: bookingId
@@ -736,7 +736,7 @@ paths:
   /bookings/v1/checkout/{bookingId}:
       post:
         tags:
-        - check-in-controller
+        - bookings-api
         operationId: externalCheckOutBooking
         parameters:
         - name: bookingId
@@ -779,7 +779,7 @@ paths:
   /users/v1/{userId}:
     get:
       tags:
-      - ThirdPartyAPI
+      - users-api
       summary: Recover a user's data given their identifier
       operationId: getThirdPartyUser
       parameters:
@@ -816,7 +816,7 @@ paths:
   /users/v1/{userId}/workingstatus:
     get:
       tags:
-      - ThirdPartyAPI
+      - users-api
       summary: Retrieves the work statuses of a user over a period of time included between the parameters from and to
       operationId: getThirdPartyUserWorkingStatus
       parameters:
@@ -877,7 +877,7 @@ paths:
   /users/v1/users:
     get:
       tags:
-      - ThirdPartyAPI
+      - users-api
       summary: Retrieves the users of an organization indicated by parameters.
       operationId: getThirdPartyOrganizationUsers
       parameters:
@@ -928,7 +928,7 @@ paths:
   /users/v1/extrafields/{userId}:
     get:
       tags:
-      - ThirdPartyAPI
+      - users-api
       summary: Retrieves data from the extra fields of a user given their identifier
       operationId: getThirdPartyUserExtraFields
       parameters:
@@ -965,7 +965,7 @@ paths:
   /users/v1/departments/organizations:
     get:
       tags:
-      - third-party-departments-controller
+      - users-api
       summary: Get the organizational units of an organization
       operationId: getThirdPartyDepartments
       responses:
