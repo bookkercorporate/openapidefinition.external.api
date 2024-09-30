@@ -247,6 +247,444 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorView'
+  /resources/v1/{buildingId}/resources:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Obtains the resources of a building using the building ID and the parameters specified in the request.
+      operationId: getThirdPartyBuildingResources
+      parameters:
+      - name: buildingId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: thirdPartyBuildingResourcesRequest
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/ThirdPartyBuildingResourcesRequest'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "404":
+          description: ResourceNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "200":
+          description: The building's resources have been recovered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyBuildingResourcesResponse'
+        "403":
+          description: El usuario no tiene acceso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "400":
+          description: La peticion enviada es incorrecta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+  /resources/v1/{buildingId}/lockedcalendars:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Gets the block schedules for the resources using the identifier of the building and a year indicated by parameter
+      operationId: getThirdPartyLockedCalendars
+      parameters:
+      - name: buildingId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: year
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "404":
+          description: ResourceNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "400":
+          description: La peticion enviada es incorrecta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "200":
+          description: Blocking calendars have been recovered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyResourceLockedCalendarResponse'
+  /resources/v1/resourcerule/{resourceId}:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Gets the rule for the resource using its identifier
+      operationId: getThirdPartyResourceRule
+      parameters:
+      - name: resourceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: The resource rule has been recovered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyResourceRuleResponse'
+        "404":
+          description: ResourceNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "403":
+          description: El usuario no tiene acceso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "400":
+          description: La peticion enviada es incorrecta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+  /resources/v1/{buildingId}/floors:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Gets the floors of a building
+      operationId: getThirdPartyBuildingFloors
+      parameters:
+      - name: buildingId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: thirdPartyBuildingFloorsRequest
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/ThirdPartyBuildingFloorsRequest'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "404":
+          description: ResourceNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "400":
+          description: The request sent is incorrect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "200":
+          description: The floors of the building have been recovered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyBuildingFloorsResponse'
+  /resources/v1/workstation/building/{buildingId}/fixedresources:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Obtains the fixed resources of positions in a building
+      operationId: getThirdPartyWorkstationBuildingFixedResources
+      parameters:
+      - name: buildingId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "404":
+          description: ResourceNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "400":
+          description: The request sent is incorrect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "200":
+          description: Fixed position resources have been recovered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyFixedResourcesResponse'
+  /resources/v1/workstation/building/{buildingId}/cessions:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Obtains cessions of the fixed resources of workstations in a building
+      operationId: getThirdPartyWorkstationBuildingCessions
+      parameters:
+      - name: buildingId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "200":
+          description: The cessions of workstations have been recovered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyWorkstaionBuildingCessionsResponse'
+        "404":
+          description: ResourceNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "400":
+          description: The request sent is incorrect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+  /resources/v1/parking/building/{buildingId}/fixedresources:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Obtains the fixed parking resources of a building
+      operationId: getThirdPartyParkingBuildingFixedResources
+      parameters:
+      - name: buildingId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "404":
+          description: ResourceNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "400":
+          description: The request sent is incorrect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "200":
+          description: Fixed parking resources have been recovered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyFixedResourcesResponse'
+  /resources/v1/parking/building/{buildingId}/cessions:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Obtains cessions of the fixed parking resources of a building
+      operationId: getThirdPartyParkingBuildingCessions
+      parameters:
+      - name: buildingId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "200":
+          description: Parking cessions have been recovered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyParkingBuildingCessionsResponse'
+        "404":
+          description: ResourceNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "400":
+          description: The request sent is incorrect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+  /resources/v1/buildings:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Gets the buildings of an organization
+      operationId: getThirdPartyOrganizationBuildings
+      parameters:
+      - name: getThirdPartyBuildingParameters
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/GetThirdPartyBuildingParameters'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "200":
+          description: The organization's buildings have been recovered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOrganizationBuildingsResponse'
+        "404":
+          description: ResourceNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "400":
+          description: The request sent is incorrect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
   /bookings/v1/checkin/{bookingId}:
       post:
         tags:
@@ -265,11 +703,6 @@ paths:
             type: string
         - name: userId
           in: query
-          required: false
-          schema:
-            type: string
-        - name: x-on-behalf-of
-          in: header
           required: false
           schema:
             type: string
@@ -316,11 +749,6 @@ paths:
           required: false
           schema:
             type: string
-        - name: x-on-behalf-of
-          in: header
-          required: false
-          schema:
-            type: string
         responses:
           "200":
             description: Check-out of the booking was completed        
@@ -337,7 +765,7 @@ paths:
                 schema:
                   $ref: '#/components/schemas/ErrorView'
           "409":
-            description: Check-out of the booking couldn't be completed
+            description: Check-out couldn't be completed, BookingIsNotConfirmedException
             content:
               application/json:
                 schema:
@@ -348,8 +776,272 @@ paths:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ErrorView'
+  /users/v1/{userId}:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Recover a user's data given their identifier
+      operationId: getThirdPartyUser
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: User data has been recovered.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyUserView'
+        "403":
+          description: Access forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "400":
+          description: The request sent is not correct
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+  /users/v1/{userId}/workingstatus:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Retrieves the work statuses of a user over a period of time included between the parameters from and to
+      operationId: getThirdPartyUserWorkingStatus
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "400":
+          description: The page parameter must be greater than 0 and size less than or equal to than 500
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "403":
+          description: The user does not have access
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "200":
+          description: It has been possible to obtain the user's work statuses for the indicated period
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyUserWorkingStatusResponse'
+        "404":
+          description: No se ha encontrado algun recurso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+  /users/v1/users:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Retrieves the users of an organization indicated by parameters.
+      operationId: getThirdPartyOrganizationUsers
+      parameters:
+      - name: getThirdPartyOrganizationUsersParameters
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/GetThirdPartyOrganizationUsersParameters'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 500
+      responses:
+        "400":
+          description: The page parameter must be greater than 0 and size less than or equal to than 500
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "403":
+          description: Access forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "200":
+          description: The users of the organization have been obtained.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyUserWorkingStatusResponse'
+        "404":
+          description: No se ha encontrado algun recurso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+  /users/v1/extrafields/{userId}:
+    get:
+      tags:
+      - ThirdPartyAPI
+      summary: Retrieves data from the extra fields of a user given their identifier
+      operationId: getThirdPartyUserExtraFields
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "200":
+          description: It has been possible to recover the user's extra fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThirdPartyUserExtraFieldsResponse'
+        "403":
+          description: Access forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+        "400":
+          description: The request sent is not correct
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+  /users/v1/departments/organizations:
+    get:
+      tags:
+      - third-party-departments-controller
+      summary: Get the organizational units of an organization
+      operationId: getThirdPartyDepartments
+      responses:
+        "201":
+          description: The organizational unit has been obtained
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ThirdPartyDepartmentsView'
+        "404":
+          description: Organization not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorView'
+  
 components:
   schemas:
+    BuildingView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        postercode:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        organizationId:
+          type: string
+        massiveLoadId:
+          type: string
+        status:
+          type: string
+          enum:
+          - LOCKED
+          - ACTIVATED
+          - DELETED
+        visible:
+          type: boolean
+        timezone:
+          type: string
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        cityId:
+          type: string
+        currency:
+          type: string
+        geolocation:
+          $ref: '#/components/schemas/CityGeolocationResponse'
+        departmentsIds:
+          type: array
+          items:
+            type: string
+        holidayCalendars:
+          type: array
+          items:
+            $ref: '#/components/schemas/HolidayCalendarView'
+    CreateFutureBookingResponse:
+      type: object
+      properties:
+        bookings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportFutureBookingResponse'
     CreatePastBookingResponse:
       type: object
       properties:
@@ -358,193 +1050,6 @@ components:
           items:
             $ref: '#/components/schemas/ReportHisBookingResponse'
     ReportHisBookingResponse:
-      required:
-      - accessControlType
-      - bookingId
-      - building
-      - cancellationDate
-      - checkInDate
-      - checkOutDate
-      - endDate
-      - floor
-      - lastModifiedDate
-      - organizer
-      - resource
-      - resourceType
-      - startDate
-      - status
-      type: object
-      properties:
-        bookingId:
-          type: string
-        createdDate:
-          type: string
-          format: date-time
-        organizer:
-          $ref: '#/components/schemas/UserView'
-        vehicle:
-          $ref: '#/components/schemas/VehicleView'
-        floor:
-          $ref: '#/components/schemas/FloorView'
-        building:
-          $ref: '#/components/schemas/BuildingView'
-        resource:
-          $ref: '#/components/schemas/ResourceView'
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - PENDING
-          - PENDING_APPROVAL
-          - CONFIRMED
-          - CANCELLED
-          - EXPIRED
-          - FINISHED
-          - PENDING_ASSIGNMENT
-          - PENDING_VOTING
-          - UNDETERMINED
-        accessControlType:
-          type: string
-          enum:
-          - OPTIONAL
-          - ORGANIZER
-          - ANY
-          - NONE
-        lastModifiedDate:
-          type: string
-          format: date-time
-        checkInDate:
-          type: string
-          format: date-time
-        checkOutDate:
-          type: string
-          format: date-time
-        cancellationDate:
-          type: string
-          format: date-time
-        resourceType:
-          type: string
-          enum:
-          - FIXED_WORKSTATION
-          - WORKSTATION
-          - SPACE
-          - PARKING
-          - DINNING_AREA
-    UserView:
-      required:
-      - email
-      - id
-      - name
-      - surname
-      type: object
-      properties:
-        id:
-          maxLength: 36
-          minLength: 36
-          type: string
-        name:
-          maxLength: 255
-          minLength: 0
-          type: string
-        surname:
-          maxLength: 255
-          minLength: 0
-          type: string
-        email:
-          maxLength: 255
-          minLength: 0
-          type: string
-    VehicleView:
-      type: object
-      properties:
-        id:
-          maxLength: 36
-          minLength: 36
-          type: string
-        licensePlate:
-          maxLength: 255
-          minLength: 0
-          type: string
-    BuildingView:
-      required:
-      - id
-      - name
-      - timezone
-      type: object
-      properties:
-        id:
-          maxLength: 36
-          minLength: 36
-          type: string
-        name:
-          maxLength: 255
-          minLength: 0
-          type: string
-        timezone:
-          type: string
-    FloorView:
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          maxLength: 36
-          minLength: 36
-          type: string
-        name:
-          maxLength: 255
-          minLength: 0
-          type: string
-        buildingId:
-          type: string
-        type:
-          type: string
-          enum:
-          - OFFICE
-          - PARKING
-    ResourceView:
-      type: object
-      properties:
-        id:
-          type: string
-        posterCode:
-          type: string
-        subcategory:
-          $ref: '#/components/schemas/SubcategoryView'
-        group:
-          $ref: '#/components/schemas/GroupResponse'
-    GroupResponse:
-      type: object
-      properties:
-        id:
-          type: string
-    SubcategoryView:
-      type: object
-      properties:
-        id:
-          type: string
-        category:
-          type: string
-          enum:
-          - FIXED_WORKSTATION
-          - WORKSTATION
-          - SPACE
-          - PARKING
-          - DINNING_AREA
-    CreateFutureBookingResponse:
-      type: object
-      properties:
-        bookings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReportFutureBookingResponse'
-    ReportFutureBookingResponse:
       required:
       - accessControlType
       - bookingId
@@ -643,6 +1148,866 @@ components:
           type: string
         message:
           type: string
+    FloorView:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          maxLength: 36
+          minLength: 36
+          type: string
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        buildingId:
+          type: string
+        type:
+          type: string
+          enum:
+          - OFFICE
+          - PARKING
+    GetOrganizationBuildingsResponse:
+      type: object
+      properties:
+        buildings:
+          type: array
+          items:
+            $ref: '#/components/schemas/BuildingView'
+        totalElements:
+          type: integer
+          format: int64
+    GetThirdPartyOrganizationUsersParameters:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - LOCKED
+          - ACTIVATED
+          - FIRED
+          - OBFUSCATED
+    GroupResponse:
+      type: object
+      properties:
+        id:
+          type: string
+    GroupView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - OFFICE
+          - PARKING_MANUAL
+          - PARKING_AUTOMATIC
+        microsoftId:
+          type: string
+        buildingId:
+          type: string
+        organizationId:
+          type: string
+    MapCoordinates:
+      type: object
+      properties:
+        topLeftX:
+          type: integer
+          format: int32
+        topLeftY:
+          type: integer
+          format: int32
+        bottomRightX:
+          type: integer
+          format: int32
+        bottomRightY:
+          type: integer
+          format: int32
+    OrganizationView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - BUSINESS
+          - LIBRARY
+          - COWORKING
+          - UNIVERSITY
+          - DISTRIBUTOR
+        status:
+          type: string
+          enum:
+          - DEPLOYING
+          - BLOCKED
+          - ACTIVE
+        email:
+          type: string
+        phone:
+          type: string
+        image:
+          type: string
+        cif:
+          type: string
+        nameContactPerson:
+          type: string
+        currentLicenceId:
+          type: string
+        authType:
+          type: string
+          enum:
+          - NATIVE
+          - MICROSOFT
+          - GOOGLE
+        technicalSupportName:
+          type: string
+        technicalSupportPhone:
+          type: string
+        technicalSupportEmail:
+          type: string
+        bookkerContactName:
+          type: string
+        bookkerContactPhone:
+          type: string
+        bookkerContactEmail:
+          type: string
+        videoTeleconferenceAddress:
+          type: string
+        organizationLanguage:
+          type: string
+        modules:
+          $ref: '#/components/schemas/ModulesView'
+        modulesExtra:
+          $ref: '#/components/schemas/ModulesExtraView'
+    ReportFutureBookingResponse:
+      required:
+      - accessControlType
+      - bookingId
+      - building
+      - cancellationDate
+      - checkInDate
+      - checkOutDate
+      - endDate
+      - floor
+      - lastModifiedDate
+      - organizer
+      - resource
+      - resourceType
+      - startDate
+      - status
+      type: object
+      properties:
+        bookingId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        organizer:
+          $ref: '#/components/schemas/UserView'
+        vehicle:
+          $ref: '#/components/schemas/VehicleView'
+        floor:
+          $ref: '#/components/schemas/FloorView'
+        building:
+          $ref: '#/components/schemas/BuildingView'
+        resource:
+          $ref: '#/components/schemas/ResourceView'
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - PENDING
+          - PENDING_APPROVAL
+          - CONFIRMED
+          - CANCELLED
+          - EXPIRED
+          - FINISHED
+          - PENDING_ASSIGNMENT
+          - PENDING_VOTING
+          - UNDETERMINED
+        accessControlType:
+          type: string
+          enum:
+          - OPTIONAL
+          - ORGANIZER
+          - ANY
+          - NONE
+        lastModifiedDate:
+          type: string
+          format: date-time
+        checkInDate:
+          type: string
+          format: date-time
+        checkOutDate:
+          type: string
+          format: date-time
+        cancellationDate:
+          type: string
+          format: date-time
+        resourceType:
+          type: string
+          enum:
+          - FIXED_WORKSTATION
+          - WORKSTATION
+          - SPACE
+          - PARKING
+          - DINNING_AREA
+    ResourceRuleView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        startTime:
+          type: integer
+          format: int64
+        endTime:
+          type: integer
+          format: int64
+        maximumDuration:
+          type: integer
+          format: int64
+        maximumAdvance:
+          type: integer
+          format: int32
+        accessControlType:
+          type: string
+          enum:
+          - OPTIONAL
+          - ORGANIZER
+          - ANY
+          - NONE
+        fixedResourcesAccessControlType:
+          type: string
+          enum:
+          - OPTIONAL
+          - NONE
+        advanceCheckIn:
+          type: integer
+          format: int64
+        expirationMargin:
+          type: integer
+          format: int64
+        requiresApproval:
+          type: boolean
+        maxSpaceBooking:
+          $ref: '#/components/schemas/MaxSpaceBooking'
+        organizationId:
+          type: string
+        allDayBookings:
+          type: boolean
+        allDayBookingsCheckInMS:
+          type: integer
+          format: int64
+        maximumCessionRecovery:
+          type: integer
+          format: int64
+    ResourceView:
+      type: object
+      properties:
+        id:
+          type: string
+        posterCode:
+          type: string
+        subcategory:
+          $ref: '#/components/schemas/SubcategoryView'
+        group:
+          $ref: '#/components/schemas/GroupResponse'
+    SubcategoryView:
+      type: object
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+          enum:
+          - FIXED_WORKSTATION
+          - WORKSTATION
+          - SPACE
+          - PARKING
+          - DINNING_AREA
+    ThirdPartyBuildingFloorsRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - OFFICE
+          - PARKING
+        status:
+          type: string
+          enum:
+          - LOCKED
+          - ACTIVATED
+          - DELETED
+        visible:
+          type: boolean
+    ThirdPartyBuildingFloorsResponse:
+      type: object
+      properties:
+        floors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThirdPartyFloorView'
+        totalElements:
+          type: integer
+          format: int64
+    ThirdPartyBuildingResourcesRequest:
+      type: object
+      properties:
+        category:
+          type: string
+          enum:
+          - FIXED_WORKSTATION
+          - WORKSTATION
+          - SPACE
+          - PARKING
+          - DINNING_AREA
+        maxCostPerHour:
+          type: number
+        floorId:
+          type: string
+        groupId:
+          type: string
+        isSynchronized:
+          type: boolean
+        isVisible:
+          type: boolean
+    ThirdPartyBuildingResourcesResponse:
+      type: object
+      properties:
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThirdPartyResourceView'
+        totalElements:
+          type: integer
+          format: int64
+    ThirdPartyDepartmentsView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        description:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time
+    ThirdPartyDinningAreaRuleView:
+      type: object
+      properties:
+        id:
+          type: string
+        mandatoryCheckIn:
+          type: boolean
+        expirationMargin:
+          type: integer
+          format: int64
+        choiceOfPlace:
+          type: boolean
+        allowMoreThanOneBooking:
+          type: boolean
+        maximumAdvance:
+          type: integer
+          format: int32
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time
+    ThirdPartyFixedResourcesResponse:
+      type: object
+      properties:
+        fixedResources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThirdPartyFixedResourceView'
+        totalElements:
+          type: integer
+          format: int64
+    ThirdPartyFixedResourceView:
+      type: object
+      properties:
+        userId:
+          type: string
+        workstationId:
+          type: string
+        parkingSlotId:
+          type: string
+        posterCode:
+          type: string
+        name:
+          type: string
+        visible:
+          type: boolean
+        floorId:
+          type: string
+        subcategoryId:
+          type: string
+        groupId:
+          type: string
+        startTimeMs:
+          type: integer
+          format: int64
+        endTimeMs:
+          type: integer
+          format: int64
+        allDay:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time
+        startAssigment:
+          type: string
+          format: date
+    ThirdPartyParkingBuildingCessionsResponse:
+      type: object
+      properties:
+        parkingCessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThirdPartyParkingSlotCessionView'
+        totalElements:
+          type: integer
+          format: int64
+    ThirdPartyParkingSlotCessionView:
+      type: object
+      properties:
+        userId:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        parkingSlotId:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        lastModifiedBy:
+          type: string
+    ThirdPartyParkingRuleView:
+      type: object
+      properties:
+        id:
+          type: string
+        maximumAdvance:
+          type: integer
+          format: int64
+        maxParkingBooking:
+          $ref: '#/components/schemas/MaxParkingBooking'
+        maximumCessionRecovery:
+          type: integer
+          format: int64
+        choiceOfPlace:
+          type: boolean
+        accessControlType:
+          type: string
+          enum:
+          - OPTIONAL
+          - ORGANIZER
+          - ANY
+          - NONE
+        fixedResourcesAccessControlType:
+          type: string
+          enum:
+          - OPTIONAL
+          - NONE
+        expirationMargin:
+          type: integer
+          format: int64
+        scannerCheckIn:
+          type: boolean
+        timePreCheckInMs:
+          type: integer
+          format: int64
+        multipleShiftsSelection:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time
+    ThirdPartyResourceLockedCalendarResponse:
+      type: object
+      properties:
+        lockedCalendars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceLockedCalendarView'
+        totalElements:
+          type: integer
+          format: int64
+    ThirdPartyResourceRuleResponse:
+      type: object
+      properties:
+        resourceRule:
+          $ref: '#/components/schemas/ThirdPartyResourceRuleView'
+        parkingRule:
+          $ref: '#/components/schemas/ThirdPartyParkingRuleView'
+        dinningAreaRule:
+          $ref: '#/components/schemas/ThirdPartyDinningAreaRuleView'
+    ThirdPartyResourceRuleView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        startTime:
+          type: integer
+          format: int64
+        endTime:
+          type: integer
+          format: int64
+        maximumDuration:
+          type: integer
+          format: int64
+        maximumAdvance:
+          type: integer
+          format: int32
+        accessControlType:
+          type: string
+          enum:
+          - OPTIONAL
+          - ORGANIZER
+          - ANY
+          - NONE
+        fixedResourcesAccessControlType:
+          type: string
+          enum:
+          - OPTIONAL
+          - NONE
+        advanceCheckIn:
+          type: integer
+          format: int64
+        expirationMargin:
+          type: integer
+          format: int64
+        requiresApproval:
+          type: boolean
+        maxSpaceBooking:
+          $ref: '#/components/schemas/MaxSpaceBooking'
+        allDayBookings:
+          type: boolean
+        allDayBookingsCheckInMS:
+          type: integer
+          format: int64
+        maximumCessionRecovery:
+          type: integer
+          format: int64
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time
+    ThirdPartyResourceView:
+      type: object
+      properties:
+        id:
+          type: string
+        posterCode:
+          type: string
+        mapCoordinates:
+          $ref: '#/components/schemas/MapCoordinates'
+        costPerHour:
+          type: number
+        externalSyncEmail:
+          type: string
+        status:
+          type: string
+          enum:
+          - LOCKED
+          - ACTIVATED
+          - DELETED
+        image:
+          type: string
+        databaseImage:
+          type: string
+        name:
+          type: string
+        phone:
+          type: string
+        visible:
+          type: boolean
+        floorId:
+          type: string
+        subcategoryId:
+          type: string
+        resourceRuleId:
+          type: string
+        groupId:
+          type: string
+        organizationId:
+          type: string
+        massiveLoadId:
+          type: string
+        externalSyncId:
+          type: string
+        posterImageId:
+          type: string
+        organization:
+          $ref: '#/components/schemas/OrganizationView'
+        subcategory:
+          $ref: '#/components/schemas/SubcategoryView'
+        resourceRule:
+          $ref: '#/components/schemas/ResourceRuleView'
+        building:
+          $ref: '#/components/schemas/BuildingView'
+        floor:
+          $ref: '#/components/schemas/FloorView'
+        group:
+          $ref: '#/components/schemas/GroupView'
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time
+        capacity:
+          type: integer
+          format: int32
+        covered:
+          type: boolean
+        parkingSlotSize:
+          type: string
+          enum:
+          - SMALL
+          - BIG
+    ThirdPartyUserExtraFieldsResponse:
+      type: object
+      properties:
+        userExtraFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThirdPartyUserExtraFieldsView'
+    ThirdPartyUserExtraFieldsView:
+      type: object
+      properties:
+        fieldName:
+          type: string
+        columnName:
+          type: string
+        active:
+          type: boolean
+        value:
+          type: string
+    ThirdPartyUserView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+        upn:
+          type: string
+        email:
+          type: string
+        status:
+          type: string
+          enum:
+          - LOCKED
+          - ACTIVATED
+          - FIRED
+          - OBFUSCATED
+        image:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        createdDate:
+          type: string
+          format: date-time
+        microsoftId:
+          type: string
+        employeeId:
+          type: string
+    ThirdPartyUserWorkstationCessionView:
+      type: object
+      properties:
+        userId:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        workstaionId:
+          type: string
+        stretchType:
+          type: string
+          enum:
+          - FIRST_STRETCH
+          - LAST_STRETCH
+          - ALL_DAY_STRETCH
+        lastModifiedDate:
+          type: string
+          format: date-time
+        lastModifiedBy:
+          type: string
+    ThirdPartyUserWorkingStatusResponse:
+      type: object
+      properties:
+        userWorkingStatusExceptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserWorkingStatusExceptionView'
+        userWorkingCalendarView:
+          $ref: '#/components/schemas/ThirdPartyWorkingCalendarView'
+        totalElements:
+          type: integer
+          format: int64
+    ThirdPartyWorkingCalendarView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        defaultWorkingStatus:
+          $ref: '#/components/schemas/UserWorkingStatusView'
+        recurrences:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThirdPartyWorkingCalendarRecurrenceView'
+    ThirdPartyWorkingCalendarRecurrenceView:
+      type: object
+      properties:
+        id:
+          type: string
+        calendarId:
+          type: string
+        recurrenceWorkingStatusView:
+          $ref: '#/components/schemas/UserWorkingStatusView'
+        daysOfWeek:
+          type: string
+        frequency:
+          type: integer
+          format: int32
+        startDate:
+          type: string
+          format: date
+        priority:
+          type: integer
+          format: int32
+    ThirdPartyWorkstaionBuildingCessionsResponse:
+      type: object
+      properties:
+        workstaionCessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThirdPartyUserWorkstationCessionView'
+        totalElements:
+          type: integer
+          format: int64
+    UserWorkingStatusExceptionView:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - SERIES_MASTER
+          - OCURRENCE
+          - EXCEPTION
+          - SINGLE_INSTANCE
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        seriesMasterId:
+          type: string
+        workingStatusView:
+          $ref: '#/components/schemas/UserWorkingStatusView'
+    UserWorkingStatusView:
+      type: object
+      properties:
+        id:
+          type: string
+        organizationId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        mustBlockBookings:
+          type: boolean
+        mustCedeParkingSlot:
+          type: boolean
+    UserView:
+      required:
+      - email
+      - id
+      - name
+      - surname
+      type: object
+      properties:
+        id:
+          maxLength: 36
+          minLength: 36
+          type: string
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        surname:
+          maxLength: 255
+          minLength: 0
+          type: string
+        email:
+          maxLength: 255
+          minLength: 0
+          type: string
+    VehicleView:
+      type: object
+      properties:
+        id:
+          maxLength: 36
+          minLength: 36
+          type: string
+        licensePlate:
+          maxLength: 255
+          minLength: 0
+          type: string  
   securitySchemes:
     api-key:
         type: apiKey
