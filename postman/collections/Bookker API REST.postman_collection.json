@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "33c2bfd0-3da3-43ab-bc46-f1e1739b859a",
 		"name": "Bookker API REST",
-		"description": "This the documentation of the Bookker API REST and contains all collections and definitions currently available in this service.\n\nThis API is intended to provide a programatic interface for clients and resources manager providers for a standard and automatic access to Bookker services.\n\nThis API facilitates systems integration with Bookker services",
+		"description": "This is the documentation of the Bookker API REST and contains all collections and definitions currently available in this service.\n\nThis API facilitates systems integration with Bookker services as it is intended to provide a programatic interface for clients and resources manager providers for a standard and automatic access to Bookker services.\n\nThe API contains the following collections:\n\n1. **Authentication:** definition of the call to obtain access tokens for authorized API calls.\n    \n2. **Reports:** a set of calls to manage the process of obtaining booking information for an Organization.\n    \n3. **Resources:** a set of calls to obtain of the resources of the client's Organization.\n    \n4. **Users:** a set of calls to request information of the users of the client's Organization.\n    \n5. **Bookings:** a set of calls to perform check-in and check-out on a given bokking",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19109328"
 	},
@@ -85,7 +85,53 @@
 						},
 						"description": "This call provides a valid token for communication with Bookker API REST"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-url/oauth2/token?grant_type=client_credentials&client_id=client_id&redirect_uri=baseUrl&state=STATE&scope=url_scope",
+									"host": [
+										"bookker-apigw-url"
+									],
+									"path": [
+										"oauth2",
+										"token"
+									],
+									"query": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials"
+										},
+										{
+											"key": "client_id",
+											"value": "client_id"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "baseUrl"
+										},
+										{
+											"key": "state",
+											"value": "STATE"
+										},
+										{
+											"key": "scope",
+											"value": "url_scope"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"Ukpwd0hQR2pNaUkpwd0hQR2pNajJKOTRFSlhacnc1d0hQR2pNajJKOTRFSlhacnc1MXRZWUNVSXV5V25xYXdYV2M2U3VJPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzbGU1cGFuMmJmaDA4M203ZDA1NzRpbTdoNyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiaHR0cHM6XC9cL2FwaXMuZGV2ZWxvcC5ib29ra2VyY29ycC5jb21cL3Jlc291cmNlLnJlYeyJzdWIiOiIzbGU1cGFuMmJmaDA4M203ZDA1NzRpbTdoNyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiaHR0cHM6XC9cL2FwaXMuZGV2ZWxvcC5ib29ra2VyY29ycC5jb21cL3Jlc291cmNlLnJlYeyJzdWIiOiIzbGU1cGFuMmJmaDA4M203ZDA1NzRpbTdoNyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiaHR0cHM6XC9cL2FwaXMuZGV2ZWxvcC5ib29ra2VyY29ycC5jb21cL3Jlc291cmNlLnJlYeyJzdWIiOiIzbGU1cGFuMmJmaDA4M203ZDA1NzRpbTdoNyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiaHR0cHM6XC9cL2FwaXMuZGV2ZWxvcC5ib29ra2VyY29ycC5jb21cL3Jlc291cmNlLnJlYeyJzdWIiOiIzbGU1cGFuMmJmaDA4M203ZDA1NzRpbTdoNyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiaHR0cHM6XC9cL2FwaXMuZGV2ZWxvcC5ib29ra2VyY29ycC5jb21cL3Jlc291cmNlLnJlYyw4o4hU1Tp2rGM8963jzPdCLOdOQ\",\n    \"expires_in\": 3600,\n    \"token_type\": \"Bearer\"\n}"
+						}
+					]
 				}
 			],
 			"description": "**The API** uses [**OAuth Authorization**](https://datatracker.ietf.org/doc/html/rfc6749)\n\n1. You can view your API credentials in your **Bookker administrative website** > **Panel Website Settings** > **API Credentials**.\n2. You can use your API credentials to obtain a `TOKEN`, using the `get token` request.\n3. You can use this `TOKEN` to access API resources by passing it in the `Authorization` header: `Authorization: TOKEN` .\n4. All API requests must be made over HTTPS."
@@ -136,11 +182,13 @@
 									"query": [
 										{
 											"key": "page",
-											"value": "0"
+											"value": "0",
+											"description": "optional - default 0"
 										},
 										{
 											"key": "size",
-											"value": "500"
+											"value": "500",
+											"description": "optional - default 500"
 										}
 									]
 								},
@@ -180,13 +228,52 @@
 										{
 											"key": "Content-Type",
 											"value": "application/json",
-											"name": "Content-Type",
 											"description": "",
 											"type": "text"
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8e7-8083c4244f67\",\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Pepito\",\n                \"surname\": \"Perez Perez\",\n                \"email\": \"pperez@company.com\"\n            },\n            \"vehicle\": {\n                \"licensePlate\": \"1234ABC\"\n            },\n            \"floor\": {\n                \"name\": \"Sotano 1\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\n            },\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\n            \"status\": \"UNDETERMINED\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8d7-8083e4244f67\",\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Antonia\",\n                \"surname\": \"Garcia Garcia\",\n                \"email\": \"agarcia@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 4\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\n            },\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\n            \"status\": \"CONFIRMED\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8b7-8083e4244f67\",\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Cristina\",\n                \"surname\": \"Lopez Lopez\",\n                \"email\": \"clopez@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 5\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\n            },\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\n            \"status\": \"EXPIRED\"\n        }\n    ]\n}"
+									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"1233e123-d123-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-13T15:21:00.000+00:00\",\n            \"organizer\": {\n                \"id\": \"789d3123-8123-45f0-a123-0f68d3473123\",\n                \"name\": \"Sergio\",\n                \"surname\": \"Júpiter\",\n                \"email\": \"sergio@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"123ab4123-1123-123f-1235-123f5d123e8\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a1233-f123-123e-af54-1232123aed49\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"12392123-0123-4123-8193-1123da381232\",\n                \"posterCode\": \"B-P1-SALA-1\",\n                \"subcategory\": {\n                    \"id\": \"123ac123-1123-1235-af07-1a123f8fc123\"\n                },\n                \"group\": {\n                    \"id\": \"e1231233-7d9f-123c-b123-0e123c75e123\"\n                }\n            },\n            \"startDate\": \"2024-09-25T05:00:00.000+00:00\",\n            \"endDate\": \"2024-09-25T18:00:00.000+00:00\",\n            \"status\": \"CANCELLED\",\n            \"accessControlType\": \"ANY\",\n            \"lastModifiedDate\": \"2024-09-13T15:21:20.000+00:00\",\n            \"cancellationDate\": \"2024-09-13T15:21:20.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        },\n        {\n            \"bookingId\": \"840c39f2-a255-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-19T10:27:25.000+00:00\",\n            \"organizer\": {\n                \"id\": \"ed4daa88-d5d7-123e-af54-0f0c7feca635\",\n                \"name\": \"Javier\",\n                \"surname\": \"Jupiter\",\n                \"email\": \"javier@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"14ab4017-1261-123e-af54-0f0c7feca635\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a81f3-f171123e-af54-0f0c7feca635\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"d91cb934-d180-123e-af54-0f0c7feca635\",\n                \"posterCode\": \"B-P1-SALA-3\",\n                \"subcategory\": {\n                    \"id\": \"072ac366-1c4f123e-af54-0f0c7feca635\"\n                },\n                \"group\": {\n                    \"id\": \"d955b7df-0e9b-123e-af54-0f0c7feca635\"\n                }\n            },\n            \"startDate\": \"2024-09-25T08:00:00.000+00:00\",\n            \"endDate\": \"2024-09-25T09:00:00.000+00:00\",\n            \"status\": \"UNDETERMINED\",\n            \"accessControlType\": \"NONE\",\n            \"lastModifiedDate\": \"2024-09-19T10:27:25.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        }\n    ]\n}"
+								},
+								{
+									"name": "No OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/pastbookings/yesterday?page=0&size=500",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"pastbookings",
+												"yesterday"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 								}
 							]
 						},
@@ -230,11 +317,13 @@
 									"query": [
 										{
 											"key": "page",
-											"value": "0"
+											"value": "0",
+											"description": "optional - default 0"
 										},
 										{
 											"key": "size",
-											"value": "500"
+											"value": "500",
+											"description": "optional - default 500"
 										}
 									]
 								},
@@ -277,7 +366,47 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"bookings\": [\n\t    {\n            \"bookingId\": \"005365cd-69bc-4426-b8e7-8083c4244f67\",\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Pepito\",\n                \"surname\": \"Perez Perez\",\n                \"email\": \"pperez@company.com\"\n            },\n            \"vehicle\": {\n                \"licensePlate\": \"1234ABC\"\n            },\n            \"floor\": {\n                \"name\": \"Sotano 1\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\n            },\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\n            \"status\": \"UNDETERMINED\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8d7-8083e4244f67\",\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Antonia\",\n                \"surname\": \"Garcia Garcia\",\n                \"email\": \"agarcia@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 4\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\n            },\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\n            \"status\": \"CONFIRMED\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8b7-8083e4244f67\",\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Cristina\",\n                \"surname\": \"Lopez Lopez\",\n                \"email\": \"clopez@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 5\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\n            },\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\n            \"status\": \"EXPIRED\"\n        }\n    ]\n}"
+									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"1233e123-d123-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-13T15:21:00.000+00:00\",\n            \"organizer\": {\n                \"id\": \"789d3123-8123-45f0-a123-0f68d3473123\",\n                \"name\": \"Sergio\",\n                \"surname\": \"Júpiter\",\n                \"email\": \"sergio@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"123ab4123-1123-123f-1235-123f5d123e8\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a1233-f123-123e-af54-1232123aed49\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"12392123-0123-4123-8193-1123da381232\",\n                \"posterCode\": \"B-P1-SALA-1\",\n                \"subcategory\": {\n                    \"id\": \"123ac123-1123-1235-af07-1a123f8fc123\"\n                },\n                \"group\": {\n                    \"id\": \"e1231233-7d9f-123c-b123-0e123c75e123\"\n                }\n            },\n            \"startDate\": \"2024-09-25T05:00:00.000+00:00\",\n            \"endDate\": \"2024-09-25T18:00:00.000+00:00\",\n            \"status\": \"CANCELLED\",\n            \"accessControlType\": \"ANY\",\n            \"lastModifiedDate\": \"2024-09-13T15:21:20.000+00:00\",\n            \"cancellationDate\": \"2024-09-13T15:21:20.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        },\n        {\n            \"bookingId\": \"840c39f2-a255-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-19T10:27:25.000+00:00\",\n            \"organizer\": {\n                \"id\": \"ed4daa88-d5d7-123e-af54-0f0c7feca635\",\n                \"name\": \"Javier\",\n                \"surname\": \"Jupiter\",\n                \"email\": \"javier@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"14ab4017-1261-123e-af54-0f0c7feca635\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a81f3-f171123e-af54-0f0c7feca635\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"d91cb934-d180-123e-af54-0f0c7feca635\",\n                \"posterCode\": \"B-P1-SALA-3\",\n                \"subcategory\": {\n                    \"id\": \"072ac366-1c4f123e-af54-0f0c7feca635\"\n                },\n                \"group\": {\n                    \"id\": \"d955b7df-0e9b-123e-af54-0f0c7feca635\"\n                }\n            },\n            \"startDate\": \"2024-09-25T08:00:00.000+00:00\",\n            \"endDate\": \"2024-09-25T09:00:00.000+00:00\",\n            \"status\": \"UNDETERMINED\",\n            \"accessControlType\": \"NONE\",\n            \"lastModifiedDate\": \"2024-09-19T10:27:25.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        }\n    ]\n}"
+								},
+								{
+									"name": "No OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/pastbookings/last7days?page=0&size=500",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"pastbookings",
+												"last7days"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 								}
 							]
 						},
@@ -321,11 +450,13 @@
 									"query": [
 										{
 											"key": "page",
-											"value": "0"
+											"value": "0",
+											"description": "optional - default 0"
 										},
 										{
 											"key": "size",
-											"value": "500"
+											"value": "500",
+											"description": "optional - default 500"
 										}
 									]
 								},
@@ -338,9 +469,9 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/pastbookings/last15days?page=0&size=500",
+											"raw": "bookker-apigw-url/pastbookings/last15days?page=0&size=500",
 											"host": [
-												"{{baseUrl}}"
+												"bookker-apigw-url"
 											],
 											"path": [
 												"pastbookings",
@@ -365,13 +496,52 @@
 										{
 											"key": "Content-Type",
 											"value": "application/json",
-											"name": "Content-Type",
 											"description": "",
 											"type": "text"
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"bookings\": [\n\t    {\n            \"bookingId\": \"005365cd-69bc-4426-b8e7-8083c4244f67\",\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Pepito\",\n                \"surname\": \"Perez Perez\",\n                \"email\": \"pperez@company.com\"\n            },\n            \"vehicle\": {\n                \"licensePlate\": \"1234ABC\"\n            },\n            \"floor\": {\n                \"name\": \"Sotano 1\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\n            },\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\n            \"status\": \"UNDETERMINED\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8d7-8083e4244f67\",\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Antonia\",\n                \"surname\": \"Garcia Garcia\",\n                \"email\": \"agarcia@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 4\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\n            },\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\n            \"status\": \"CONFIRMED\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8b7-8083e4244f67\",\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Cristina\",\n                \"surname\": \"Lopez Lopez\",\n                \"email\": \"clopez@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 5\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\n            },\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\n            \"status\": \"EXPIRED\"\n        }\n    ]\n}"
+									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"1233e123-d123-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-13T15:21:00.000+00:00\",\n            \"organizer\": {\n                \"id\": \"789d3123-8123-45f0-a123-0f68d3473123\",\n                \"name\": \"Sergio\",\n                \"surname\": \"Júpiter\",\n                \"email\": \"sergio@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"123ab4123-1123-123f-1235-123f5d123e8\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a1233-f123-123e-af54-1232123aed49\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"12392123-0123-4123-8193-1123da381232\",\n                \"posterCode\": \"B-P1-SALA-1\",\n                \"subcategory\": {\n                    \"id\": \"123ac123-1123-1235-af07-1a123f8fc123\"\n                },\n                \"group\": {\n                    \"id\": \"e1231233-7d9f-123c-b123-0e123c75e123\"\n                }\n            },\n            \"startDate\": \"2024-09-25T05:00:00.000+00:00\",\n            \"endDate\": \"2024-09-25T18:00:00.000+00:00\",\n            \"status\": \"CANCELLED\",\n            \"accessControlType\": \"ANY\",\n            \"lastModifiedDate\": \"2024-09-13T15:21:20.000+00:00\",\n            \"cancellationDate\": \"2024-09-13T15:21:20.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        },\n        {\n            \"bookingId\": \"840c39f2-a255-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-19T10:27:25.000+00:00\",\n            \"organizer\": {\n                \"id\": \"ed4daa88-d5d7-123e-af54-0f0c7feca635\",\n                \"name\": \"Javier\",\n                \"surname\": \"Jupiter\",\n                \"email\": \"javier@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"14ab4017-1261-123e-af54-0f0c7feca635\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a81f3-f171123e-af54-0f0c7feca635\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"d91cb934-d180-123e-af54-0f0c7feca635\",\n                \"posterCode\": \"B-P1-SALA-3\",\n                \"subcategory\": {\n                    \"id\": \"072ac366-1c4f123e-af54-0f0c7feca635\"\n                },\n                \"group\": {\n                    \"id\": \"d955b7df-0e9b-123e-af54-0f0c7feca635\"\n                }\n            },\n            \"startDate\": \"2024-09-25T08:00:00.000+00:00\",\n            \"endDate\": \"2024-09-25T09:00:00.000+00:00\",\n            \"status\": \"UNDETERMINED\",\n            \"accessControlType\": \"NONE\",\n            \"lastModifiedDate\": \"2024-09-19T10:27:25.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        }\n    ]\n}"
+								},
+								{
+									"name": "No OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/pastbookings/last15days?page=0&size=500",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"pastbookings",
+												"last15days"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 								}
 							]
 						},
@@ -415,11 +585,13 @@
 									"query": [
 										{
 											"key": "page",
-											"value": "0"
+											"value": "0",
+											"description": "optional - default 0"
 										},
 										{
 											"key": "size",
-											"value": "500"
+											"value": "500",
+											"description": "optional - default 500"
 										}
 									]
 								},
@@ -432,9 +604,9 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/pastbookings/last30days?page=0&size=500",
+											"raw": "bookker-apigw-url/pastbookings/last30days?page=0&size=500",
 											"host": [
-												"{{baseUrl}}"
+												"bookker-apigw-url"
 											],
 											"path": [
 												"pastbookings",
@@ -459,13 +631,52 @@
 										{
 											"key": "Content-Type",
 											"value": "application/json",
-											"name": "Content-Type",
 											"description": "",
 											"type": "text"
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8e7-8083c4244f67\",\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Pepito\",\n                \"surname\": \"Perez Perez\",\n                \"email\": \"pperez@company.com\"\n            },\n            \"vehicle\": {\n                \"licensePlate\": \"1234ABC\"\n            },\n            \"floor\": {\n                \"name\": \"Sotano 1\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\n            },\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\n            \"status\": \"UNDETERMINED\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8d7-8083e4244f67\",\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Antonia\",\n                \"surname\": \"Garcia Garcia\",\n                \"email\": \"agarcia@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 4\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\n            },\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\n            \"status\": \"CONFIRMED\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8b7-8083e4244f67\",\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Cristina\",\n                \"surname\": \"Lopez Lopez\",\n                \"email\": \"clopez@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 5\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\n            },\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\n            \"status\": \"EXPIRED\"\n        }\n    ]\n}"
+									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"1233e123-d123-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-13T15:21:00.000+00:00\",\n            \"organizer\": {\n                \"id\": \"789d3123-8123-45f0-a123-0f68d3473123\",\n                \"name\": \"Sergio\",\n                \"surname\": \"Júpiter\",\n                \"email\": \"sergio@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"123ab4123-1123-123f-1235-123f5d123e8\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a1233-f123-123e-af54-1232123aed49\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"12392123-0123-4123-8193-1123da381232\",\n                \"posterCode\": \"B-P1-SALA-1\",\n                \"subcategory\": {\n                    \"id\": \"123ac123-1123-1235-af07-1a123f8fc123\"\n                },\n                \"group\": {\n                    \"id\": \"e1231233-7d9f-123c-b123-0e123c75e123\"\n                }\n            },\n            \"startDate\": \"2024-09-25T05:00:00.000+00:00\",\n            \"endDate\": \"2024-09-25T18:00:00.000+00:00\",\n            \"status\": \"CANCELLED\",\n            \"accessControlType\": \"ANY\",\n            \"lastModifiedDate\": \"2024-09-13T15:21:20.000+00:00\",\n            \"cancellationDate\": \"2024-09-13T15:21:20.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        },\n        {\n            \"bookingId\": \"840c39f2-a255-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-19T10:27:25.000+00:00\",\n            \"organizer\": {\n                \"id\": \"ed4daa88-d5d7-123e-af54-0f0c7feca635\",\n                \"name\": \"Javier\",\n                \"surname\": \"Jupiter\",\n                \"email\": \"javier@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"14ab4017-1261-123e-af54-0f0c7feca635\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a81f3-f171123e-af54-0f0c7feca635\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"d91cb934-d180-123e-af54-0f0c7feca635\",\n                \"posterCode\": \"B-P1-SALA-3\",\n                \"subcategory\": {\n                    \"id\": \"072ac366-1c4f123e-af54-0f0c7feca635\"\n                },\n                \"group\": {\n                    \"id\": \"d955b7df-0e9b-123e-af54-0f0c7feca635\"\n                }\n            },\n            \"startDate\": \"2024-09-25T08:00:00.000+00:00\",\n            \"endDate\": \"2024-09-25T09:00:00.000+00:00\",\n            \"status\": \"UNDETERMINED\",\n            \"accessControlType\": \"NONE\",\n            \"lastModifiedDate\": \"2024-09-19T10:27:25.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        }\n    ]\n}"
+								},
+								{
+									"name": "No OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/pastbookings/last30days?page=0&size=500",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"pastbookings",
+												"last30days"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 								}
 							]
 						},
@@ -496,7 +707,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/reports/v1/pastbookings/period?from=01-12-2022 00:00:00&to=21-12-2022 00:00:00&page=0&size=500",
+									"raw": "{{baseUrl}}/reports/v1/pastbookings/period?from=01-08-2024 00:00:00&to=01-09-2024 00:00:00&page=0&size=500",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -509,19 +720,23 @@
 									"query": [
 										{
 											"key": "from",
-											"value": "01-12-2022 00:00:00"
+											"value": "01-08-2024 00:00:00",
+											"description": "requiered - maximum 90 days in the past"
 										},
 										{
 											"key": "to",
-											"value": "21-12-2022 00:00:00"
+											"value": "01-09-2024 00:00:00",
+											"description": "requiered - current time"
 										},
 										{
 											"key": "page",
-											"value": "0"
+											"value": "0",
+											"description": "optional - default 0"
 										},
 										{
 											"key": "size",
-											"value": "500"
+											"value": "500",
+											"description": "optional - default 500"
 										}
 									]
 								},
@@ -534,9 +749,9 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/reports/v1/pastbookings/period?from=01-12-2022 00:00:00&to=21-12-2022 00:00:00&page=0&size=500",
+											"raw": "bookker-apigw-url/reports/v1/pastbookings/period?from=01-12-2022 00:00:00&to=21-12-2022 00:00:00&page=0&size=500",
 											"host": [
-												"{{baseUrl}}"
+												"bookker-apigw-url"
 											],
 											"path": [
 												"reports",
@@ -571,13 +786,62 @@
 										{
 											"key": "Content-Type",
 											"value": "application/json",
-											"name": "Content-Type",
 											"description": "",
 											"type": "text"
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8e7-8083c4244f67\",\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Pepito\",\n                \"surname\": \"Perez Perez\",\n                \"email\": \"pperez@company.com\"\n            },\n            \"vehicle\": {\n                \"licensePlate\": \"1234ABC\"\n            },\n            \"floor\": {\n                \"name\": \"Sotano 1\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\n            },\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\n            \"status\": \"UNDETERMINED\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8d7-8083e4244f67\",\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Antonia\",\n                \"surname\": \"Garcia Garcia\",\n                \"email\": \"agarcia@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 4\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\n            },\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\n            \"status\": \"CONFIRMED\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8b7-8083e4244f67\",\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Cristina\",\n                \"surname\": \"Lopez Lopez\",\n                \"email\": \"clopez@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 5\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\n            },\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\n            \"status\": \"EXPIRED\"\n        }\n    ]\n}"
+									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"1233e123-d123-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-13T15:21:00.000+00:00\",\n            \"organizer\": {\n                \"id\": \"789d3123-8123-45f0-a123-0f68d3473123\",\n                \"name\": \"Sergio\",\n                \"surname\": \"Júpiter\",\n                \"email\": \"sergio@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"123ab4123-1123-123f-1235-123f5d123e8\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a1233-f123-123e-af54-1232123aed49\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"12392123-0123-4123-8193-1123da381232\",\n                \"posterCode\": \"B-P1-SALA-1\",\n                \"subcategory\": {\n                    \"id\": \"123ac123-1123-1235-af07-1a123f8fc123\"\n                },\n                \"group\": {\n                    \"id\": \"e1231233-7d9f-123c-b123-0e123c75e123\"\n                }\n            },\n            \"startDate\": \"2024-09-25T05:00:00.000+00:00\",\n            \"endDate\": \"2024-09-25T18:00:00.000+00:00\",\n            \"status\": \"CANCELLED\",\n            \"accessControlType\": \"ANY\",\n            \"lastModifiedDate\": \"2024-09-13T15:21:20.000+00:00\",\n            \"cancellationDate\": \"2024-09-13T15:21:20.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        },\n        {\n            \"bookingId\": \"840c39f2-a255-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-19T10:27:25.000+00:00\",\n            \"organizer\": {\n                \"id\": \"ed4daa88-d5d7-123e-af54-0f0c7feca635\",\n                \"name\": \"Javier\",\n                \"surname\": \"Jupiter\",\n                \"email\": \"javier@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"14ab4017-1261-123e-af54-0f0c7feca635\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a81f3-f171123e-af54-0f0c7feca635\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"d91cb934-d180-123e-af54-0f0c7feca635\",\n                \"posterCode\": \"B-P1-SALA-3\",\n                \"subcategory\": {\n                    \"id\": \"072ac366-1c4f123e-af54-0f0c7feca635\"\n                },\n                \"group\": {\n                    \"id\": \"d955b7df-0e9b-123e-af54-0f0c7feca635\"\n                }\n            },\n            \"startDate\": \"2024-09-25T08:00:00.000+00:00\",\n            \"endDate\": \"2024-09-25T09:00:00.000+00:00\",\n            \"status\": \"UNDETERMINED\",\n            \"accessControlType\": \"NONE\",\n            \"lastModifiedDate\": \"2024-09-19T10:27:25.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        }\n    ]\n}"
+								},
+								{
+									"name": "No OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/reports/v1/pastbookings/period?from=01-12-2022 00:00:00&to=21-12-2022 00:00:00&page=0&size=500",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"reports",
+												"v1",
+												"pastbookings",
+												"period"
+											],
+											"query": [
+												{
+													"key": "from",
+													"value": "01-12-2022 00:00:00"
+												},
+												{
+													"key": "to",
+													"value": "21-12-2022 00:00:00"
+												},
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 								}
 							]
 						}
@@ -614,7 +878,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/reports/v1/futurebookings/period?from=21-01-2023 00:00:00&to=25-01-2023 00:00:00&page=0&size=500",
+									"raw": "{{baseUrl}}/reports/v1/futurebookings/period?from=27-09-2024 00:00:00&to=30-09-2024 00:00:00&page=0&size=500",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -627,11 +891,13 @@
 									"query": [
 										{
 											"key": "from",
-											"value": "21-01-2023 00:00:00"
+											"value": "27-09-2024 00:00:00",
+											"description": "requiered - current time"
 										},
 										{
 											"key": "to",
-											"value": "25-01-2023 00:00:00"
+											"value": "30-09-2024 00:00:00",
+											"description": "requiered - maximum 30 days in the future"
 										},
 										{
 											"key": "page",
@@ -648,6 +914,56 @@
 							"response": [
 								{
 									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/reports/v1/futurebookings/period?from=01-01-2022 00:00:00&to=21-01-2022 00:00:00&page=0&size=500",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"reports",
+												"v1",
+												"futurebookings",
+												"period"
+											],
+											"query": [
+												{
+													"key": "from",
+													"value": "01-01-2022 00:00:00"
+												},
+												{
+													"key": "to",
+													"value": "21-01-2022 00:00:00"
+												},
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"09472c2f-d123-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-19T10:12:22.000+00:00\",\n            \"organizer\": {\n                \"id\": \"ed4daa88-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Javier\",\n                \"surname\": \"Jupiter\",\n                \"email\": \"javier@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"14ab4017--d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a81f3-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"d91cb934-d123-123e-af54-0f0c7feca635\",\n                \"posterCode\": \"B-P1-SALA-3\",\n                \"subcategory\": {\n                    \"id\": \"072ac366-d123-123e-af54-0f0c7feca635\"\n                },\n                \"group\": {\n                    \"id\": \"d955b7df-d123-123e-af54-0f0c7feca635\"\n                }\n            },\n            \"startDate\": \"2024-09-27T12:00:00.000+00:00\",\n            \"endDate\": \"2024-09-27T13:00:00.000+00:00\",\n            \"status\": \"CANCELLED\",\n            \"accessControlType\": \"NONE\",\n            \"lastModifiedDate\": \"2024-09-19T10:17:22.000+00:00\",\n            \"cancellationDate\": \"2024-09-19T10:17:19.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        },\n        {\n            \"bookingId\": \"0992a9a7-d123-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-20T12:11:08.000+00:00\",\n            \"organizer\": {\n                \"id\": \"ed4daa88-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Javier\",\n                \"surname\": \"Jupiter\",\n                \"email\": \"javier@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"14ab4017-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a81f3-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"b85c01c7-d123-123e-af54-0f0c7feca635\",\n                \"posterCode\": \"B-P1-PUESTO-109\",\n                \"subcategory\": {\n                    \"id\": \"db5d3245-d123-123e-af54-0f0c7feca635\"\n                },\n                \"group\": {\n                    \"id\": \"4e486d90-d123-123e-af54-0f0c7feca635\"\n                }\n            },\n            \"startDate\": \"2024-09-26T22:00:00.000+00:00\",\n            \"endDate\": \"2024-09-27T22:00:00.000+00:00\",\n            \"status\": \"PENDING\",\n            \"accessControlType\": \"OPTIONAL\",\n            \"lastModifiedDate\": \"2024-09-20T12:11:08.000+00:00\",\n            \"resourceType\": \"WORKSTATION\"\n        }\n    ]\n}"
+								},
+								{
+									"name": "No OK",
 									"originalRequest": {
 										"method": "GET",
 										"header": [],
@@ -689,13 +1005,12 @@
 										{
 											"key": "Content-Type",
 											"value": "application/json",
-											"name": "Content-Type",
 											"description": "",
 											"type": "text"
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8e7-8083c4244f67\",\n            \"createdDate\": \"2022-01-10T07:50:02.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Pepito\",\n                \"surname\": \"Perez Perez\",\n                \"email\": \"pperez@company.com\"\n            },\n            \"vehicle\": {\n                \"licensePlate\": \"1234ABC\"\n            },\n            \"floor\": {\n                \"name\": \"Sotano 1\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-S1-PLAZA-1234\"\n            },\n            \"startDate\": \"2022-01-10T06:00:00.000+00:00\",\n            \"endDate\": \"2022-01-10T19:00:00.000+00:00\",\n            \"status\": \"UNDETERMINED\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8d7-8083e4244f67\",\n            \"createdDate\": \"2022-01-05T10:09:19.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Antonia\",\n                \"surname\": \"Garcia Garcia\",\n                \"email\": \"agarcia@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 4\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P4-PUESTO-001\"\n            },\n            \"startDate\": \"2022-01-18T07:00:00.000+00:00\",\n            \"endDate\": \"2022-01-18T16:00:00.000+00:00\",\n            \"status\": \"PENDING\"\n        },\n        {\n            \"bookingId\": \"005365cd-69bc-4426-b8b7-8083e4244f67\",\n            \"createdDate\": \"2022-01-10T14:04:48.000+00:00\",\n            \"organizer\": {\n                \"name\": \"Cristina\",\n                \"surname\": \"Lopez Lopez\",\n                \"email\": \"clopez@company.com\"\n            },\n            \"floor\": {\n                \"name\": \"PLANTA 5\"\n            },\n            \"resource\": {\n                \"posterCode\": \"EDIF-P5-SALA-S03\"\n            },\n            \"startDate\": \"2022-01-11T11:00:00.000+00:00\",\n            \"endDate\": \"2022-01-11T12:00:00.000+00:00\",\n            \"status\": \"PENDING\"\n        }\n    ]\n}"
+									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"09472c2f-d123-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-19T10:12:22.000+00:00\",\n            \"organizer\": {\n                \"id\": \"ed4daa88-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Javier\",\n                \"surname\": \"Jupiter\",\n                \"email\": \"javier@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"14ab4017--d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a81f3-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"d91cb934-d123-123e-af54-0f0c7feca635\",\n                \"posterCode\": \"B-P1-SALA-3\",\n                \"subcategory\": {\n                    \"id\": \"072ac366-d123-123e-af54-0f0c7feca635\"\n                },\n                \"group\": {\n                    \"id\": \"d955b7df-d123-123e-af54-0f0c7feca635\"\n                }\n            },\n            \"startDate\": \"2024-09-27T12:00:00.000+00:00\",\n            \"endDate\": \"2024-09-27T13:00:00.000+00:00\",\n            \"status\": \"CANCELLED\",\n            \"accessControlType\": \"NONE\",\n            \"lastModifiedDate\": \"2024-09-19T10:17:22.000+00:00\",\n            \"cancellationDate\": \"2024-09-19T10:17:19.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        },\n        {\n            \"bookingId\": \"0992a9a7-d123-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-20T12:11:08.000+00:00\",\n            \"organizer\": {\n                \"id\": \"ed4daa88-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Javier\",\n                \"surname\": \"Jupiter\",\n                \"email\": \"javier@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"14ab4017-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a81f3-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"b85c01c7-d123-123e-af54-0f0c7feca635\",\n                \"posterCode\": \"B-P1-PUESTO-109\",\n                \"subcategory\": {\n                    \"id\": \"db5d3245-d123-123e-af54-0f0c7feca635\"\n                },\n                \"group\": {\n                    \"id\": \"4e486d90-d123-123e-af54-0f0c7feca635\"\n                }\n            },\n            \"startDate\": \"2024-09-26T22:00:00.000+00:00\",\n            \"endDate\": \"2024-09-27T22:00:00.000+00:00\",\n            \"status\": \"PENDING\",\n            \"accessControlType\": \"OPTIONAL\",\n            \"lastModifiedDate\": \"2024-09-20T12:11:08.000+00:00\",\n            \"resourceType\": \"WORKSTATION\"\n        }\n    ]\n}"
 								}
 							]
 						}
@@ -703,7 +1018,1864 @@
 					"description": "This request allows the client to request all bookings that are active for the future in the client's Organization in a given `period`. The maximum time to request in the future are 30 days.\n\nPossible vaules of the parameter `period` are:\n\n| period | Description |\n| --- | --- |\n| **period** | to request all bookings in the history with `end date` in a given period of time specified in the querystring by the `from` and `to` parameters |"
 				}
 			],
-			"description": "This collection allows the client to request bookings of the client's Organization. Bookings can be of two types:\n\n- **Past bookings:** these ones belong to historic data, in the sense that that users utilize them in the past. This bookings have and `end date` older than the current time.\n- **Past bookings:** these ones are active, in the sense that that users are going to utilize them in the future. This bookings have and `end date` greater than the current time.\n    \n\nEvery request should include the following headers:\n\n| Header | Description |\n| --- | --- |\n| **Authorization** | Auth Token to authorize communications |\n| **x-api-key** | Client code to access Organization data within a given service plan |\n\n### Pagination\n\nThe API endpoints returning multiple objects (lists) support  \npagination. These lists share a common structure and requests can take at least  \nthese two parameters:\n\n| Parameter | Description |\n| --- | --- |\n| **page** | a.k.a. **page offset** - the number of pages to skip. _Optional, default: 0 (i.e. return the first page of results)_ |\n| **size** | a limit on the number of objects to be returned. Between 1 and 500. _Optional, default: 500_ |\n\nList response format:\n\n```\n{\n    items: [\n        { ... },\n        { ... },\n        { ... }\n    ]\n}\n\n```\n\n### Errors\n\nThe API uses conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general:\n\n- Codes in the **2xx** range indicate success.\n- Codes in the **4xx** range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a resource was missing, etc.).\n- Codes in the **5xx** range indicate a serer error or an unprocessable entry\n    \n\nEvery error include a human-readable message:\n\n```\n{\n    \"uniqueId\": string,\n    \"timestamp\": \"yyyy-mm-ddThh:mm:ss.xxxZ\",\n    \"status\": integer ($int32),\n    \"errors\": [list of strings],\n    \"type\": string,\n    \"path\": string,\n    \"message\": string\n}\n\n```",
+			"description": "This collection allows the client to request bookings of the client's Organization. Bookings can be of two types:\n\n- **Past bookings:** these ones belong to historic data, in the sense that that users utilize them in the past. This bookings have and `end date` older than the current time.\n    \n- **Future bookings:** these ones are active, in the sense that that users are going to utilize them in the future. This bookings have and `end date` greater than the current time.\n    \n\nEvery request should include the following headers:\n\n| Header | Description |\n| --- | --- |\n| **Authorization** | Auth Token to authorize communications |\n| **x-api-key** | Client code to access Organization data within a given service plan |\n\n### Pagination\n\nThe API endpoints returning multiple objects (lists) support  \npagination. These lists share a common structure and requests can take at least  \nthese two parameters:\n\n| Parameter | Description |\n| --- | --- |\n| **page** | a.k.a. **page offset** - the number of pages to skip. _Optional, default: 0 (i.e. return the first page of results)_ |\n| **size** | a limit on the number of objects to be returned. Between 1 and 500. _Optional, default: 500_ |\n\nList response format:\n\n```\n{\n    items: [\n        { ... },\n        { ... },\n        { ... }\n    ]\n}\n\n ```\n\n### Errors\n\nThe API uses conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general:\n\n- Codes in the **2xx** range indicate success.\n    \n- Codes in the **4xx** range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a resource was missing, etc.).\n    \n- Codes in the **5xx** range indicate a serer error or an unprocessable entry\n    \n\nEvery error include a human-readable message:\n\n```\n{\n    \"uniqueId\": string,\n    \"timestamp\": \"yyyy-mm-ddThh:mm:ss.xxxZ\",\n    \"status\": integer ($int32),\n    \"errors\": [list of strings],\n    \"type\": string,\n    \"path\": string,\n    \"message\": string\n}\n\n ```",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Resources",
+			"item": [
+				{
+					"name": "Building",
+					"item": [
+						{
+							"name": "Parking",
+							"item": [
+								{
+									"name": "Get fixed Parking slots in a building",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "value",
+													"value": "{{cognitoToken}}",
+													"type": "string"
+												},
+												{
+													"key": "key",
+													"value": "Authorization",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{api_key_test}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/resources/v1/parking/building/:buildingId/fixedresources?page=0&size=500",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"resources",
+												"v1",
+												"parking",
+												"building",
+												":buildingId",
+												"fixedresources"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0",
+													"description": "optional - default 0"
+												},
+												{
+													"key": "size",
+													"value": "500",
+													"description": "optional - default 500"
+												}
+											],
+											"variable": [
+												{
+													"key": "buildingId",
+													"value": "758a81f3-f171-404b-b48c-c922828aed49"
+												}
+											]
+										},
+										"description": "this request allows the client to request all active bookings in the client's Organization with `end date` in the period specified as a range of dates (`from` and `to`).\n\nThe following are a set of default limitations in the range of dates of this request:\n\n- This request can query of 1 month into the future, ie. initial date (`to`) cannot be later than 1 month\n- The initial date (`from`)is always sooner or equal to the that final date (`to`)\n- The initial date (`from`) is always later to today, ie. 'from' parameter must be after the current date\n- Date format is `dd-mm-yyyy hh:mm:ss` in UTC"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/resources/v1/parking/building/:buildingId/fixedresources?page=0&size=500",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"resources",
+														"v1",
+														"parking",
+														"building",
+														":buildingId",
+														"fixedresources"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "500"
+														}
+													],
+													"variable": [
+														{
+															"key": "buildingId",
+															"value": "758a81f3-f171-404b-b48c-c922828aed49"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json",
+													"description": "",
+													"type": "text"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"fixedResources\": [\n        {\n            \"userId\": \"01e2123-123c-4123-90b3-80b123a1235b\",\n            \"parkingSlotId\": \"6ebd1dba-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-S1-PARK-39\",\n            \"name\": \"Parking 39\",\n            \"visible\": true,\n            \"floorId\": \"b60c8462-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"6e0a5df1-123c-4123-90b3-80b123a1235b\",\n            \"groupId\": \"e97b9a4d-123c-4123-90b3-80b123a1235b\",\n            \"startTimeMs\": 43200000,\n            \"endTimeMs\": 46800000,\n            \"createdDate\": \"2024-06-13T10:19:40.000+00:00\",\n            \"lastModifiedDate\": \"2024-06-13T10:19:40.000+00:00\",\n            \"startAssigment\": \"2024-06-13\"\n        },\n        {\n            \"userId\": \"0f46ea64-123c-4123-90b3-80b123a1235b\",\n            \"parkingSlotId\": \"a476c128-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-S1-NO PARK-1\",\n            \"name\": \"TEST PARKING 1\",\n            \"visible\": true,\n            \"floorId\": \"b60c8462-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"e4b52f7e-123c-4123-90b3-80b123a1235b\",\n            \"groupId\": \"3bc1117d-123c-4123-90b3-80b123a1235b\",\n            \"startTimeMs\": 0,\n            \"endTimeMs\": 85500000,\n            \"createdDate\": \"2024-01-25T10:59:35.000+00:00\",\n            \"lastModifiedDate\": \"2024-01-25T10:59:35.000+00:00\",\n            \"startAssigment\": \"2024-01-25\"\n        }\n    ],\n    \"totalElements\": 2\n}"
+										}
+									]
+								},
+								{
+									"name": "Get Parking slot Cessions in a building for a given period",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "value",
+													"value": "{{cognitoToken}}",
+													"type": "string"
+												},
+												{
+													"key": "key",
+													"value": "Authorization",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{api_key_test}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/resources/v1/parking/building/:buildingId/cessions?from=16-07-2024 00:00:00&to=13-09-2024 00:00:00&page=0&size=500",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"resources",
+												"v1",
+												"parking",
+												"building",
+												":buildingId",
+												"cessions"
+											],
+											"query": [
+												{
+													"key": "from",
+													"value": "16-07-2024 00:00:00",
+													"description": "requiered - maximum 90 days in the past"
+												},
+												{
+													"key": "to",
+													"value": "13-09-2024 00:00:00",
+													"description": "requiered - maximum 30 days in the future"
+												},
+												{
+													"key": "page",
+													"value": "0",
+													"description": "optional - default 0"
+												},
+												{
+													"key": "size",
+													"value": "500",
+													"description": "optional - default 500"
+												}
+											],
+											"variable": [
+												{
+													"key": "buildingId",
+													"value": "758a81f3-f171-404b-b48c-c922828aed49"
+												}
+											]
+										},
+										"description": "this request allows the client to request all active bookings in the client's Organization with `end date` in the period specified as a range of dates (`from` and `to`).\n\nThe following are a set of default limitations in the range of dates of this request:\n\n- This request can query of 1 month into the future, ie. initial date (`to`) cannot be later than 1 month\n- The initial date (`from`)is always sooner or equal to the that final date (`to`)\n- The initial date (`from`) is always later to today, ie. 'from' parameter must be after the current date\n- Date format is `dd-mm-yyyy hh:mm:ss` in UTC"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/resources/v1/parking/building/:buildingId/cessions?from=16-07-2024 00:00:00&to=13-09-2024 00:00:00&page=0&size=500",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"resources",
+														"v1",
+														"parking",
+														"building",
+														":buildingId",
+														"cessions"
+													],
+													"query": [
+														{
+															"key": "from",
+															"value": "16-07-2024 00:00:00"
+														},
+														{
+															"key": "to",
+															"value": "13-09-2024 00:00:00"
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "500"
+														}
+													],
+													"variable": [
+														{
+															"key": "buildingId",
+															"value": "758a81f3-f171-404b-b48c-c922828aed49"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json",
+													"description": "",
+													"type": "text"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"parkingCessions\": [\n        {\n            \"userId\": \"dc5916ba-123c-4123-90b3-80b123a1235b\",\n            \"startDate\": \"2024-08-02T06:00:00.000+00:00\",\n            \"endDate\": \"2024-08-02T15:00:00.000+00:00\",\n            \"parkingSlotId\": \"2bb25a06-123c-4123-90b3-80b123a1235b\",\n            \"lastModifiedDate\": \"2024-08-01T11:30:57.000+00:00\",\n            \"lastModifiedBy\": \"dc5916ba-123c-4123-90b3-80b123a1235b\"\n        },\n        {\n            \"userId\": \"dc5916ba-123c-4123-90b3-80b123a1235b\",\n            \"startDate\": \"2024-08-01T06:00:00.000+00:00\",\n            \"endDate\": \"2024-08-01T15:00:00.000+00:00\",\n            \"parkingSlotId\": \"2bb25a06-123c-4123-90b3-80b123a1235b\",\n            \"lastModifiedDate\": \"2024-08-01T09:49:07.000+00:00\",\n            \"lastModifiedBy\": \"dc5916ba-123c-4123-90b3-80b123a1235b\"\n        }\n    ],\n    \"totalElements\": 2\n}"
+										}
+									]
+								}
+							],
+							"description": "- **Parking:** in this folder the api calls retrive information about the fixed resources of the cathegory Parking in a building and the periods released of these resources (Cessions)"
+						},
+						{
+							"name": "Workstation",
+							"item": [
+								{
+									"name": "Get fixed Workstations in a building",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "value",
+													"value": "{{cognitoToken}}",
+													"type": "string"
+												},
+												{
+													"key": "key",
+													"value": "Authorization",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{api_key_test}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/resources/v1/workstation/building/:buildingId/fixedresources?page=0&size=500",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"resources",
+												"v1",
+												"workstation",
+												"building",
+												":buildingId",
+												"fixedresources"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0",
+													"description": "optional - default 0"
+												},
+												{
+													"key": "size",
+													"value": "500",
+													"description": "optional - default 500"
+												}
+											],
+											"variable": [
+												{
+													"key": "buildingId",
+													"value": "758a81f3-f171-404b-b48c-c922828aed49"
+												}
+											]
+										},
+										"description": "this request allows the client to request all active bookings in the client's Organization with `end date` in the period specified as a range of dates (`from` and `to`).\n\nThe following are a set of default limitations in the range of dates of this request:\n\n- This request can query of 1 month into the future, ie. initial date (`to`) cannot be later than 1 month\n- The initial date (`from`)is always sooner or equal to the that final date (`to`)\n- The initial date (`from`) is always later to today, ie. 'from' parameter must be after the current date\n- Date format is `dd-mm-yyyy hh:mm:ss` in UTC"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/resources/v1/workstation/building/:buildingId/fixedresources?page=0&size=500",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"resources",
+														"v1",
+														"workstation",
+														"building",
+														":buildingId",
+														"fixedresources"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "500"
+														}
+													],
+													"variable": [
+														{
+															"key": "buildingId",
+															"value": "758a81f3-f171-404b-b48c-c922828aed49"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json",
+													"description": "",
+													"type": "text"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"fixedResources\": [\n        {\n            \"userId\": \"2be47224-123c-4123-90b3-80b123a1235b\",\n            \"parkingSlotId\": \"0392490c-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-P1-PUESTO-29\",\n            \"name\": \"B-P1-PUESTO-29\",\n            \"visible\": true,\n            \"floorId\": \"14ab4017-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"db5d3245-123c-4123-90b3-80b123a1235b\",\n            \"groupId\": \"4e486d90-123c-4123-90b3-80b123a1235b\",\n            \"startTimeMs\": 28800000,\n            \"endTimeMs\": 32400000,\n            \"allDay\": false,\n            \"createdDate\": \"2023-12-20T15:26:00.000+00:00\",\n            \"lastModifiedDate\": \"2023-12-20T15:26:00.000+00:00\",\n            \"startAssigment\": \"2023-12-20\"\n        },\n        {\n            \"userId\": \"2c404f61-123c-4123-90b3-80b123a1235b\",\n            \"parkingSlotId\": \"07a85be1-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-P1-PUESTO-101\",\n            \"name\": \"B-P1-PUESTO-101\",\n            \"visible\": true,\n            \"floorId\": \"14ab4017-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"db5d3245-123c-4123-90b3-80b123a1235b\",\n            \"groupId\": \"4e486d90-123c-4123-90b3-80b123a1235b\",\n            \"startTimeMs\": 43200000,\n            \"endTimeMs\": 75600000,\n            \"allDay\": false,\n            \"createdDate\": \"2024-09-16T10:30:09.000+00:00\",\n            \"lastModifiedDate\": \"2024-09-16T10:30:09.000+00:00\",\n            \"startAssigment\": \"2024-09-16\"\n        }\n    ],\n    \"totalElements\": 2\n}"
+										}
+									]
+								},
+								{
+									"name": "Get Workstation Cessions in a building for a given period",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "value",
+													"value": "{{cognitoToken}}",
+													"type": "string"
+												},
+												{
+													"key": "key",
+													"value": "Authorization",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{api_key_test}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/resources/v1/workstation/building/:buildingId/cessions?from=18-07-2024 00:00:00&to=17-10-2024 00:00:00&page=0&size=500",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"resources",
+												"v1",
+												"workstation",
+												"building",
+												":buildingId",
+												"cessions"
+											],
+											"query": [
+												{
+													"key": "from",
+													"value": "18-07-2024 00:00:00",
+													"description": "requiered - maximum 90 days in the past"
+												},
+												{
+													"key": "to",
+													"value": "17-10-2024 00:00:00",
+													"description": "requiered - maximum 30 days in the future"
+												},
+												{
+													"key": "page",
+													"value": "0",
+													"description": "optional - default 0"
+												},
+												{
+													"key": "size",
+													"value": "500",
+													"description": "optional - default 500"
+												}
+											],
+											"variable": [
+												{
+													"key": "buildingId",
+													"value": "758a81f3-f171-404b-b48c-c922828aed49"
+												}
+											]
+										},
+										"description": "this request allows the client to request all active bookings in the client's Organization with `end date` in the period specified as a range of dates (`from` and `to`).\n\nThe following are a set of default limitations in the range of dates of this request:\n\n- This request can query of 1 month into the future, ie. initial date (`to`) cannot be later than 1 month\n- The initial date (`from`)is always sooner or equal to the that final date (`to`)\n- The initial date (`from`) is always later to today, ie. 'from' parameter must be after the current date\n- Date format is `dd-mm-yyyy hh:mm:ss` in UTC"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/resources/v1/workstation/building/:buildingId/cessions?from=18-07-2024 00:00:00&to=17-10-2024 00:00:00&page=0&size=500",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"resources",
+														"v1",
+														"workstation",
+														"building",
+														":buildingId",
+														"cessions"
+													],
+													"query": [
+														{
+															"key": "from",
+															"value": "18-07-2024 00:00:00"
+														},
+														{
+															"key": "to",
+															"value": "17-10-2024 00:00:00"
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "500"
+														}
+													],
+													"variable": [
+														{
+															"key": "buildingId",
+															"value": "758a81f3-f171-404b-b48c-c922828aed49"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json",
+													"description": "",
+													"type": "text"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"workstaionCessions\": [\n        {\n            \"userId\": \"a915cc4d-123c-4123-90b3-80b123a1235b\",\n            \"startDate\": \"2024-08-01T08:00:00.000+00:00\",\n            \"endDate\": \"2024-08-01T12:00:00.000+00:00\",\n            \"workstaionId\": \"0201fd09-123c-4123-90b3-80b123a1235b\",\n            \"stretchType\": \"FIRST_STRETCH\",\n            \"lastModifiedDate\": \"2024-07-31T08:09:09.000+00:00\",\n            \"lastModifiedBy\": \"98cdbde3-123c-4123-90b3-80b123a1235b\"\n        },\n        {\n            \"userId\": \"2be47224-123c-4123-90b3-80b123a1235b\",\n            \"startDate\": \"2024-07-31T06:00:00.000+00:00\",\n            \"endDate\": \"2024-07-31T07:00:00.000+00:00\",\n            \"workstaionId\": \"0392490c-123c-4123-90b3-80b123a1235b\",\n            \"stretchType\": \"ALL_DAY_STRETCH\",\n            \"lastModifiedDate\": \"2024-07-31T06:32:26.000+00:00\",\n            \"lastModifiedBy\": \"7d13f1e1-123c-4123-90b3-80b123a1235b\"\n        }\n    ],\n    \"totalElements\": 2\n}"
+										}
+									]
+								}
+							],
+							"description": "**Workstation:** in this folder the api calls retrive information about the fixed resources of the cathegory Workstation in a building and the periods released of these resources (Cessions)"
+						},
+						{
+							"name": "Get the buildings of an organization",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "{{cognitoToken}}",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key_test}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/resources/v1/buildings?page=0&size=500&withBuildingHolidayCalendar=true&visible=true",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"resources",
+										"v1",
+										"buildings"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "optional - default 0"
+										},
+										{
+											"key": "size",
+											"value": "500",
+											"description": "optional - default 500"
+										},
+										{
+											"key": "withBuildingHolidayCalendar",
+											"value": "true",
+											"description": "optional - possible values true/false. if the parameter is not set calendar info is retrieved"
+										},
+										{
+											"key": "visible",
+											"value": "true",
+											"description": "optional - possible values true/false. If the parameter is not set all buildings are retrieved"
+										}
+									]
+								},
+								"description": "this request allows the client to request all active bookings in the client's Organization with `end date` in the period specified as a range of dates (`from` and `to`).\n\nThe following are a set of default limitations in the range of dates of this request:\n\n- This request can query of 1 month into the future, ie. initial date (`to`) cannot be later than 1 month\n- The initial date (`from`)is always sooner or equal to the that final date (`to`)\n- The initial date (`from`) is always later to today, ie. 'from' parameter must be after the current date\n- Date format is `dd-mm-yyyy hh:mm:ss` in UTC"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/resources/v1/buildings?page=0&size=500&withBuildingHolidayCalendar=true&visible=true",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"resources",
+												"v1",
+												"buildings"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												},
+												{
+													"key": "withBuildingHolidayCalendar",
+													"value": "true",
+													"description": "True/False. Si tiene que retornar los calendarios de vacaciones del edificio."
+												},
+												{
+													"key": "visible",
+													"value": "true",
+													"description": "True/False. Si tiene que retornar solo los edificios visibles o invisibles. No mandar para obtener todos"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"buildings\": [\n        {\n            \"id\": \"9f7868b3-123c-4123-90b3-80b123a1235b\",\n            \"name\": \"Edificio 14 MAYO\",\n            \"visible\": true,\n            \"timezone\": \"Europe/Madrid\",\n            \"createdDate\": \"2021-05-14T07:23:48.000+00:00\",\n            \"lastModifiedDate\": \"2024-04-15T14:02:29.000+00:00\",\n            \"cityId\": \"5218ec6d-123c-4123-90b3-80b123a1235b\",\n            \"currency\": \"EUR\",\n            \"holidayCalendars\": [\n                {\n                    \"buildingId\": \"9f7868b3-123c-4123-90b3-80b123a1235b\",\n                    \"year\": \"2023\",\n                    \"days\": \"319\",\n                    \"createdBy\": \"ff0ae8f2-123c-4123-90b3-80b123a1235b\",\n                    \"createdDate\": 1700248078000,\n                    \"lastModifiedBy\": \"ff0ae8f2-123c-4123-90b3-80b123a1235b\",\n                    \"lastModifiedDate\": 1700248078000\n                },\n                {\n                    \"buildingId\": \"9f7868b3-123c-4123-90b3-80b123a1235b\",\n                    \"year\": \"2024\",\n                    \"days\": \"247\",\n                    \"createdBy\": \"2c404f61-123c-4123-90b3-80b123a1235b\",\n                    \"createdDate\": 1726555339000,\n                    \"lastModifiedBy\": \"2c404f61-123c-4123-90b3-80b123a1235b\",\n                    \"lastModifiedDate\": 1726555339000\n                }\n            ]\n        },\n        {\n            \"id\": \"f469c253-123c-4123-90b3-80b123a1235b\",\n            \"name\": \"Edificio Edinburgo\",\n            \"visible\": true,\n            \"timezone\": \"Europe/Madrid\",\n            \"createdDate\": \"2021-08-25T10:04:49.000+00:00\",\n            \"lastModifiedDate\": \"2023-04-14T10:07:19.000+00:00\",\n            \"cityId\": \"ab6507b0-123c-4123-90b3-80b123a1235b\",\n            \"currency\": \"EUR\",\n            \"holidayCalendars\": [\n                {\n                    \"buildingId\": \"f469c253-123c-4123-90b3-80b123a1235b\",\n                    \"year\": \"2024\",\n                    \"days\": \"267,268,274\",\n                    \"createdBy\": \"98cdbde3-123c-4123-90b3-80b123a1235b\",\n                    \"createdDate\": 1726236121000,\n                    \"lastModifiedBy\": \"98cdbde3-123c-4123-90b3-80b123a1235b\",\n                    \"lastModifiedDate\": 1726236121000\n                }\n            ]\n        }\n    ],\n    \"totalElements\": 2\n}"
+								}
+							]
+						}
+					],
+					"description": "This package has one api call (_Get the buildings of an organization_) that returns the request all buildings in an organization.\n\nThe call has the following parameters:\n\n| **Parameters** | **Description** |\n| --- | --- |\n| withBuildingHolidayCalendar | optional - to request additional information of the building regarding its holidays calendar. Possible values can be `true` or `false` and if the parameter is not set all information is retrieved |\n| visible | optional - to filter the buildings retrieved. Possible values can be `true` or `false` and and if the parameter is not set all information is retrieved. Buildings not visible can not be used in bookings |\n\nThe package can also retrive information of fixed resources in the organization. In particular there are two folders to do this:\n\n- **Parking:** in this folder the api calls retrive information about the fixed resources of the cathegory Parking in a building and the periods released of these resources (Cessions)\n    \n- **Workstation:** in this folder the api calls retrive information about the fixed resources of the cathegory Workstation in a building and the periods released of these resources (Cessions)\n    \n\nThe api calls that retrive information of the Cessions can be parametrized for a specific period of time. These calls retrive the Cessions in a period specified with the parameters `from` and `to`.The maximum time to request in the past is 90 days and in the future 30 days.\n\nPossible vaules of the parameters are:\n\n| Parameters | Description |\n| --- | --- |\n| **from** | requiered - to request cession with `end date` after a given date specified in the querystring by the `from` parameter (maximun 90 days in the past) |\n| **to** | requiered - to request cession with `end date` before a given date specified in the querystring by the `to` parameter (maximum 30 days in the future) |"
+				},
+				{
+					"name": "Floor",
+					"item": [
+						{
+							"name": "Get floors in a building",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "{{cognitoToken}}",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key_test}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/resources/v1/:buildingId/floors?page=0&size=500&type=OFFICE&visible=true&status=ACTIVATED",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"resources",
+										"v1",
+										":buildingId",
+										"floors"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "optional - default 0"
+										},
+										{
+											"key": "size",
+											"value": "500",
+											"description": "optional - default 500"
+										},
+										{
+											"key": "type",
+											"value": "OFFICE",
+											"description": "optional - possible values OFFICE/PARKING. If the parameter is not set all types are retrieved"
+										},
+										{
+											"key": "visible",
+											"value": "true",
+											"description": "optional - possible values true/false. If the parameter is not set all types are retrieved"
+										},
+										{
+											"key": "status",
+											"value": "ACTIVATED",
+											"description": "(ACTIVATED/LOCKED) -optional - if this param is not set all resources will be returned excepts 'DELETED'"
+										}
+									],
+									"variable": [
+										{
+											"key": "buildingId",
+											"value": "758a81f3-f171-404b-b48c-c922828aed49"
+										}
+									]
+								},
+								"description": "this request allows the client to request all active bookings in the client's Organization with `end date` in the period specified as a range of dates (`from` and `to`).\n\nThe following are a set of default limitations in the range of dates of this request:\n\n- This request can query of 1 month into the future, ie. initial date (`to`) cannot be later than 1 month\n- The initial date (`from`)is always sooner or equal to the that final date (`to`)\n- The initial date (`from`) is always later to today, ie. 'from' parameter must be after the current date\n- Date format is `dd-mm-yyyy hh:mm:ss` in UTC"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/resources/v1/:buildingId/floors?page=0&size=500&type=OFFICE&visible=true&status=ACTIVATED",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"resources",
+												"v1",
+												":buildingId",
+												"floors"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												},
+												{
+													"key": "type",
+													"value": "OFFICE",
+													"description": "optional - if this param is not set all resources will be returned"
+												},
+												{
+													"key": "visible",
+													"value": "true",
+													"description": "optional - if this param is not set all resources will be returned"
+												},
+												{
+													"key": "status",
+													"value": "ACTIVATED",
+													"description": "optional - if this param is not set all resources will be returned excepts 'DELETED'"
+												}
+											],
+											"variable": [
+												{
+													"key": "buildingId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"floors\": [\n        {\n            \"id\": \"14ab4017-123c-4123-90b3-80b123a1235b\",\n            \"name\": \"Planta 1\",\n            \"floorNumber\": 1,\n            \"buildingId\": \"758a81f3-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"P1\",\n            \"type\": \"OFFICE\",\n            \"status\": \"ACTIVATED\",\n            \"visible\": true,\n            \"createdDate\": \"2020-03-17T11:42:18.000+00:00\",\n            \"lastModifiedDate\": \"2024-01-25T10:41:38.000+00:00\"\n        }\n    ],\n    \"totalElements\": 1\n}"
+								}
+							]
+						}
+					],
+					"description": "This package has one api call (_Get floors in a building_) that returns the request all floors in an building.\n\nThe call has the following parameters:\n\n| **Parameters** | **Description** |\n| --- | --- |\n| type | optional - to filter the floors retrieved. Possible values can be `OFFICE` or `PARKING` and if the parameter is not set all types are retrieved |\n| visible | optional - to filter the floors retrieved. Possible values can be `true` or `false` and and if the parameter is not set all information is retrieved. Floors not visible can not be used in bookings |\n| status | optional - to filter the floors retrieved. Possible values can be `ACTIVATED` or `LOCKED` and and if the parameter is not set all information is retrieved |"
+				},
+				{
+					"name": "Resources",
+					"item": [
+						{
+							"name": "Rule",
+							"item": [
+								{
+									"name": "Get the rule of a resource",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "value",
+													"value": "{{cognitoToken}}",
+													"type": "string"
+												},
+												{
+													"key": "key",
+													"value": "Authorization",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{api_key_test}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/resources/v1/resourcerule/:resourceId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"resources",
+												"v1",
+												"resourcerule",
+												":resourceId"
+											],
+											"variable": [
+												{
+													"key": "resourceId",
+													"value": "4b34b23c-0960-11eb-85fa-02e533b353cb"
+												}
+											]
+										},
+										"description": "to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "bookker-apigw-url/resources/v1/resourcerule/:resourceId",
+													"host": [
+														"bookker-apigw-url"
+													],
+													"path": [
+														"resources",
+														"v1",
+														"resourcerule",
+														":resourceId"
+													],
+													"variable": [
+														{
+															"key": "resourceId",
+															"value": "4b34b23c-0960-11eb-85fa-02e533b353cb"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json",
+													"description": "",
+													"type": "text"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"dinningAreaRule\": {\n        \"id\": \"758a81f3-123c-4123-90b3-80b123a1235b\",\n        \"mandatoryCheckIn\": true,\n        \"expirationMargin\": 300000,\n        \"choiceOfPlace\": true,\n        \"allowMoreThanOneBooking\": true,\n        \"maximumAdvance\": 10,\n        \"lastModifiedDate\": \"2024-08-21T10:21:01.000+00:00\"\n    }\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get the year calendar of blocking in a building",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "{{cognitoToken}}",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key_test}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/resources/v1/:buildingId/lockedcalendars?page=0&size=500&year=2024",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"resources",
+										"v1",
+										":buildingId",
+										"lockedcalendars"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "optional - default 0"
+										},
+										{
+											"key": "size",
+											"value": "500",
+											"description": "optional - default 500"
+										},
+										{
+											"key": "year",
+											"value": "2024",
+											"description": "requiered"
+										}
+									],
+									"variable": [
+										{
+											"key": "buildingId",
+											"value": "758a81f3-f171-404b-b48c-c922828aed49"
+										}
+									]
+								},
+								"description": "to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/resources/v1/:buildingId/lockedcalendars?page=0&size=500&year=2024",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"",
+												"resources",
+												"v1",
+												":buildingId",
+												"lockedcalendars"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												},
+												{
+													"key": "year",
+													"value": "2024"
+												}
+											],
+											"variable": [
+												{
+													"key": "buildingId",
+													"value": "758a81f3-f171-404b-b48c-c922828aed49"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"lockedCalendars\": [\n        {\n            \"resourceId\": \"01c9f29c-123c-4123-90b3-80b123a1235b\",\n            \"year\": \"2024\",\n            \"days\": \"92,98,99,100,101,102,103,104,105,106,112,113,119,120\"\n        },\n        {\n            \"resourceId\": \"0201fd09-123c-4123-90b3-80b123a1235b\",\n            \"year\": \"2024\",\n            \"days\": \"170,171,172\"\n        },\n        {\n            \"resourceId\": \"07a85be1-123c-4123-90b3-80b123a1235b\",\n            \"year\": \"2024\",\n            \"days\": \"260\"\n        },\n        {\n            \"resourceId\": \"1f722110-123c-4123-90b3-80b123a1235b\",\n            \"year\": \"2024\",\n            \"days\": \"214\"\n        },\n        {\n            \"resourceId\": \"3afd2de5-123c-4123-90b3-80b123a1235b\",\n            \"year\": \"2024\",\n            \"days\": \"144,145,152\"\n        }\n    ],\n    \"totalElements\": 3\n}"
+								}
+							]
+						},
+						{
+							"name": "Get the resources of a building",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "{{cognitoToken}}",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key_test}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/resources/v1/:buildingId/resources?page=0&size=500&category=PARKING&maxCostPerHour=200&floorId=&groupId&isSynchronized=false&isVisible=true",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"resources",
+										"v1",
+										":buildingId",
+										"resources"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "optional - default 0"
+										},
+										{
+											"key": "size",
+											"value": "500",
+											"description": "optional - default 500"
+										},
+										{
+											"key": "category",
+											"value": "PARKING",
+											"description": "optional - possible values PARKING/WORKSTATION/DINNING_AREA/SPACE. If the parameter is not set all resources are retrieved"
+										},
+										{
+											"key": "maxCostPerHour",
+											"value": "200",
+											"description": "optional - if the parameter is not set all resources are retrieved"
+										},
+										{
+											"key": "floorId",
+											"value": "",
+											"description": "optional - if the parameter is not set all resources are retrieved"
+										},
+										{
+											"key": "groupId",
+											"value": null,
+											"description": "optional - if the parameter is not set all resources are retrieved"
+										},
+										{
+											"key": "isSynchronized",
+											"value": "false",
+											"description": "optional - possible values true/false. if the parameter is not set all resources are retrieved"
+										},
+										{
+											"key": "isVisible",
+											"value": "true",
+											"description": "optional - possible values true/false. if the parameter is not set all resources are retrieved"
+										}
+									],
+									"variable": [
+										{
+											"key": "buildingId",
+											"value": "758a81f3-f171-404b-b48c-c922828aed49"
+										}
+									]
+								},
+								"description": "to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/resources/v1/:buildingId/resources?page=0&size=500&category=PARKING&maxCostPerHour=200&floorId=&groupId&isSynchronized=false&isVisible=true",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"resources",
+												"v1",
+												":buildingId",
+												"resources"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												},
+												{
+													"key": "category",
+													"value": "PARKING"
+												},
+												{
+													"key": "maxCostPerHour",
+													"value": "200"
+												},
+												{
+													"key": "floorId",
+													"value": ""
+												},
+												{
+													"key": "groupId",
+													"value": null
+												},
+												{
+													"key": "isSynchronized",
+													"value": "false"
+												},
+												{
+													"key": "isVisible",
+													"value": "true"
+												}
+											],
+											"variable": [
+												{
+													"key": "buildingId",
+													"value": "758a81f3-f171-404b-b48c-c922828aed49"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"resources\": [\n        {\n            \"id\": \"17f2b71b-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-S2-PRUEBA-02\",\n            \"costPerHour\": 4.99000,\n            \"name\": \"PARKING 02\",\n            \"visible\": true,\n            \"floorId\": \"72ee9939-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"90b85038-123c-4123-90b3-80b123a1235b\",\n            \"groupId\": \"a3cda7aa-123c-4123-90b3-80b123a1235b\",\n            \"createdDate\": \"2022-05-13T07:35:46.000+00:00\",\n            \"lastModifiedDate\": \"2024-07-18T10:55:19.000+00:00\",\n            \"covered\": true,\n            \"parkingSlotSize\": \"BIG\"\n        },\n        {\n            \"id\": \"273bd18b-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-S2-PARK-A1\",\n            \"costPerHour\": 4.99000,\n            \"name\": \"PARKING A1\",\n            \"visible\": true,\n            \"floorId\": \"72ee9939-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"6e0a5df1-123c-4123-90b3-80b123a1235b\",\n            \"createdDate\": \"2022-01-17T12:18:06.000+00:00\",\n            \"lastModifiedDate\": \"2024-07-18T10:55:21.000+00:00\",\n            \"covered\": true,\n            \"parkingSlotSize\": \"BIG\"\n        }\n    ],\n    \"totalElements\": 2\n}"
+								}
+							]
+						}
+					],
+					"description": "This package provides information of resources, rules of use of these resources and calendars associated with their use.\n\nThis package has one api call (_Get the year calendar of blocking in a building_) that returns the calendars that block reservations in a building.\n\nThe call has the following parameters:\n\n| **Parameter** | **Description** |\n| --- | --- |\n| **year** | Requiered. This parameter specifies the `year` of the calendars retrieved |\n\nIt also has another api call (_Get the resources of a building_) that returns the resources in a building. The buildings can be filtered using different parameters.\n\nThe call has the following parameters:\n\n| **Parameter** | **Description** |\n| --- | --- |\n| **category** | optional - possible values WORKSTATION/SPACE/PARKING/DINING_AREA. If the parameter is not set all categories are retrieved |\n| **maxCostPerHour** | optional - filter to specify resources with a given max value. If the parameter is not set all resources are retrieved |\n| **floorId** | optional - filter to specify resources with a given floor. If the parameter is not set all resources are retrieved |\n| **groupId** | optional - filter to specify resources with a given floor. If the parameter is not set all resources are retrieved |\n| **isSynchronized** | optional - filter to specify resources that are synchronized with Microsoft. If the parameter is not set all resources are retrieved |\n| **isVisible** | optional - to filter the resources retrieved. Possible values can be `true` or `false` and and if the parameter is not set all information is retrieved. Floors not visible can not be used in bookings |\n\nThis package has a folder **Rule** with an api call to retrive the rule of a resource (_Get the rule of a resource_)"
+				}
+			],
+			"description": "This collection allows the client to request information of the resources of the client's Organization. Resources information covers the following packages:\n\n- **Building:** these api calls return information of the buildings in an organization and information about the fixed resources in a building.\n    \n- **Floor:** these api calls return information of the floors of a building\n    \n- **Resources:** these api calls provide information of resources, rules of use of these resources and calendars associated with their use.\n    \n\nEvery request should include the following headers:\n\n| Header | Description |\n| --- | --- |\n| **Authorization** | Auth Token to authorize communications |\n| **x-api-key** | Client code to access Organization data within a given service plan |\n\n### Pagination\n\nThe API endpoints returning multiple objects (lists) support  \npagination. These lists share a common structure and requests can take at least  \nthese two parameters:\n\n| Parameter | Description |\n| --- | --- |\n| **page** | a.k.a. **page offset** - the number of pages to skip. _Optional, default: 0 (i.e. return the first page of results)_ |\n| **size** | a limit on the number of objects to be returned. Between 1 and 500. _Optional, default: 500_ |\n\nList response format:\n\n```\n{\n    items: [\n        { ... },\n        { ... },\n        { ... }\n    ]\n}\n\n ```\n\n### Errors\n\nThe API uses conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general:\n\n- Codes in the **2xx** range indicate success.\n    \n- Codes in the **4xx** range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a resource was missing, etc.).\n    \n- Codes in the **5xx** range indicate a serer error or an unprocessable entry\n    \n\nEvery error include a human-readable message:\n\n```\n{\n    \"uniqueId\": string,\n    \"timestamp\": \"yyyy-mm-ddThh:mm:ss.xxxZ\",\n    \"status\": integer ($int32),\n    \"errors\": [list of strings],\n    \"type\": string,\n    \"path\": string,\n    \"message\": string\n}\n\n ```",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Departments",
+					"item": [
+						{
+							"name": "Get departments of an organization",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "{{cognitoToken}}",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key_test}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/v1/departments/organizations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"v1",
+										"departments",
+										"organizations"
+									]
+								},
+								"description": "to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/pastbookings/yesterday?page=0&size=500",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"pastbookings",
+												"yesterday"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"08031fff-7123-123b-1237-8692f123f123\",\n        \"name\": \"JUP2\",\n        \"organizationId\": \"8aee218a-7123-123b-1237-8692f123f123\",\n        \"createdDate\": \"2021-11-16T10:14:59.000+00:00\",\n        \"lastModifiedDate\": \"2021-11-16T10:14:59.000+00:00\"\n    },\n    {\n        \"id\": \"9ee5c4d9-7123-123b-1237-8692f123f123\",\n        \"name\": \"JUP3\",\n        \"organizationId\": \"8aee218a-7123-123b-1237-8692f123f123\",\n        \"createdDate\": \"2021-11-22T09:11:38.000+00:00\",\n        \"lastModifiedDate\": \"2021-11-22T09:11:38.000+00:00\"\n    },\n    \"totalElements\": 2\n]"
+								}
+							]
+						}
+					],
+					"description": "This folder contains an api call (_Get departments of an organization_) that retrieves the information of the departments in an organization"
+				},
+				{
+					"name": "Get user data",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{cognitoToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key_test}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/v1/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"v1",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "7c008797-7ce7-4b6b-9907-8692f855f538"
+								}
+							]
+						},
+						"description": "to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-url//users/v1/:userId",
+									"host": [
+										"bookker-apigw-url"
+									],
+									"path": [
+										"",
+										"users",
+										"v1",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "id in"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"7c008797-7123-123b-1237-8692f123f123\",\n    \"name\": \"Alex\",\n    \"surname\": \"Jupiter\",\n    \"upn\": \"alex@bookker.es\",\n    \"email\": \"alex@company.com\",\n    \"status\": \"ACTIVATED\",\n    \"lastModifiedDate\": \"2024-06-07T07:42:45.000+00:00\",\n    \"createdDate\": \"2023-05-18T07:33:07.000+00:00\"\n}"
+						},
+						{
+							"name": "No OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-url//users/v1/:userId",
+									"host": [
+										"bookker-apigw-url"
+									],
+									"path": [
+										"",
+										"users",
+										"v1",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "id in"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get users in an organization",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{cognitoToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key_test}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/v1/users?page=0&size=500",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "optional -default 0"
+								},
+								{
+									"key": "size",
+									"value": "500",
+									"description": "optional -default 500"
+								}
+							]
+						},
+						"description": "to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-url//users/v1/:userId",
+									"host": [
+										"bookker-apigw-url"
+									],
+									"path": [
+										"",
+										"users",
+										"v1",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "id in"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [\n        {\n            \"id\": \"00ebdeda-26e6-4c50-9ee8-9c3eead471cf\",\n            \"name\": \"testingexternal00001@gmail.com\",\n            \"surname\": \"-\",\n            \"upn\": \"03653931-26e6-4c50-9ee8-9c3eead471cf@externo.bookker.es\",\n            \"email\": \"testingexternal00001@gmail.com\",\n            \"status\": \"ACTIVATED\",\n            \"lastModifiedDate\": \"2024-03-22T09:23:48.000+00:00\",\n            \"createdDate\": \"2024-03-22T09:23:48.000+00:00\"\n        },\n        {\n            \"id\": \"012e7e62-26e6-4c50-9ee8-9c3eead471cf\",\n            \"name\": \"fadfas@adsfasdfas.com\",\n            \"surname\": \"-\",\n            \"upn\": \"3ef9eaa3-26e6-4c50-9ee8-9c3eead471cf@externo.bookker.es\",\n            \"email\": \"fadfas@adsfasdfas.com\",\n            \"status\": \"ACTIVATED\",\n            \"createdDate\": \"2024-02-01T16:46:26.000+00:00\"\n        }\n    ],\n    \"totalElements\": 2\n}"
+						},
+						{
+							"name": "No OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-url//users/v1/:userId",
+									"host": [
+										"bookker-apigw-url"
+									],
+									"path": [
+										"",
+										"users",
+										"v1",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "id in"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get states of work of a user",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{cognitoToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key_test}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/v1/:userId/workingstatus?from=10-09-2024 00:00:00&to=19-09-2024 00:00:00&page=0&size=500",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"v1",
+								":userId",
+								"workingstatus"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "10-09-2024 00:00:00",
+									"description": "requiered - maximum 90 days in the past"
+								},
+								{
+									"key": "to",
+									"value": "19-09-2024 00:00:00",
+									"description": "requiered - maximum 30 days in the future"
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"description": "optional -default 0"
+								},
+								{
+									"key": "size",
+									"value": "500",
+									"description": "optional -default 500"
+								}
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "3f45617f-2d97-42c4-8e19-1d7b8905e139"
+								}
+							]
+						},
+						"description": "to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-url//users/v1/:userId",
+									"host": [
+										"bookker-apigw-url"
+									],
+									"path": [
+										"",
+										"users",
+										"v1",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "id in"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userWorkingStatusExceptions\": [],\n    \"userWorkingCalendarView\": {\n        \"id\": \"1a6d89b226e6-4c50-9ee8-9c3eead471cf\",\n        \"name\": \"Teletrabajo L,M\",\n        \"defaultWorkingStatus\": {\n            \"id\": \"440b012726e6-4c50-9ee8-9c3eead471cf\",\n            \"organizationId\": \"8aee218a26e6-4c50-9ee8-9c3eead471cf\",\n            \"name\": \"OFFICE\",\n            \"description\": \"En oficina\",\n            \"color\": \"5db337\",\n            \"mustBlockBookings\": false,\n            \"mustCedeParkingSlot\": false\n        },\n        \"recurrences\": [\n            {\n                \"id\": \"7121e33c26e6-4c50-9ee8-9c3eead471cf\",\n                \"calendarId\": \"1a6d89b226e6-4c50-9ee8-9c3eead471cf\",\n                \"recurrenceWorkingStatusView\": {\n                    \"id\": \"3be693d626e6-4c50-9ee8-9c3eead471cf\",\n                    \"organizationId\": \"8aee218a26e6-4c50-9ee8-9c3eead471cf\",\n                    \"name\": \"TELEWORKING\",\n                    \"description\": \"Teletrabajo\",\n                    \"color\": \"2828f7\",\n                    \"mustBlockBookings\": true,\n                    \"mustCedeParkingSlot\": true\n                },\n                \"daysOfWeek\": \"Monday;Tuesday;\",\n                \"frequency\": 1,\n                \"startDate\": \"2024-04-04\",\n                \"priority\": 1\n            }\n        ]\n    },\n    \"totalElements\": 0\n}"
+						},
+						{
+							"name": "No OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-url//users/v1/:userId",
+									"host": [
+										"bookker-apigw-url"
+									],
+									"path": [
+										"",
+										"users",
+										"v1",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "id in"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get user's extra fields",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{cognitoToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key_test}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/v1/extrafields/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"v1",
+								"extrafields",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "7c008797-7ce7-4b6b-9907-8692f855f538"
+								}
+							]
+						},
+						"description": "to request all bookings in the history with `end date` from yesterday at UTC 00:00:00Z to today at at UTC 00:00:00Z"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-url//users/v1/:userId",
+									"host": [
+										"bookker-apigw-url"
+									],
+									"path": [
+										"",
+										"users",
+										"v1",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "id in"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userExtraFields\": [\n        {\n            \"fieldName\": \"Compañía\",\n            \"columnName\": \"CIA\",\n            \"active\": true,\n            \"value\": \"Bookker\"\n        },\n        {\n            \"fieldName\": \"ID CLIENTE EN BC\",\n            \"columnName\": \"id_cliente\",\n            \"active\": true,\n            \"value\": \"ID12345678\"\n        },\n        {\n            \"fieldName\": \"CIF\",\n            \"columnName\": \"CIF\",\n            \"active\": true,\n            \"value\": \"12345678Z\"\n        },\n        {\n            \"fieldName\": \"External name\",\n            \"columnName\": \"22\",\n            \"active\": false,\n            \"value\": \"5006 - ENCARGADO DE OPERACION\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "No OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-url//users/v1/:userId",
+									"host": [
+										"bookker-apigw-url"
+									],
+									"path": [
+										"",
+										"users",
+										"v1",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "id in"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
+						},
+						{
+							"name": "No OK Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-url//users/v1/:userId",
+									"host": [
+										"bookker-apigw-url"
+									],
+									"path": [
+										"",
+										"users",
+										"v1",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "id in"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
+						}
+					]
+				}
+			],
+			"description": "This collection allows the client to request information of the users of the client's Organization.\n\nEvery request should include the following headers:\n\n| Header | Description |\n| --- | --- |\n\nEvery request should include the following headers:\n\n| Header | Description |\n| --- | --- |\n| **Authorization** | Auth Token to authorize communications |\n| **x-api-key** | Client code to access Organization data within a given service plan |\n\n### Pagination\n\nThe API endpoints returning multiple objects (lists) support  \npagination. These lists share a common structure and requests can take at least  \nthese two parameters:\n\n| Parameter | Description |\n| --- | --- |\n| **page** | a.k.a. **page offset** - the number of pages to skip. _Optional, default: 0 (i.e. return the first page of results)_ |\n| **size** | a limit on the number of objects to be returned. Between 1 and 500. _Optional, default: 500_ |\n\nList response format:\n\n```\n{\n    items: [\n        { ... },\n        { ... },\n        { ... }\n    ]\n}\n\n ```\n\n### Errors\n\nThe API uses conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general:\n\n- Codes in the **2xx** range indicate success.\n    \n- Codes in the **4xx** range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a resource was missing, etc.).\n    \n- Codes in the **5xx** range indicate a serer error or an unprocessable entry\n    \n\nEvery error include a human-readable message:\n\n```\n{\n    \"uniqueId\": string,\n    \"timestamp\": \"yyyy-mm-ddThh:mm:ss.xxxZ\",\n    \"status\": integer ($int32),\n    \"errors\": [list of strings],\n    \"type\": string,\n    \"path\": string,\n    \"message\": string\n}\n\n ```\n\nUsers' information covers one package:\n\n- **Departments:** these api calls return information of the departments of the organization\n    \n\nIt also has a set of api calls to retrieve the users and the information associated to them in the organization:\n\n- **Get user data**: to retrieve the information osf a user given his/her id\n    \n- **Get users in an organization**: to retrieve the users in an organization\n    \n- **Get states of work of a user**: to retrieve the states of work of a given user. Possible vaules of the parameters are:\n    \n\n| Parameters | Description |\n| --- | --- |\n| **from** | requiered - to request cession with `end date` after a given date specified in the querystring by the `from` parameter (maximun 90 days in the past) |\n| **to** | requiered - to request cession with `end date` before a given date specified in the querystring by the `to` parameter (maximum 30 days in the future) |\n\n- **Get user's extra fields**: to retrieve extra information of a given user",
 			"auth": {
 				"type": "noauth"
 			},

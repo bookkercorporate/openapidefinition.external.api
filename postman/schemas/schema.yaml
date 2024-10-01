@@ -983,7 +983,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorView'
-  
 components:
   schemas:
     Address:
