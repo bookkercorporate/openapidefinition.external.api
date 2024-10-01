@@ -986,6 +986,20 @@ paths:
   
 components:
   schemas:
+    Address:
+      required:
+      - city
+      - country
+      type: object
+      properties:
+        country:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
     BuildingView:
       type: object
       properties:
@@ -1035,6 +1049,78 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/HolidayCalendarView'
+    CityGeolocation:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        countyId:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        version:
+          type: string
+        geonameId:
+          type: integer
+          format: int32
+    CityGeolocationResponse:
+      type: object
+      properties:
+        country:
+          $ref: '#/components/schemas/CountryGeolocation'
+    Coordinates:
+      type: object
+      properties:
+        longitude:
+          type: number
+          format: double
+        latitude:
+          type: number
+          format: double
+    CountryGeolocation:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        version:
+          type: string
+        geonameId:
+          type: integer
+          format: int32
+        county:
+          $ref: '#/components/schemas/CountyGeolocation'
+    CountyGeolocation:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        countryId:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        version:
+          type: string
+        geonameId:
+          type: integer
+          format: int32
+        city:
+          $ref: '#/components/schemas/CityGeolocation'
     CreateFutureBookingResponse:
       type: object
       properties:
@@ -1215,6 +1301,25 @@ components:
           type: string
         organizationId:
           type: string
+    HolidayCalendarView:
+      type: object
+      properties:
+        buildingId:
+          type: string
+        year:
+          type: string
+        days:
+          type: string
+        createdBy:
+          type: string
+        createdDate:
+          type: integer
+          format: int64
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: integer
+          format: int64
     MapCoordinates:
       type: object
       properties:
