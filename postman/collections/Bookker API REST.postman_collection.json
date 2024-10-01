@@ -1010,7 +1010,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"bookings\": [\n        {\n            \"bookingId\": \"09472c2f-d123-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-19T10:12:22.000+00:00\",\n            \"organizer\": {\n                \"id\": \"ed4daa88-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Javier\",\n                \"surname\": \"Jupiter\",\n                \"email\": \"javier@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"14ab4017--d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a81f3-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"d91cb934-d123-123e-af54-0f0c7feca635\",\n                \"posterCode\": \"B-P1-SALA-3\",\n                \"subcategory\": {\n                    \"id\": \"072ac366-d123-123e-af54-0f0c7feca635\"\n                },\n                \"group\": {\n                    \"id\": \"d955b7df-d123-123e-af54-0f0c7feca635\"\n                }\n            },\n            \"startDate\": \"2024-09-27T12:00:00.000+00:00\",\n            \"endDate\": \"2024-09-27T13:00:00.000+00:00\",\n            \"status\": \"CANCELLED\",\n            \"accessControlType\": \"NONE\",\n            \"lastModifiedDate\": \"2024-09-19T10:17:22.000+00:00\",\n            \"cancellationDate\": \"2024-09-19T10:17:19.000+00:00\",\n            \"resourceType\": \"SPACE\"\n        },\n        {\n            \"bookingId\": \"0992a9a7-d123-123e-af54-0f0c7feca635\",\n            \"createdDate\": \"2024-09-20T12:11:08.000+00:00\",\n            \"organizer\": {\n                \"id\": \"ed4daa88-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Javier\",\n                \"surname\": \"Jupiter\",\n                \"email\": \"javier@company.com\"\n            },\n            \"floor\": {\n                \"id\": \"14ab4017-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Planta 1\"\n            },\n            \"building\": {\n                \"id\": \"758a81f3-d123-123e-af54-0f0c7feca635\",\n                \"name\": \"Jupiter Building\",\n                \"timezone\": \"Europe/Madrid\"\n            },\n            \"resource\": {\n                \"id\": \"b85c01c7-d123-123e-af54-0f0c7feca635\",\n                \"posterCode\": \"B-P1-PUESTO-109\",\n                \"subcategory\": {\n                    \"id\": \"db5d3245-d123-123e-af54-0f0c7feca635\"\n                },\n                \"group\": {\n                    \"id\": \"4e486d90-d123-123e-af54-0f0c7feca635\"\n                }\n            },\n            \"startDate\": \"2024-09-26T22:00:00.000+00:00\",\n            \"endDate\": \"2024-09-27T22:00:00.000+00:00\",\n            \"status\": \"PENDING\",\n            \"accessControlType\": \"OPTIONAL\",\n            \"lastModifiedDate\": \"2024-09-20T12:11:08.000+00:00\",\n            \"resourceType\": \"WORKSTATION\"\n        }\n    ]\n}"
+									"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 								}
 							]
 						}
@@ -1162,6 +1162,56 @@
 											],
 											"cookie": [],
 											"body": "{\n    \"fixedResources\": [\n        {\n            \"userId\": \"01e2123-123c-4123-90b3-80b123a1235b\",\n            \"parkingSlotId\": \"6ebd1dba-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-S1-PARK-39\",\n            \"name\": \"Parking 39\",\n            \"visible\": true,\n            \"floorId\": \"b60c8462-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"6e0a5df1-123c-4123-90b3-80b123a1235b\",\n            \"groupId\": \"e97b9a4d-123c-4123-90b3-80b123a1235b\",\n            \"startTimeMs\": 43200000,\n            \"endTimeMs\": 46800000,\n            \"createdDate\": \"2024-06-13T10:19:40.000+00:00\",\n            \"lastModifiedDate\": \"2024-06-13T10:19:40.000+00:00\",\n            \"startAssigment\": \"2024-06-13\"\n        },\n        {\n            \"userId\": \"0f46ea64-123c-4123-90b3-80b123a1235b\",\n            \"parkingSlotId\": \"a476c128-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-S1-NO PARK-1\",\n            \"name\": \"TEST PARKING 1\",\n            \"visible\": true,\n            \"floorId\": \"b60c8462-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"e4b52f7e-123c-4123-90b3-80b123a1235b\",\n            \"groupId\": \"3bc1117d-123c-4123-90b3-80b123a1235b\",\n            \"startTimeMs\": 0,\n            \"endTimeMs\": 85500000,\n            \"createdDate\": \"2024-01-25T10:59:35.000+00:00\",\n            \"lastModifiedDate\": \"2024-01-25T10:59:35.000+00:00\",\n            \"startAssigment\": \"2024-01-25\"\n        }\n    ],\n    \"totalElements\": 2\n}"
+										},
+										{
+											"name": "No OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "bookker-apigw-url/resources/v1/parking/building/:buildingId/fixedresources?page=0&size=500",
+													"host": [
+														"bookker-apigw-url"
+													],
+													"path": [
+														"resources",
+														"v1",
+														"parking",
+														"building",
+														":buildingId",
+														"fixedresources"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "500"
+														}
+													],
+													"variable": [
+														{
+															"key": "buildingId",
+															"value": ""
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json",
+													"description": "",
+													"type": "text"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 										}
 									]
 								},
@@ -1293,6 +1343,64 @@
 											],
 											"cookie": [],
 											"body": "{\n    \"parkingCessions\": [\n        {\n            \"userId\": \"dc5916ba-123c-4123-90b3-80b123a1235b\",\n            \"startDate\": \"2024-08-02T06:00:00.000+00:00\",\n            \"endDate\": \"2024-08-02T15:00:00.000+00:00\",\n            \"parkingSlotId\": \"2bb25a06-123c-4123-90b3-80b123a1235b\",\n            \"lastModifiedDate\": \"2024-08-01T11:30:57.000+00:00\",\n            \"lastModifiedBy\": \"dc5916ba-123c-4123-90b3-80b123a1235b\"\n        },\n        {\n            \"userId\": \"dc5916ba-123c-4123-90b3-80b123a1235b\",\n            \"startDate\": \"2024-08-01T06:00:00.000+00:00\",\n            \"endDate\": \"2024-08-01T15:00:00.000+00:00\",\n            \"parkingSlotId\": \"2bb25a06-123c-4123-90b3-80b123a1235b\",\n            \"lastModifiedDate\": \"2024-08-01T09:49:07.000+00:00\",\n            \"lastModifiedBy\": \"dc5916ba-123c-4123-90b3-80b123a1235b\"\n        }\n    ],\n    \"totalElements\": 2\n}"
+										},
+										{
+											"name": "No OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "bookker-apigw-url/resources/v1/parking/building/:buildingId/cessions?from=16-07-2024 00:00:00&to=13-09-2024 00:00:00&page=0&size=500",
+													"host": [
+														"bookker-apigw-url"
+													],
+													"path": [
+														"resources",
+														"v1",
+														"parking",
+														"building",
+														":buildingId",
+														"cessions"
+													],
+													"query": [
+														{
+															"key": "from",
+															"value": "16-07-2024 00:00:00"
+														},
+														{
+															"key": "to",
+															"value": "13-09-2024 00:00:00"
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "500"
+														}
+													],
+													"variable": [
+														{
+															"key": "buildingId",
+															"value": ""
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json",
+													"description": "",
+													"type": "text"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 										}
 									]
 								}
@@ -1412,6 +1520,56 @@
 											],
 											"cookie": [],
 											"body": "{\n    \"fixedResources\": [\n        {\n            \"userId\": \"2be47224-123c-4123-90b3-80b123a1235b\",\n            \"parkingSlotId\": \"0392490c-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-P1-PUESTO-29\",\n            \"name\": \"B-P1-PUESTO-29\",\n            \"visible\": true,\n            \"floorId\": \"14ab4017-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"db5d3245-123c-4123-90b3-80b123a1235b\",\n            \"groupId\": \"4e486d90-123c-4123-90b3-80b123a1235b\",\n            \"startTimeMs\": 28800000,\n            \"endTimeMs\": 32400000,\n            \"allDay\": false,\n            \"createdDate\": \"2023-12-20T15:26:00.000+00:00\",\n            \"lastModifiedDate\": \"2023-12-20T15:26:00.000+00:00\",\n            \"startAssigment\": \"2023-12-20\"\n        },\n        {\n            \"userId\": \"2c404f61-123c-4123-90b3-80b123a1235b\",\n            \"parkingSlotId\": \"07a85be1-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-P1-PUESTO-101\",\n            \"name\": \"B-P1-PUESTO-101\",\n            \"visible\": true,\n            \"floorId\": \"14ab4017-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"db5d3245-123c-4123-90b3-80b123a1235b\",\n            \"groupId\": \"4e486d90-123c-4123-90b3-80b123a1235b\",\n            \"startTimeMs\": 43200000,\n            \"endTimeMs\": 75600000,\n            \"allDay\": false,\n            \"createdDate\": \"2024-09-16T10:30:09.000+00:00\",\n            \"lastModifiedDate\": \"2024-09-16T10:30:09.000+00:00\",\n            \"startAssigment\": \"2024-09-16\"\n        }\n    ],\n    \"totalElements\": 2\n}"
+										},
+										{
+											"name": "No OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "bookker-apigw-url/resources/v1/workstation/building/:buildingId/fixedresources?page=0&size=500",
+													"host": [
+														"bookker-apigw-url"
+													],
+													"path": [
+														"resources",
+														"v1",
+														"workstation",
+														"building",
+														":buildingId",
+														"fixedresources"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "500"
+														}
+													],
+													"variable": [
+														{
+															"key": "buildingId",
+															"value": ""
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json",
+													"description": "",
+													"type": "text"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 										}
 									]
 								},
@@ -1543,6 +1701,64 @@
 											],
 											"cookie": [],
 											"body": "{\n    \"workstaionCessions\": [\n        {\n            \"userId\": \"a915cc4d-123c-4123-90b3-80b123a1235b\",\n            \"startDate\": \"2024-08-01T08:00:00.000+00:00\",\n            \"endDate\": \"2024-08-01T12:00:00.000+00:00\",\n            \"workstaionId\": \"0201fd09-123c-4123-90b3-80b123a1235b\",\n            \"stretchType\": \"FIRST_STRETCH\",\n            \"lastModifiedDate\": \"2024-07-31T08:09:09.000+00:00\",\n            \"lastModifiedBy\": \"98cdbde3-123c-4123-90b3-80b123a1235b\"\n        },\n        {\n            \"userId\": \"2be47224-123c-4123-90b3-80b123a1235b\",\n            \"startDate\": \"2024-07-31T06:00:00.000+00:00\",\n            \"endDate\": \"2024-07-31T07:00:00.000+00:00\",\n            \"workstaionId\": \"0392490c-123c-4123-90b3-80b123a1235b\",\n            \"stretchType\": \"ALL_DAY_STRETCH\",\n            \"lastModifiedDate\": \"2024-07-31T06:32:26.000+00:00\",\n            \"lastModifiedBy\": \"7d13f1e1-123c-4123-90b3-80b123a1235b\"\n        }\n    ],\n    \"totalElements\": 2\n}"
+										},
+										{
+											"name": "No OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "bookker-apigw-url/resources/v1/workstation/building/:buildingId/cessions?from=18-07-2024 00:00:00&to=17-10-2024 00:00:00&page=0&size=500",
+													"host": [
+														"bookker-apigw-url"
+													],
+													"path": [
+														"resources",
+														"v1",
+														"workstation",
+														"building",
+														":buildingId",
+														"cessions"
+													],
+													"query": [
+														{
+															"key": "from",
+															"value": "18-07-2024 00:00:00"
+														},
+														{
+															"key": "to",
+															"value": "17-10-2024 00:00:00"
+														},
+														{
+															"key": "page",
+															"value": "0"
+														},
+														{
+															"key": "size",
+															"value": "500"
+														}
+													],
+													"variable": [
+														{
+															"key": "buildingId",
+															"value": ""
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json",
+													"description": "",
+													"type": "text"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 										}
 									]
 								}
@@ -1661,6 +1877,55 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"buildings\": [\n        {\n            \"id\": \"9f7868b3-123c-4123-90b3-80b123a1235b\",\n            \"name\": \"Edificio 14 MAYO\",\n            \"visible\": true,\n            \"timezone\": \"Europe/Madrid\",\n            \"createdDate\": \"2021-05-14T07:23:48.000+00:00\",\n            \"lastModifiedDate\": \"2024-04-15T14:02:29.000+00:00\",\n            \"cityId\": \"5218ec6d-123c-4123-90b3-80b123a1235b\",\n            \"currency\": \"EUR\",\n            \"holidayCalendars\": [\n                {\n                    \"buildingId\": \"9f7868b3-123c-4123-90b3-80b123a1235b\",\n                    \"year\": \"2023\",\n                    \"days\": \"319\",\n                    \"createdBy\": \"ff0ae8f2-123c-4123-90b3-80b123a1235b\",\n                    \"createdDate\": 1700248078000,\n                    \"lastModifiedBy\": \"ff0ae8f2-123c-4123-90b3-80b123a1235b\",\n                    \"lastModifiedDate\": 1700248078000\n                },\n                {\n                    \"buildingId\": \"9f7868b3-123c-4123-90b3-80b123a1235b\",\n                    \"year\": \"2024\",\n                    \"days\": \"247\",\n                    \"createdBy\": \"2c404f61-123c-4123-90b3-80b123a1235b\",\n                    \"createdDate\": 1726555339000,\n                    \"lastModifiedBy\": \"2c404f61-123c-4123-90b3-80b123a1235b\",\n                    \"lastModifiedDate\": 1726555339000\n                }\n            ]\n        },\n        {\n            \"id\": \"f469c253-123c-4123-90b3-80b123a1235b\",\n            \"name\": \"Edificio Edinburgo\",\n            \"visible\": true,\n            \"timezone\": \"Europe/Madrid\",\n            \"createdDate\": \"2021-08-25T10:04:49.000+00:00\",\n            \"lastModifiedDate\": \"2023-04-14T10:07:19.000+00:00\",\n            \"cityId\": \"ab6507b0-123c-4123-90b3-80b123a1235b\",\n            \"currency\": \"EUR\",\n            \"holidayCalendars\": [\n                {\n                    \"buildingId\": \"f469c253-123c-4123-90b3-80b123a1235b\",\n                    \"year\": \"2024\",\n                    \"days\": \"267,268,274\",\n                    \"createdBy\": \"98cdbde3-123c-4123-90b3-80b123a1235b\",\n                    \"createdDate\": 1726236121000,\n                    \"lastModifiedBy\": \"98cdbde3-123c-4123-90b3-80b123a1235b\",\n                    \"lastModifiedDate\": 1726236121000\n                }\n            ]\n        }\n    ],\n    \"totalElements\": 2\n}"
+								},
+								{
+									"name": "No OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/resources/v1/buildings?page=0&size=500&withBuildingHolidayCalendar=true&visible=true",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"resources",
+												"v1",
+												"buildings"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												},
+												{
+													"key": "withBuildingHolidayCalendar",
+													"value": "true"
+												},
+												{
+													"key": "visible",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 								}
 							]
 						}
@@ -1806,6 +2071,66 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"floors\": [\n        {\n            \"id\": \"14ab4017-123c-4123-90b3-80b123a1235b\",\n            \"name\": \"Planta 1\",\n            \"floorNumber\": 1,\n            \"buildingId\": \"758a81f3-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"P1\",\n            \"type\": \"OFFICE\",\n            \"status\": \"ACTIVATED\",\n            \"visible\": true,\n            \"createdDate\": \"2020-03-17T11:42:18.000+00:00\",\n            \"lastModifiedDate\": \"2024-01-25T10:41:38.000+00:00\"\n        }\n    ],\n    \"totalElements\": 1\n}"
+								},
+								{
+									"name": "No OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/resources/v1/:buildingId/floors?page=0&size=500&type=OFFICE&visible=true&status=ACTIVATED",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"resources",
+												"v1",
+												":buildingId",
+												"floors"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												},
+												{
+													"key": "type",
+													"value": "OFFICE"
+												},
+												{
+													"key": "visible",
+													"value": "true"
+												},
+												{
+													"key": "status",
+													"value": "ACTIVATED"
+												}
+											],
+											"variable": [
+												{
+													"key": "buildingId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 								}
 							]
 						}
@@ -1902,6 +2227,44 @@
 											],
 											"cookie": [],
 											"body": "{\n    \"dinningAreaRule\": {\n        \"id\": \"758a81f3-123c-4123-90b3-80b123a1235b\",\n        \"mandatoryCheckIn\": true,\n        \"expirationMargin\": 300000,\n        \"choiceOfPlace\": true,\n        \"allowMoreThanOneBooking\": true,\n        \"maximumAdvance\": 10,\n        \"lastModifiedDate\": \"2024-08-21T10:21:01.000+00:00\"\n    }\n}"
+										},
+										{
+											"name": "No OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "bookker-apigw-url/resources/v1/resourcerule/:resourceId",
+													"host": [
+														"bookker-apigw-url"
+													],
+													"path": [
+														"resources",
+														"v1",
+														"resourcerule",
+														":resourceId"
+													],
+													"variable": [
+														{
+															"key": "resourceId",
+															"value": ""
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json",
+													"description": "",
+													"type": "text"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 										}
 									]
 								}
@@ -1982,7 +2345,6 @@
 												"bookker-apigw-url"
 											],
 											"path": [
-												"",
 												"resources",
 												"v1",
 												":buildingId",
@@ -2023,6 +2385,58 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"lockedCalendars\": [\n        {\n            \"resourceId\": \"01c9f29c-123c-4123-90b3-80b123a1235b\",\n            \"year\": \"2024\",\n            \"days\": \"92,98,99,100,101,102,103,104,105,106,112,113,119,120\"\n        },\n        {\n            \"resourceId\": \"0201fd09-123c-4123-90b3-80b123a1235b\",\n            \"year\": \"2024\",\n            \"days\": \"170,171,172\"\n        },\n        {\n            \"resourceId\": \"07a85be1-123c-4123-90b3-80b123a1235b\",\n            \"year\": \"2024\",\n            \"days\": \"260\"\n        },\n        {\n            \"resourceId\": \"1f722110-123c-4123-90b3-80b123a1235b\",\n            \"year\": \"2024\",\n            \"days\": \"214\"\n        },\n        {\n            \"resourceId\": \"3afd2de5-123c-4123-90b3-80b123a1235b\",\n            \"year\": \"2024\",\n            \"days\": \"144,145,152\"\n        }\n    ],\n    \"totalElements\": 3\n}"
+								},
+								{
+									"name": "No OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/resources/v1/:buildingId/lockedcalendars?page=0&size=500&year=2024",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"resources",
+												"v1",
+												":buildingId",
+												"lockedcalendars"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												},
+												{
+													"key": "year",
+													"value": "2024"
+												}
+											],
+											"variable": [
+												{
+													"key": "buildingId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 								}
 							]
 						},
@@ -2186,6 +2600,78 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"resources\": [\n        {\n            \"id\": \"17f2b71b-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-S2-PRUEBA-02\",\n            \"costPerHour\": 4.99000,\n            \"name\": \"PARKING 02\",\n            \"visible\": true,\n            \"floorId\": \"72ee9939-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"90b85038-123c-4123-90b3-80b123a1235b\",\n            \"groupId\": \"a3cda7aa-123c-4123-90b3-80b123a1235b\",\n            \"createdDate\": \"2022-05-13T07:35:46.000+00:00\",\n            \"lastModifiedDate\": \"2024-07-18T10:55:19.000+00:00\",\n            \"covered\": true,\n            \"parkingSlotSize\": \"BIG\"\n        },\n        {\n            \"id\": \"273bd18b-123c-4123-90b3-80b123a1235b\",\n            \"posterCode\": \"B-S2-PARK-A1\",\n            \"costPerHour\": 4.99000,\n            \"name\": \"PARKING A1\",\n            \"visible\": true,\n            \"floorId\": \"72ee9939-123c-4123-90b3-80b123a1235b\",\n            \"subcategoryId\": \"6e0a5df1-123c-4123-90b3-80b123a1235b\",\n            \"createdDate\": \"2022-01-17T12:18:06.000+00:00\",\n            \"lastModifiedDate\": \"2024-07-18T10:55:21.000+00:00\",\n            \"covered\": true,\n            \"parkingSlotSize\": \"BIG\"\n        }\n    ],\n    \"totalElements\": 2\n}"
+								},
+								{
+									"name": "No OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "bookker-apigw-url/resources/v1/:buildingId/resources?page=0&size=500&category=PARKING&maxCostPerHour=200&floorId=&groupId&isSynchronized=false&isVisible=true",
+											"host": [
+												"bookker-apigw-url"
+											],
+											"path": [
+												"resources",
+												"v1",
+												":buildingId",
+												"resources"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "500"
+												},
+												{
+													"key": "category",
+													"value": "PARKING"
+												},
+												{
+													"key": "maxCostPerHour",
+													"value": "200"
+												},
+												{
+													"key": "floorId",
+													"value": ""
+												},
+												{
+													"key": "groupId",
+													"value": null
+												},
+												{
+													"key": "isSynchronized",
+													"value": "false"
+												},
+												{
+													"key": "isVisible",
+													"value": "true"
+												}
+											],
+											"variable": [
+												{
+													"key": "buildingId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 								}
 							]
 						}
@@ -2492,20 +2978,23 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "bookker-apigw-url//users/v1/:userId",
+									"raw": "bookker-apigw-url/users/v1/users?page=0&size=500",
 									"host": [
 										"bookker-apigw-url"
 									],
 									"path": [
-										"",
 										"users",
 										"v1",
-										":userId"
+										"users"
 									],
-									"variable": [
+									"query": [
 										{
-											"key": "userId",
-											"value": "id in"
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "500"
 										}
 									]
 								}
@@ -2530,20 +3019,23 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "bookker-apigw-url//users/v1/:userId",
+									"raw": "bookker-apigw-url/users/v1/users?page=0&size=500",
 									"host": [
 										"bookker-apigw-url"
 									],
 									"path": [
-										"",
 										"users",
 										"v1",
-										":userId"
+										"users"
 									],
-									"variable": [
+									"query": [
 										{
-											"key": "userId",
-											"value": "id in"
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "500"
 										}
 									]
 								}
@@ -2639,15 +3131,31 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "bookker-apigw-url//users/v1/:userId",
+									"raw": "bookker-apigw-url/:userId/workingstatus?from=10-09-2024 00:00:00&to=19-09-2024 00:00:00&page=0&size=500",
 									"host": [
 										"bookker-apigw-url"
 									],
 									"path": [
-										"",
-										"users",
-										"v1",
-										":userId"
+										":userId",
+										"workingstatus"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "10-09-2024 00:00:00"
+										},
+										{
+											"key": "to",
+											"value": "19-09-2024 00:00:00"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "500"
+										}
 									],
 									"variable": [
 										{
@@ -2677,15 +3185,31 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "bookker-apigw-url//users/v1/:userId",
+									"raw": "bookker-apigw-url/:userId/workingstatus?from=10-09-2024 00:00:00&to=19-09-2024 00:00:00&page=0&size=500",
 									"host": [
 										"bookker-apigw-url"
 									],
 									"path": [
-										"",
-										"users",
-										"v1",
-										":userId"
+										":userId",
+										"workingstatus"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "10-09-2024 00:00:00"
+										},
+										{
+											"key": "to",
+											"value": "19-09-2024 00:00:00"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "500"
+										}
 									],
 									"variable": [
 										{
@@ -2764,14 +3288,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "bookker-apigw-url//users/v1/:userId",
+									"raw": "bookker-apigw-url/users/v1/extrafields/:userId",
 									"host": [
 										"bookker-apigw-url"
 									],
 									"path": [
-										"",
 										"users",
 										"v1",
+										"extrafields",
 										":userId"
 									],
 									"variable": [
@@ -2802,52 +3326,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "bookker-apigw-url//users/v1/:userId",
+									"raw": "bookker-apigw-url/users/v1/extrafields/:userId",
 									"host": [
 										"bookker-apigw-url"
 									],
 									"path": [
-										"",
 										"users",
 										"v1",
-										":userId"
-									],
-									"variable": [
-										{
-											"key": "userId",
-											"value": "id in"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json",
-									"description": "",
-									"type": "text"
-								}
-							],
-							"cookie": [],
-							"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
-						},
-						{
-							"name": "No OK Copy",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "bookker-apigw-url//users/v1/:userId",
-									"host": [
-										"bookker-apigw-url"
-									],
-									"path": [
-										"",
-										"users",
-										"v1",
+										"extrafields",
 										":userId"
 									],
 									"variable": [
@@ -2976,6 +3462,37 @@
 							],
 							"cookie": [],
 							"body": ""
+						},
+						{
+							"name": "No OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-urlbookings/v1/checkin/{{booking_id}}",
+									"host": [
+										"bookker-apigw-urlbookings"
+									],
+									"path": [
+										"v1",
+										"checkin",
+										"{{booking_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 						}
 					]
 				},
@@ -3052,6 +3569,38 @@
 							],
 							"cookie": [],
 							"body": ""
+						},
+						{
+							"name": "No OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "bookker-apigw-url/bookings/v1/checkout/{{booking_id}}",
+									"host": [
+										"bookker-apigw-url"
+									],
+									"path": [
+										"bookings",
+										"v1",
+										"checkout",
+										"{{booking_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"uniqueId\": \"ex sunt\",\n  \"timestamp\": \"2020-05-18T09:05:41.534Z\",\n  \"status\": 1768042,\n  \"errors\": [\n    \"laborum enim dolore no\",\n    \"irure veniam in \"\n  ],\n  \"type\": \"exercitation\",\n  \"path\": \"dolor nulla\",\n  \"message\": \"aute ad tem\"\n}"
 						}
 					]
 				}
