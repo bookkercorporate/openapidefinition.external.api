@@ -1340,6 +1340,102 @@ components:
         bottomRightY:
           type: integer
           format: int32
+    MaxSpaceBooking:
+      type: object
+      properties:
+        time:
+          type: integer
+          format: int64
+        maxSpaceBookingType:
+          type: string
+          enum:
+          - DAILY
+          - WEEKLY
+          - MONTHLY
+    ModulesExtraView:
+      type: object
+      properties:
+        id:
+          type: string
+        externalSynchronization:
+          type: boolean
+        employeeSearch:
+          type: boolean
+        presenceValidation:
+          type: boolean
+        findSlot:
+          type: boolean
+        statusConfiguration:
+          type: boolean
+        groupsSynchro:
+          type: boolean
+        spacesSynchro:
+          type: boolean
+        teamsSynchro:
+          type: boolean
+        usersSynchro:
+          type: boolean
+        buildingAccess:
+          type: boolean
+        premiumReports:
+          type: boolean
+        departments:
+          type: boolean
+        bookkerEventPush:
+          type: boolean
+        enableGeolocation:
+          type: boolean
+        additionalServices:
+          type: boolean
+    ModulesView:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        externalSynchronizationTypes:
+          type: string
+          enum:
+          - NONE
+          - OUTLOOK
+          - GOOGLE
+        employeeSearch:
+          type: boolean
+        presenceValidation:
+          type: string
+          enum:
+          - NONE
+          - WIFI
+          - BEACON
+          - WIFI_BEACON
+          - SITUM
+        suggestions:
+          type: boolean
+        findSlot:
+          type: boolean
+        vehiclesRequired:
+          type: boolean
+        usersCanEditWorkingStatus:
+          type: boolean
+        webAppCheckInWithoutCamera:
+          type: boolean
+        syncUsersByFile:
+          type: boolean
+        allowExternalBookings:
+          type: boolean
+        selfRegistration:
+          type: boolean
+        allowMicrosoftGroupSync:
+          type: boolean
+        searchEmployeeMandatory:
+          type: boolean
+        automaticVehicleValidation:
+          type: boolean
+        enableMicrosoftTeamsSync:
+          type: boolean
+        enableMicrosoftUsersSync:
+          type: boolean
+        showBuildingAccess:
+          type: boolean
     OrganizationView:
       type: object
       properties:
