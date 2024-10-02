@@ -1340,6 +1340,18 @@ components:
         bottomRightY:
           type: integer
           format: int32
+    MaxParkingBooking:
+      type: object
+      properties:
+        timePeriodMs:
+          type: integer
+          format: int64
+        timePeriodType:
+          type: string
+          enum:
+          - DAILY
+          - WEEKLY
+          - MONTHLY
     MaxSpaceBooking:
       type: object
       properties:
@@ -1573,6 +1585,25 @@ components:
           - SPACE
           - PARKING
           - DINNING_AREA
+    ResourceLockedCalendarView:
+      type: object
+      properties:
+        resourceId:
+          type: string
+        year:
+          type: string
+        days:
+          type: string
+        createdBy:
+          type: string
+        createdDate:
+          type: integer
+          format: int64
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: integer
+          format: int64
     ResourceRuleView:
       type: object
       properties:
@@ -1787,6 +1818,39 @@ components:
         startAssigment:
           type: string
           format: date
+    ThirdPartyFloorView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        floorNumber:
+          type: integer
+          format: int32
+        buildingId:
+          type: string
+        posterCode:
+          type: string
+        type:
+          type: string
+          enum:
+          - OFFICE
+          - PARKING
+        status:
+          type: string
+          enum:
+          - LOCKED
+          - ACTIVATED
+          - DELETED
+        visible:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time
     ThirdPartyParkingBuildingCessionsResponse:
       type: object
       properties:
