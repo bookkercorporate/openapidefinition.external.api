@@ -983,6 +983,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorView'
+  
 components:
   schemas:
     Address:
@@ -1264,6 +1265,13 @@ components:
         totalElements:
           type: integer
           format: int64
+    GetThirdPartyBuildingParameters:
+      type: object
+      properties:
+        withBuildingHolidayCalendar:
+          type: boolean
+        isVisible:
+          type: boolean      
     GetThirdPartyOrganizationUsersParameters:
       type: object
       properties:
@@ -1272,8 +1280,6 @@ components:
           enum:
           - LOCKED
           - ACTIVATED
-          - FIRED
-          - OBFUSCATED
     GroupResponse:
       type: object
       properties:
@@ -1554,13 +1560,7 @@ components:
           enum:
           - OFFICE
           - PARKING
-        status:
-          type: string
-          enum:
-          - LOCKED
-          - ACTIVATED
-          - DELETED
-        visible:
+        isVisible:
           type: boolean
     ThirdPartyBuildingFloorsResponse:
       type: object
