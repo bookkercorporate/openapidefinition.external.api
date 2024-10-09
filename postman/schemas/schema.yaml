@@ -1178,13 +1178,10 @@ components:
           type: string
           enum:
           - PENDING
-          - PENDING_APPROVAL
           - CONFIRMED
           - CANCELLED
           - EXPIRED
           - FINISHED
-          - PENDING_ASSIGNMENT
-          - PENDING_VOTING
           - UNDETERMINED
         accessControlType:
           type: string
@@ -1550,13 +1547,10 @@ components:
           type: string
           enum:
           - PENDING
-          - PENDING_APPROVAL
           - CONFIRMED
           - CANCELLED
           - EXPIRED
           - FINISHED
-          - PENDING_ASSIGNMENT
-          - PENDING_VOTING
           - UNDETERMINED
         accessControlType:
           type: string
