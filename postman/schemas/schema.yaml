@@ -659,7 +659,7 @@ paths:
       parameters:
       - name: getThirdPartyBuildingParameters
         in: query
-        required: true
+        required: false
         schema:
           $ref: '#/components/schemas/GetThirdPartyBuildingParameters'
       - name: page
