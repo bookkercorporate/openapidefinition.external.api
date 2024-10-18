@@ -261,7 +261,7 @@ paths:
           type: string
       - name: thirdPartyBuildingResourcesRequest
         in: query
-        required: false
+        required: true
         schema:
           $ref: '#/components/schemas/ThirdPartyBuildingResourcesRequest'
       - name: page
@@ -452,11 +452,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: isVisible
-        in: query
-        required: false
-        schema:
-          type: boolean          
       - name: page
         in: query
         required: false
@@ -557,11 +552,6 @@ paths:
         required: true
         schema:
           type: string
-      - name: isVisible
-        in: query
-        required: false
-        schema:
-          type: boolean
       - name: page
         in: query
         required: false
@@ -706,8 +696,18 @@ paths:
           required: true
           schema:
             type: string
+        - name: presenceValidation
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
         responses:
-          "201":
+          "200":
             description: Check-in of the booking was completed 
           "403":
             description: User has no access
@@ -744,8 +744,13 @@ paths:
           required: true
           schema:
             type: string
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
         responses:
-          "201":
+          "200":
             description: Check-out of the booking was completed        
           "403":
             description: User has no access
@@ -878,7 +883,7 @@ paths:
       parameters:
       - name: getThirdPartyOrganizationUsersParameters
         in: query
-        required: false
+        required: true
         schema:
           $ref: '#/components/schemas/GetThirdPartyOrganizationUsersParameters'
       - name: page
@@ -1002,8 +1007,20 @@ components:
           type: string
         name:
           type: string
+        postercode:
+          type: string
         address:
           $ref: '#/components/schemas/Address'
+        organizationId:
+          type: string
+        massiveLoadId:
+          type: string
+        status:
+          type: string
+          enum:
+          - LOCKED
+          - ACTIVATED
+          - DELETED
         visible:
           type: boolean
         timezone:
@@ -1022,10 +1039,39 @@ components:
           type: string
         currency:
           type: string
+        geolocation:
+          $ref: '#/components/schemas/CityGeolocationResponse'
+        departmentsIds:
+          type: array
+          items:
+            type: string
         holidayCalendars:
           type: array
           items:
             $ref: '#/components/schemas/HolidayCalendarView'
+    CityGeolocation:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        countyId:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        version:
+          type: string
+        geonameId:
+          type: integer
+          format: int32
+    CityGeolocationResponse:
+      type: object
+      properties:
+        country:
+          $ref: '#/components/schemas/CountryGeolocation'
     Coordinates:
       type: object
       properties:
@@ -1035,6 +1081,46 @@ components:
         latitude:
           type: number
           format: double
+    CountryGeolocation:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        version:
+          type: string
+        geonameId:
+          type: integer
+          format: int32
+        county:
+          $ref: '#/components/schemas/CountyGeolocation'
+    CountyGeolocation:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        countryId:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        version:
+          type: string
+        geonameId:
+          type: integer
+          format: int32
+        city:
+          $ref: '#/components/schemas/CityGeolocation'
     CreateFutureBookingResponse:
       type: object
       properties:
@@ -1275,6 +1361,149 @@ components:
           - DAILY
           - WEEKLY
           - MONTHLY
+    ModulesExtraView:
+      type: object
+      properties:
+        id:
+          type: string
+        externalSynchronization:
+          type: boolean
+        employeeSearch:
+          type: boolean
+        presenceValidation:
+          type: boolean
+        findSlot:
+          type: boolean
+        statusConfiguration:
+          type: boolean
+        groupsSynchro:
+          type: boolean
+        spacesSynchro:
+          type: boolean
+        teamsSynchro:
+          type: boolean
+        usersSynchro:
+          type: boolean
+        buildingAccess:
+          type: boolean
+        premiumReports:
+          type: boolean
+        departments:
+          type: boolean
+        bookkerEventPush:
+          type: boolean
+        enableGeolocation:
+          type: boolean
+        additionalServices:
+          type: boolean
+    ModulesView:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        externalSynchronizationTypes:
+          type: string
+          enum:
+          - NONE
+          - OUTLOOK
+          - GOOGLE
+        employeeSearch:
+          type: boolean
+        presenceValidation:
+          type: string
+          enum:
+          - NONE
+          - WIFI
+          - BEACON
+          - WIFI_BEACON
+          - SITUM
+        suggestions:
+          type: boolean
+        findSlot:
+          type: boolean
+        vehiclesRequired:
+          type: boolean
+        usersCanEditWorkingStatus:
+          type: boolean
+        webAppCheckInWithoutCamera:
+          type: boolean
+        syncUsersByFile:
+          type: boolean
+        allowExternalBookings:
+          type: boolean
+        selfRegistration:
+          type: boolean
+        allowMicrosoftGroupSync:
+          type: boolean
+        searchEmployeeMandatory:
+          type: boolean
+        automaticVehicleValidation:
+          type: boolean
+        enableMicrosoftTeamsSync:
+          type: boolean
+        enableMicrosoftUsersSync:
+          type: boolean
+        showBuildingAccess:
+          type: boolean
+    OrganizationView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - BUSINESS
+          - LIBRARY
+          - COWORKING
+          - UNIVERSITY
+          - DISTRIBUTOR
+        status:
+          type: string
+          enum:
+          - DEPLOYING
+          - BLOCKED
+          - ACTIVE
+        email:
+          type: string
+        phone:
+          type: string
+        image:
+          type: string
+        cif:
+          type: string
+        nameContactPerson:
+          type: string
+        currentLicenceId:
+          type: string
+        authType:
+          type: string
+          enum:
+          - NATIVE
+          - MICROSOFT
+          - GOOGLE
+        technicalSupportName:
+          type: string
+        technicalSupportPhone:
+          type: string
+        technicalSupportEmail:
+          type: string
+        bookkerContactName:
+          type: string
+        bookkerContactPhone:
+          type: string
+        bookkerContactEmail:
+          type: string
+        videoTeleconferenceAddress:
+          type: string
+        organizationLanguage:
+          type: string
+        modules:
+          $ref: '#/components/schemas/ModulesView'
+        modulesExtra:
+          $ref: '#/components/schemas/ModulesExtraView'
     ReportFutureBookingResponse:
       required:
       - accessControlType
@@ -1359,6 +1588,16 @@ components:
           type: string
         days:
           type: string
+        createdBy:
+          type: string
+        createdDate:
+          type: integer
+          format: int64
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: integer
+          format: int64
     ResourceRuleView:
       type: object
       properties:
@@ -1421,6 +1660,19 @@ components:
           $ref: '#/components/schemas/SubcategoryView'
         group:
           $ref: '#/components/schemas/GroupResponse'
+    SubcategoryView:
+      type: object
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+          enum:
+          - FIXED_WORKSTATION
+          - WORKSTATION
+          - SPACE
+          - PARKING
+          - DINNING_AREA
     ThirdPartyBuildingFloorsRequest:
       type: object
       properties:
@@ -1579,6 +1831,12 @@ components:
           enum:
           - OFFICE
           - PARKING
+        status:
+          type: string
+          enum:
+          - LOCKED
+          - ACTIVATED
+          - DELETED
         visible:
           type: boolean
         createdDate:
@@ -1743,7 +2001,21 @@ components:
           $ref: '#/components/schemas/MapCoordinates'
         costPerHour:
           type: number
+        externalSyncEmail:
+          type: string
+        status:
+          type: string
+          enum:
+          - LOCKED
+          - ACTIVATED
+          - DELETED
+        image:
+          type: string
+        databaseImage:
+          type: string
         name:
+          type: string
+        phone:
           type: string
         visible:
           type: boolean
@@ -1751,14 +2023,39 @@ components:
           type: string
         subcategoryId:
           type: string
+        resourceRuleId:
+          type: string
         groupId:
           type: string
+        organizationId:
+          type: string
+        massiveLoadId:
+          type: string
+        externalSyncId:
+          type: string
+        posterImageId:
+          type: string
+        organization:
+          $ref: '#/components/schemas/OrganizationView'
+        subcategory:
+          $ref: '#/components/schemas/SubcategoryView'
+        resourceRule:
+          $ref: '#/components/schemas/ResourceRuleView'
+        building:
+          $ref: '#/components/schemas/BuildingView'
+        floor:
+          $ref: '#/components/schemas/FloorView'
+        group:
+          $ref: '#/components/schemas/GroupView'
         createdDate:
           type: string
           format: date-time
         lastModifiedDate:
           type: string
           format: date-time
+        capacity:
+          type: integer
+          format: int32
         covered:
           type: boolean
         parkingSlotSize:
@@ -1802,6 +2099,8 @@ components:
           enum:
           - LOCKED
           - ACTIVATED
+          - FIRED
+          - OBFUSCATED
         image:
           type: string
         lastModifiedDate:
@@ -1919,6 +2218,8 @@ components:
       type: object
       properties:
         id:
+          type: string
+        organizationId:
           type: string
         name:
           type: string
