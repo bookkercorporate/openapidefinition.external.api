@@ -1902,7 +1902,6 @@ components:
           type: string
           enum:
           - SERIES_MASTER
-          - OCURRENCE
           - EXCEPTION
           - SINGLE_INSTANCE
         startDate:
