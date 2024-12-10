@@ -1421,6 +1421,18 @@ components:
           $ref: '#/components/schemas/SubcategoryView'
         group:
           $ref: '#/components/schemas/GroupResponse'
+    SubcategoryView:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        category:
+          type: string
+        priority:
+          type: integer
+          format: int32    
     ThirdPartyBuildingFloorsRequest:
       type: object
       properties:
