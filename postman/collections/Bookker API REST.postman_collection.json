@@ -469,9 +469,9 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/pastbookings/last15days?page=0&size=500",
+											"raw": "bookker-apigw-url/pastbookings/last15days?page=0&size=500",
 											"host": [
-												"{{baseUrl}}"
+												"bookker-apigw-url"
 											],
 											"path": [
 												"pastbookings",
@@ -604,9 +604,9 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/pastbookings/last30days?page=0&size=500",
+											"raw": "bookker-apigw-url/pastbookings/last30days?page=0&size=500",
 											"host": [
-												"{{baseUrl}}"
+												"bookker-apigw-url"
 											],
 											"path": [
 												"pastbookings",
@@ -749,9 +749,9 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/reports/v1/pastbookings/period?from=01-12-2022 00:00:00&to=21-12-2022 00:00:00&page=0&size=500",
+											"raw": "bookker-apigw-url/reports/v1/pastbookings/period?from=01-12-2022 00:00:00&to=21-12-2022 00:00:00&page=0&size=500",
 											"host": [
-												"{{baseUrl}}"
+												"bookker-apigw-url"
 											],
 											"path": [
 												"reports",
@@ -918,9 +918,9 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/reports/v1/futurebookings/period?from=01-01-2022 00:00:00&to=21-01-2022 00:00:00&page=0&size=500",
+											"raw": "bookker-apigw-url/reports/v1/futurebookings/period?from=01-01-2022 00:00:00&to=21-01-2022 00:00:00&page=0&size=500",
 											"host": [
-												"{{baseUrl}}"
+												"bookker-apigw-url"
 											],
 											"path": [
 												"reports",
@@ -3136,7 +3136,7 @@
 							"variable": [
 								{
 									"key": "userId",
-									"value": "3f45617f-2d97-42c4-8e19-1d7b8905e139"
+									"value": "7c008797-7ce7-4b6b-9907-8692f855f538"
 								}
 							]
 						},
@@ -3401,7 +3401,7 @@
 					]
 				}
 			],
-			"description": "This collection allows the client to request information of the users of the client's Organization.\n\nEvery request should include the following headers:\n\n| Header | Description |\n| --- | --- |\n| **Authorization** | Auth Token to authorize communications |\n| **x-api-key** | Client code to access Organization data within a given service plan |\n\n### Pagination\n\nThe API endpoints returning multiple objects (lists) support  \npagination. These lists share a common structure and requests can take at least  \nthese two parameters:\n\n| Parameter | Description |\n| --- | --- |\n| **page** | a.k.a. **page offset** - the number of pages to skip. _Optional, default: 0 (i.e. return the first page of results)_ |\n| **size** | a limit on the number of objects to be returned. Between 1 and 500. _Optional, default: 500_ |\n\nList response format:\n\n```\n{\n    items: [\n        { ... },\n        { ... },\n        { ... }\n    ]\n}\n\n ```\n\n### Errors\n\nThe API uses conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general:\n\n- Codes in the **2xx** range indicate success.\n    \n- Codes in the **4xx** range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a resource was missing, etc.).\n    \n- Codes in the **5xx** range indicate a serer error or an unprocessable entry\n    \n\nEvery error include a human-readable message:\n\n```\n{\n    \"uniqueId\": string,\n    \"timestamp\": \"yyyy-mm-ddThh:mm:ss.xxxZ\",\n    \"status\": integer ($int32),\n    \"errors\": [list of strings],\n    \"type\": string,\n    \"path\": string,\n    \"message\": string\n}\n\n ```\n\nUsers' information covers one package:\n\n- **Departments:** these api calls return information of the departments of the organization\n    \n\nIt also has a set of api calls to retrieve the users and the information associated to them in the organization:\n\n- **Get user data**: to retrieve the information of a user given his/her id\n    \n- **Get users in an organization**: to retrieve the users in an organization\n    \n\n| arameters | Description |\n| --- | --- |\n| **status** | optional- to request users with `status` ACTIVATED/LOCKED. If not parameter is set all users are retrieved. |\n\n- **Get states of work of a user**: to retrieve the states of work of a given user. Possible vaules of the parameters are:\n    \n\n| Parameters | Description |\n| --- | --- |\n| **from** | requiered - to request cession with `end date` after a given date specified in the querystring by the `from` parameter (maximun 90 days in the past) |\n| **to** | requiered - to request cession with `end date` before a given date specified in the querystring by the `to` parameter (maximum 30 days in the future) |\n\n- **Get user's extra fields**: to retrieve extra information of a given user",
+			"description": "This collection allows the client to request information of the users of the client's Organization (user's data and status). Resources information covers the following packages:\n\n- **Despartments:** these api calls return information of the departments in an organization.\n    \n\nEvery request should include the following headers:\n\n| Header | Description |\n| --- | --- |\n| **Authorization** | Auth Token to authorize communications |\n| **x-api-key** | Client code to access Organization data within a given service plan |\n\n### Pagination\n\nThe API endpoints returning multiple objects (lists) support  \npagination. These lists share a common structure and requests can take at least  \nthese two parameters:\n\n| Parameter | Description |\n| --- | --- |\n| **page** | a.k.a. **page offset** - the number of pages to skip. _Optional, default: 0 (i.e. return the first page of results)_ |\n| **size** | a limit on the number of objects to be returned. Between 1 and 500. _Optional, default: 500_ |\n\nList response format:\n\n```\n{\n    items: [\n        { ... },\n        { ... },\n        { ... }\n    ]\n}\n\n ```\n\n### Errors\n\nThe API uses conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general:\n\n- Codes in the **2xx** range indicate success.\n    \n- Codes in the **4xx** range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a resource was missing, etc.).\n    \n- Codes in the **5xx** range indicate a serer error or an unprocessable entry\n    \n\nEvery error include a human-readable message:\n\n```\n{\n    \"uniqueId\": string,\n    \"timestamp\": \"yyyy-mm-ddThh:mm:ss.xxxZ\",\n    \"status\": integer ($int32),\n    \"errors\": [list of strings],\n    \"type\": string,\n    \"path\": string,\n    \"message\": string\n}\n\n ```\n\nUsers' information covers one package:\n\n- **Departments:** these api calls return information of the departments of the organization\n    \n\nIt also has a set of api calls to retrieve the users and the information associated to them in the organization:\n\n- **Get user data**: to retrieve the information of a user given his/her id\n    \n- **Get users in an organization**: to retrieve the users in an organization\n    \n\n| Parameters | Description |\n| --- | --- |\n| **status** | optional- to request users with `status` ACTIVATED/LOCKED. If not parameter is set all users are retrieved. |\n\n- **Get states of work of a user**: to retrieve the states of work of a given user. Possible vaules of the parameters are:\n    \n\n| Parameters | Description |\n| --- | --- |\n| **from** | requiered - to request cession with `end date` after a given date specified in the querystring by the `from` parameter (maximun 90 days in the past) |\n| **to** | requiered - to request cession with `end date` before a given date specified in the querystring by the `to` parameter (maximum 30 days in the future) |\n\n- **Get user's extra fields**: to retrieve extra information of a given user",
 			"auth": {
 				"type": "noauth"
 			},
