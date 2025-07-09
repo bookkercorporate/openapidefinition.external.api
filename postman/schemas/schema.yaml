@@ -1753,6 +1753,8 @@ components:
           type: string
         mapCoordinates:
           $ref: '#/components/schemas/MapCoordinates'
+        costPerHour:
+          type: number
         name:
           type: string
         visible:
@@ -1769,26 +1771,13 @@ components:
         lastModifiedDate:
           type: string
           format: date-time
-        createdBy:
-          type: string
-        lastModifiedBy:
-          type: string          
-        costPerHour:
-            type: number
-        externalSyncEmail:
-            type: string                      
-        image:
-            type: string
-        capacity:
-            type: integer
-            format: int32
-        parkingSlotSize:
-            type: string
-            enum:
-            - SMALL
-            - BIG
         covered:
-            type: boolean
+          type: boolean
+        parkingSlotSize:
+          type: string
+          enum:
+          - SMALL
+          - BIG
     ThirdPartyUserExtraFieldsResponse:
       type: object
       properties:
@@ -1837,6 +1826,8 @@ components:
           type: string
         employeeId:
           type: string
+        accessCardId:
+          type: string          
     ThirdPartyUserWorkstationCessionView:
       type: object
       properties:
@@ -1976,6 +1967,10 @@ components:
           maxLength: 255
           minLength: 0
           type: string
+        accessCardId:
+          maxLength: 255
+          minLength: 0
+          type: string          
     VehicleView:
       type: object
       properties:
