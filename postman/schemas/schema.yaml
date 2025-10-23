@@ -1537,8 +1537,8 @@ components:
     ThirdPartyFixedResourceView:
       type: object
       properties:
-        userId:
-          type: string
+        user:
+          $ref: "#/components/schemas/ThirdPartyResourceUserView"	  
         workstationId:
           type: string
         parkingSlotId:
@@ -1612,8 +1612,8 @@ components:
     ThirdPartyParkingSlotCessionView:
       type: object
       properties:
-        userId:
-          type: string
+        user:
+          $ref: "#/components/schemas/ThirdPartyResourceUserView"
         startDate:
           type: string
           format: date-time
@@ -1744,6 +1744,19 @@ components:
         lastModifiedDate:
           type: string
           format: date-time
+    ThirdPartyResourceUserView:
+      required:
+      - id
+      - email
+      - upn
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        upn:
+          type: string
     ThirdPartyResourceView:
       type: object
       properties:
